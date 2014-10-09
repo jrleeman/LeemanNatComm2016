@@ -1,0 +1,5 @@
+Figure Caption
+The biaxial deformation apparatus (A) and sample configuration (B). Two large
+hydraulic pistons are servo-controlled in either force or displacement control
+modes. Double direct shear samples are supported by steel blocks. Samples use
+metal side shields and a plastic membrane to reduce gouge extrusion.
