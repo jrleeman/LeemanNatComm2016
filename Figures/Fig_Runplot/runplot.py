@@ -27,6 +27,12 @@ p4309 = ReadAscii(data_path + '/p4309/p4309_data.txt')
 p4311 = ReadAscii(data_path + '/p4311/p4311_data.txt')
 p4316 = ReadAscii(data_path + '/p4316/p4316_data.txt')
 
+#
+# Interpolate Data to 1Hz
+#
+f = interpolate.interp1d(p4309['Time'],p4309['LP_Disp'])
+p4309_LP_1Hz = interpolate.interp1d(p4309['Time'],p4309['LP_Disp'])
+
 
 # 4 Panel figure
 
