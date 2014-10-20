@@ -1,0 +1,11 @@
+Figure Caption
+Rate-and-state friction parameters obtained from velocity step inversions. All
+inversions were accomplished with a fixed stiffness of 5.5e-3/um. A) rate-and-state
+parameter a remains relatively constant with displacement and shows a systematic
+behavior with higher values of a always being observed during velocity
+up-steps. The b parameter shows a similar behavior, but also increases with
+displacement, reaching a steady-state value around 10 mm displacement.
+B) The sample transitions from velocity strengthening to velocity weakening
+ behavior at around 10 mm and remains velocity weakening for the remainder of
+ the experiment. C) Critical slip distance estimates show considerable scatter,
+ but do reduce to a steady-state value of 5-10 um.  
