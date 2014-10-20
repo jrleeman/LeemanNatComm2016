@@ -1,0 +1,7 @@
+Figure Caption
+A) Run-plots of experiments p4309 (blue), p4311 (orange), and p4316 (green).
+Different working stiffnesses can be observed as the slope of unload/reload
+segments. B) All steel blocks produced stable responses to velocity steps.
+C) Destiffening the system with an acrylic center block produced non-audible
+slow-slip events. D) Further destiffening with an acrylic center block and
+increased normal stress produced audible fast stick-slip events.   
