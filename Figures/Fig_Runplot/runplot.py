@@ -333,6 +333,8 @@ velocity = rslope(p4309['Time'].reshape(p4309['Time'].size),p4309['On_Board'].re
 axE2.plot(p4309['Time'] - p4309['Time'][0],velocity,color='0.7',linewidth=2,
         linestyle=':',label='p4309')
 
+# Set Velocity Axis Limits
+axE2.set_ylim(0,15)
 
 
 # Add scale bars
@@ -395,6 +397,9 @@ velocity = rslope(p4311['Time'].reshape(p4311['Time'].size),p4311['On_Board'].re
 axF2.plot(p4311['Time'] - p4311['Time'][0],velocity,color='0.7',linewidth=2,
         linestyle=':',label='p4311')
 
+# Set Velocity Axis Limits
+axF2.set_ylim(0,50)
+
 
 # # Add scale bars
 # mu_ref = 0.07 * (axF.get_ylim()[1] - axF.get_ylim()[0]) + axF.get_ylim()[0]
@@ -412,7 +417,7 @@ axF2.plot(p4311['Time'] - p4311['Time'][0],velocity,color='0.7',linewidth=2,
 # axF2.text(t_ref+1.1*dt,d_ref+0.5*ddis,'%.1f $\mu m$'%ddis,fontsize=8)
 
 # Add starting disp text to plot
-axF.text(0,-0.07,'%.1f mm' %(p4311['LP_Disp'][0]/1000.),fontsize=10,transform = axF.transAxes)
+#axF.text(0,-0.07,'%.1f mm' %(p4311['LP_Disp'][0]/1000.),fontsize=10,transform = axF.transAxes)
 
 #
 # Plot G
@@ -457,6 +462,9 @@ velocity = rslope(p4316['Time'].reshape(p4316['Time'].size),p4316['On_Board'].re
 axG2.plot(p4316['Time'] - p4316['Time'][0],velocity,color='0.7',linewidth=2,
         linestyle=':',label='p4316')
 
+# Set Velocity Axis Limits
+axG2.set_ylim(0,2100)
+
 
 # Add scale bars
 # mu_ref = 0.07 * (axG.get_ylim()[1] - axG.get_ylim()[0]) + axG.get_ylim()[0]
@@ -474,7 +482,7 @@ axG2.plot(p4316['Time'] - p4316['Time'][0],velocity,color='0.7',linewidth=2,
 # axG2.text(t_ref+1.1*dt,d_ref+0.5*ddis,'%.1f $\mu m$'%ddis,fontsize=8)
 
 # Add starting disp text to plot
-axG.text(0,-0.07,'%.1f mm' %(p4316['LP_Disp'][0]/1000.),fontsize=10,transform = axG.transAxes)
+#axG.text(0,-0.07,'%.1f mm' %(p4316['LP_Disp'][0]/1000.),fontsize=10,transform = axG.transAxes)
 
 
 plt.savefig('runplot.png', bbox_inches="tight")
