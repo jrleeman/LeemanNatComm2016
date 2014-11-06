@@ -13,4 +13,4 @@
 * Laboratory Observations of Transitional Frictional Failure
 * Stiffness as a Fault Failure Mode Control
 * Transitional Failure in a Frictional System
-* Slip Slid'in Away: A Spectrum of Fault Failure in the Laboratory
+* Slip Slidin' Away: A Spectrum of Fault Failure in the Laboratory
