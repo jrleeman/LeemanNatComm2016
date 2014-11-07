@@ -1,52 +1,34 @@
 # PAPER TITLE
 # AUTHOR LIST
 
-## Introductory Paragraph/Abstract (typically 150 words, unreferenced)
+## Max length 2000 Words, excluding methods, 3-5 display items
+
+## Introductory Paragraph (approximately 200 words, referenced)
+### This is already slightly over at around 230 words
 Observations of slow-slip and low-frequency earthquakes in nature suggest that
-fault failure encompasses a spectrum of slip modes. While the explanations for
-non-traditional earthquakes remain a topic of debate, an ever increasing pool of
-data shows them to be found across the globe in a variety of tectonic settings.
-Tribology suggests that a system will become unstable at a critical stiffness
-value, but transitional behavior around this stiffness boundary has remained
-poorly characterized. Here we demonstrate the spectrum of failure modes from
-stable-sliding to stick-slip in a frictional laboratory system with simulated
-quartz fault gouge. When operating near the  critical stiffness, slow-slip
-events are observed. Our results show the critical stiffness to be the
-controlling factor for slip mode, itself influenced by environmental factors
-such as pore pressure and second order frictional properties of the gouge.
+fault failure encompasses a spectrum of slip modes (Peng and Gomberg, 2010;
+Obara, 2002; Ide et al., 2007; Beroza and Ide, 2011). While the explanations for
+non-traditional earthquakes remain a topic of debate (Kaproth and Marone, 2013),
+an ever increasing pool of data shows them to be found across the globe in a
+variety of tectonic settings (REFS). There is currently no way to know if the
+large amounts of elastically stored energy in a fault zone will always be
+released in slow-slip events or if fault behavior can transition to produce
+large earthquakes. It is difficult to study fault zone behavior and evolution
+given that large faults may have a recurrence interval of hundreds of years and
+that fault slip occurs deep enough in the Earth that we must rely on
+instrumentation located kilometers away. Laboratory stick-slip is often used to
+model and study repeating earthquake behavior (Brace and Byerlee, 1969; Johnson
+et al., 2013). Frictional stability of a system bifurcates at a critical
+stiffness , $k_c$ (Rice and Gu, 1983; Gu et al., 1984). For systems in which
+$k>k_c$, linearly stable response, while systems with $k<k_c$ are dynamically
+unstable(Scholz Book). Behavior at and near $k_c$ is not well understood, but
+transitional behaviors such as sinusoidal stress variations and slow-slip have
+been observed (Kaproth and Marone, 2013; Baumberger et al., 1994; Leeman et al.,
+In review.) Our results show the critical stiffness to be the controlling factor
+for slip mode, itself influenced by environmental factors such as pore pressure
+and second order frictional properties of the gouge.  
 
-## Paper Body
-### Introduction (Referenced, Up to 500 Words)
-Fault zones and failure surfaces have traditionally been considered to either
-aseismically creep or to catastrophically fail, producing earthquakes.
-Stick-slip has been proposed as an analog for earthquakes (Brace and Byerlee,
-1969; Johnson et al., 2013) in the framework of stable or unstable sliding, but
-it has recently become evident that there are a spectrum of fault slip behaviors
-(Peng and Gomberg, 2010). The discovery of slow earthquakes and non-volcanic
-tremor (Obara, 2002; Ide et al., 2007; Beroza and Ide, 2011) has raised
-questions about the link between fault zone frictional properties, in situ
-conditions, and the underlying mechanisms of slow-slip (Kaproth and Marone,
-2013).
-
-There is currently no way to know if the large amounts of elastically stored
-energy in a fault zone will always be released in slow-slip events or if fault
-behavior can transition to produce large earthquakes. It is difficult to study
-fault zone behavior and evolution given that large faults may have a recurrence
-interval of hundreds of years and that fault slip occurs deep enough in the
-Earth that we must rely on instrumentation located kilometers away. Laboratory
-techniques allow us to examine the ideas of critical stiffness as a failure
-mode predictor in carefully controlled conditions on geologic analog materials.
-
-Frictional stability has been shown to bifurcate at a critical stiffness value,
-$k_c$ (Rice and Gu, 1983; Gu et al., 1984). For systems in which $k>k_c$,
-linearly stable response is observed and the sytem resides at a fixed attractor
-in phase space. Systems with $k<k_c$ are dynamically unstable, exhibiting
-stick-slip failure (Scholz Book). Behavior at and near $k_c$ is not well
-understood, but transitional behaviors such as sinusoidal stress variations and
-slow-slip have been observed (Kaproth and Marone, 2013; Baumberger et al., 1994;
-Leeman et al., In review.)
-
-### Main Body (2000-3000 Words w/Discussion, 4-6 display items)
+## Body
 
 Biaxial double-direct shearing experiments were performed with humidified
 Min-U-Sil simulated fault gouge. Force and displacement are recorded on both
