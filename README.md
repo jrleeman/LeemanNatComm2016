@@ -13,3 +13,8 @@ to a peer-review journal. Nature Geoscience?
 ## Remaining Experiments for This Article:
 - Acrylic center (fine tooth, thick) at 4 MPa Normal Stress with
 unload/reload cycles
+
+## List of Supplemental Material
+- Raw Data
+- Table of experiments
+- Table of RSF step fits
