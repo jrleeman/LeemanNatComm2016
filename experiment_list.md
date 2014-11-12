@@ -1,5 +1,3 @@
-# Experiment List
-
 | Experiment | Blocks Used      | Normal Stress [MPa] | Temperature [C] | Relative Humidity [%] | Comments                        | Unload/Reloads |
 |------------|------------------|---------------------|-----------------|-----------------------|---------------------------------|----------------|
 | p4224      | Titanium/Acrylic | 5                   | 26              | 16                    | Stable - Velocity Steps         | N              |
@@ -26,7 +24,3 @@
 | p4328      | Titanium/Acrylic | 6                   | 22.7            | 100                   | Slow Slip                       | Y              |
 | p4329      | Titanium/Acrylic | 6                   | 22              | 100                   | Slow Slip                       | Y              |
 | p4330      | Steel            | 6                   | 22.9            | 100                   | Stable - Velocity Steps         | Y              |
-
-** These are ONLY experiments with the new, fine tooth, thick acrylic 10x10 block and steel block! **
-
-** All Min-U-Sil 10 layers of 3mm thickness **

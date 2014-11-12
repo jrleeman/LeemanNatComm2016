@@ -22,7 +22,8 @@
 
 %%% SECTION TITLE APPEARANCE
 \usepackage{sectsty}
-\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+\allsectionsfont{\sffamily\mdseries\upshape}
+% (See the fntguide.pdf for font help)
 % (This matches ConTeXt defaults)
 
 %%% END Article customizations
@@ -203,8 +204,9 @@ as they accumulate slip and become mature fault zones.
 Laboratory results can also be connected to observations in nature through the
 critical patch size. Critical patch size (eq.\ref{equation:rc}) grows with
 increasing $k_c$ and/or increasing normal stress. Extending this to large patch
-sizes hypothesized for slow-slip events suggests lowered normal stress, possibly
-due to high pore-pressures and/or low critical stiffness values.
+sizes hypothesized for slow-slip events, and assuming a nominal shear modulus
+($G$), suggests lowered normal stress, possibly due to high pore-pressures
+and/or low critical stiffness values.
 
 % Equation - Critical Radius %
 \begin{equation}
@@ -252,6 +254,15 @@ events were obtained with a derivative based algorithm \cite{Leeman:2015}.
 Rate-and-state models were fit with both the Dieterich and
 Ruina laws, with comparable results. Inversions were done with an iterative
 singular value decomposition technique.
+
+% Figure %
+\begin{figure}
+	\centering
+		\includegraphics[scale=1.0]{../Figures/Fig_Stiffness_Evolution/Stiffness_Evolution.pdf}
+   	\caption{FIGURE CAPTION}
+  	\label{Figure:Stiffness Evolution}
+\end{figure}
+% End Figure %
 
 \bibliography{references}
 

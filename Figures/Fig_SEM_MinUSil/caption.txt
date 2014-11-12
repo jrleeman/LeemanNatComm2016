@@ -1,5 +1,0 @@
-Figure Caption
-A scanning electron micrograph of raw Min-U-Sil(R) 10 material,
-a product of U.S. Silica.  The manufacturer specifies a mean
-particle size of 3.4 $\mu$m.  The material is natural crystalline
-silica of high purity ($\sim$98.6 % SiO$_2$).
