@@ -64,7 +64,7 @@ shear stiffness of the system.
 \section{Main}
 Biaxial double-direct shearing experiments were performed with humidified
 Min-U-Sil\textsuperscript{\textregistered} simulated fault gouge. Force and
-displacement are recorded on both axes, as well as a measurement of the shearing
+displacement are recorded on both the normal and shear axes, as well as a measurement of the shearing
 block position (Fig.\ref{Fig:Biax Schematic}). System compliance can be modified
 by changing the normal stress (2,4,6,8,12 MPa) or the material of which the
 centreal shearing block is made (steel or cast acrylic).
@@ -78,20 +78,16 @@ centreal shearing block is made (steel or cast acrylic).
        displacement control modes. Double direct shear samples are supported by
        steel blocks. Samples use metal side shields and a plastic membrane to
        reduce gouge extrusion.  Local displacement transducers (DCDTs) can be
-       referenced to the center block to avoid apparatus stiffness corrections and
-       measure deformation of the center block.}
+       referenced to the center block to avoid apparatus stiffness effects on
+       the measurement.}
       \label{Fig:Biax Schematic}
 \end{figure}
 % End Figure %
 
-Experiments performed under stiff system conditions exhibited linearly-stable
-behavior in response to order of magnitude velocity perturbations.
-Linearly-stable response is characterized by direct matching of the loading and
-system velocities and a transitory frictional response.
 For experiments exhibiting stable sliding behavior, velocity steps were imposed
 to obtain the rate-and-state frictional parameters of the material and system.
 The rate-and-state parameters are constants to an emperical fit to transient
-response of a frictional system to a perturbation \cite{Marone:1998}. The $a$
+response of a frictional system to a perturbation \cite{Marone:1998,Dieterich:1979,Ruina:1983}. The $a$
 parameter provides a measure of the direct effect in response to a velocity
 step, and $b$ provides the magnitude of friction evolution there-after. The
 difference of $a$ and $b$, then yields a quantitative measure of how strongly
@@ -108,26 +104,18 @@ critical slip distance evolves downwards (Fig.\ref{Figure:RSF Props}).
         \includegraphics[scale=0.45]{../Figures/Fig_RSF_Parameters/RSF_Parameters.png}
        \caption{Rate-and-state friction parameters obtained from velocity step
        inversions. All inversions were accomplished with a fixed stiffness of
-       5.5x$10 ^ {-3} \mu$m. A) rate-and-state parameter a remains relatively
+       $k=$5.5x$10 ^ {-3} \mu$m. A) rate-and-state parameter $a$ remains relatively
        constant with displacement and shows a systematic behavior with higher
        values of a always being observed during velocity up-steps. The b
        parameter shows a similar behavior, but also increases with displacement,
-       reaching a steady-state value around 10 mm displacement. B) The sample
+       reaching a steady-state value $\sim$10 mm displacement. B) The sample
        transitions from velocity strengthening to velocity weakening  behavior
-       at around 10 mm and remains velocity weakening for the remainder of  the
+       at $\sim$10 mm and remains velocity weakening for the remainder of  the
        experiment. C) Critical slip distance estimates show considerable
-       scatter,  but do reduce to a steady-state value of 5-10 um.  }
+       scatter,  but do reduce to a steady-state value of 5-10 um.}
       \label{Figure:RSF Props}
 \end{figure}
 % End Figure %
-
-In a more compliant loading system, emergent unstable behavior was observed.
-Unstable behavior began with frictional oscillations, transitioning to dynamic frictional
-failure. Oscillations and dynamic failure are characterized by relatively rapid
-accelerations and decelerations of the system above/below the load point
-velocity when the material yields under excessive shear force. Experiments with
-further increased compliance, rapid dynamic failure was observed. These events
-were audible and classified as fast stick-slip.
 
 There are two conditions for unstable behavior to occur: 1) that the material be
 velocity neutral to velocity weakening, and 2) that the system stiffness be at
@@ -141,20 +129,29 @@ way that the drop in shear resistance with displacement occurs faster than the
 drop in applied shearing force with displacement, the system can support
 unstable failure.
 
-The system stiffness measured, for both stable and unstable experiments, with
-cycles of unloading and reloading the shear stress.  This provides as estimate
+In a stiff (all steel) forcing setup, linearly stable frictional behavior was observed.
+In a more compliant loading system, emergent unstable behavior was observed.
+Unstable behavior began with frictional oscillations, transitioning to dynamic frictional
+failure. Oscillations and dynamic failure are characterized by relatively rapid
+accelerations and decelerations of the system above/below the load point
+velocity when the material yields under excessive shear force. Experiments with
+further increased compliance, rapid dynamic failure was observed. These events
+were audible and classified as fast stick-slip.
+
+The system stiffness was measured, for both stable and unstable experiments, with
+cycles of unloading and reloading the shear stress at a constant displacement rate of $10 \mu m/s$.  This provided as estimate
 of the aggregate system shear stiffness. For experiments that became unstable,
-a second method of stiffness measurement was employed. The loading stiffness of
-individual events was automatically determined \cite{Leeman:2015}. We expect both
-of these to provide comparable results and allow determination the system's behavior.
+a second method of stiffness measurement was employed. Loading stiffnesses of
+individual slip events were algorithmically determined \cite{Leeman:2015}. We expect both
+of these methods to provide comparable results and allow determination the system's behavior.
 
 In both determinations of stiffness, we observe increases in measured aggregate
-system stiffness with accumulated shearing displacement. These increases are most
-prevalent in the first 10 mm of shear, then asymptotically approaching steady-state.
+system stiffness with accumulated shearing displacement. Unload/reload measurements show these increases are most
+prevalent in the first 10 mm of shear, asymptotically approaching steady-state.
 Initial increases is stiffness could be due to layer compaction from
 grain rearrangement, layer thinning with increased shear strain, grain
 comminution, localization of shear, or reduction of
-compliant center block material above sample due to geometric effects.
+compliant center block material above the sample due to geometric effects.
 Layer compaction due to rearrangement and geometric thinning with shear
 have been well documented \cite{Scott:1994}.  At these low stresses, grain
 comminution is minimal. Shear localization effects have been shown to play a role in the
@@ -187,7 +184,7 @@ corresponding decrease in $D_c$ increase the value of the predicted critical
 stiffness (eq.\ref{equation:kc}). Combined with increasing system stiffness,
 a frictional transition is predicted as the critical stiffness intersects the
 measured system stiffness. We begin to see frictional oscillations and dynamic
-failure as $k \sim k_c$. The larger the departure from $k=kc$, the more dramatic the behavior.
+failure as $k \sim k_c$. The larger the departure from $k=k_c$, the more dramatic the behavior.
 Very compliant systems exhibit fast dynamic failure. Very stiff systems show no
 tendency to produced damped oscillations after a
 velocity step (Fig.\ref{Figure:Runplot}).
@@ -218,16 +215,30 @@ velocity step (Fig.\ref{Figure:Runplot}).
 Our observations of transitional behavior beginning when $k \sim k_c$ suggests
 that $k_c$ is a valid proxy for the stability of a system, marking a transitory
 zone between stable sliding and stick-slip that encompasses slow-slip and
-oscillatory behavior. We also observe that the critical stiffness of a system
+oscillatory behavior (Fig.\ref{Figure:Stiffness Evolution}). We also observe that the critical stiffness of a system
 evolves with shear strain, suggesting that tectonic faults may change behavior
 as they accumulate slip and become mature fault zones.
 
+% Figure %
+\begin{figure}
+    \centering
+        \includegraphics[scale=0.4]{../Figures/Fig_Stiffness_Evolution/Stiffness_Evolution.pdf}
+       \caption{Stiffness estimates from shear stress unload/reload cycles show
+       an increase in the stiffness early in shearing, likely associated with
+       fabric development. Experiments with stiffness comparable to the critical stiffness
+       estimates from velocity steps exhibit slow-slip behavior. Experiments in
+       which the measured stiffness is below the critical stiffness exhibitied
+       more rapid, audible stick-slip.}
+      \label{Figure:Stiffness Evolution}
+\end{figure}
+% End Figure %
+
 In nature, the critical patch size is thought of as the size a crack must grow
-to before being able to support continued dynamic rupture. Shallow VLF events in
+to before being able to support propagating dynamic rupture. Shallow VLF events in
 Nankai have been shown to have critical patch sizes of $L_c = 37-63$ m,
 comparable to laboratory tests on natural materials from the area
 \cite{Ikari:2013}. We likewise calculate  patch sizes of 10's of meters for our
-experiments, but in a simple quartz gouge,  note relying on slip dependent clay
+experiments, but in a simple quartz gouge,  not relying on slip dependent clay
 material properties. The critical patch size (eq.\ref{equation:rc}) grows with
 increasing $k_c$ and/or increasing normal stress. Extending this to large patch
 sizes for slow-slip events, and assuming a nominal shear modulus ($G$), suggests
@@ -241,10 +252,10 @@ supported by inference of high pore-pressure
 \end{equation}
 % End Equation %
 
-With slow-slip failure events, we see little to no dynamic overshoot. In
+With slow-slip failure events, we see little to no dynamic overshoot. The is observable by a period of no block motion or
+deformation after the rapid stress-drop (Fig.\ref{Figure:Runplot}C).  In
 traditional fast stick-slip events, the system shears further than required to
-complete the force balance. The is observable by a period of no block motion or
-deformation after the rapid stress-drop.  Frictional oscillations and slow-slip
+complete the force balance.Frictional oscillations and slow-slip
 show no such overshoot, with continual deformation of the system throughout the
 simulated seismic cycle. This provides some insight into the low frequency
 nature of emissions observed from slow-slip and lack of audible report in the
@@ -269,11 +280,11 @@ Displacement Transducers (DCDTs) referenced at the end-platens and ram nose. The
 displacement of the shearing block was measured with a DCDT referenced at the
 end-platen and the top of the shearing block. Loads applied to the sample were
 measured with strain gauge load cells. All transducers are semi-annually
-calibrated with a traceable transfer standard.
+calibrated with a traceable transfer standards.
 
 Samples were prepared in the double-direct-shear geometry using steel or
 titanium side blocks and steel or acrylic shearing blocks. All blocks were
-grooved 0.8 mm deep at 1 mm spacing to reduce boundary effects. The sample area
+grooved 0.8 mm deep at 1 mm spacing to reduce boundary effects \cite{Anthony:2005}. The sample area
 was 10 x 10 cm and filled with Min-U-Sil to a thickness of 3 mm. Granular layers
 were left in a sealed container overnight with a solution of anhydrous sodium
 carbonate to humidify the samples.
@@ -302,19 +313,8 @@ Rate-and-state models were fit with both the Dieterich and
 Ruina laws, with comparable results. Inversions were done with an iterative
 singular value decomposition technique.
 
-% Figure %
-\begin{figure}
-	\centering
-		\includegraphics[scale=0.4]{../Figures/Fig_Stiffness_Evolution/Stiffness_Evolution.pdf}
-   	\caption{Stiffness estimates from shear stress unload/reload cycles show
-       an increase in the stiffness early in shearing, likely associated with
-       fabric development. Experiments with stiffness comparable to the critical stiffness
-       estimates from velocity steps exhibit slow-slip behavior. Experiments in
-       which the measured stiffness is below the critical stiffness exhibitied
-       more rapid, audible stick-slip.}
-  	\label{Figure:Stiffness Evolution}
-\end{figure}
-% End Figure %
+Raw data were recorded in a binary format, and can be read into Python\cite{Leeman:BiaxRead}. 
+Processed text output is also available
 
 \bibliography{references}
 
