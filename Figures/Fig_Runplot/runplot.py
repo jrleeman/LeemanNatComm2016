@@ -324,6 +324,8 @@ axE2.get_yaxis().set_ticks([])
 # Turn off top and right splines
 axE.spines["top"].set_visible(False)
 axE.spines["right"].set_visible(False)
+axE2.spines["top"].set_visible(False)
+axE2.spines["right"].set_visible(False)
 
 # Plot
 axE.plot(p4309['Time'] - p4309['Time'][0],p4309['On_Board'] - p4309['On_Board'][0],color='k',linewidth=2,
@@ -335,6 +337,10 @@ axE2.plot(p4309['Time'] - p4309['Time'][0],velocity,color='0.7',linewidth=2,
 
 # Set Velocity Axis Limits
 axE2.set_ylim(0,15)
+
+# Add annotation for velocity
+axE2.text(10,11,r'10 $\mu m/s$',fontsize=10)
+axE2.text(25,4,r'1 $\mu m/s$',fontsize=10)
 
 
 # Add scale bars
@@ -385,6 +391,9 @@ axF.get_yaxis().set_ticks([])
 axF.spines["top"].set_visible(False)
 axF.spines["right"].set_visible(False)
 axF.spines["left"].set_visible(False)
+axF2.spines["top"].set_visible(False)
+axF2.spines["right"].set_visible(False)
+axF2.spines["left"].set_visible(False)
 
 # Plot
 #axF.plot(p4311['Time'] - p4311['Time'][0],p4311['mu'],color=tableau20[2],linewidth=1,
@@ -400,6 +409,9 @@ axF2.plot(p4311['Time'] - p4311['Time'][0],velocity,color='0.7',linewidth=2,
 # Set Velocity Axis Limits
 axF2.set_ylim(0,50)
 
+# Add annotation for velocity
+axF2.text(1.5,1.5,r'10 $\mu m/s$',fontsize=10)
+axF2.text(2.6,45,r'45 $\mu m/s$',fontsize=10)
 
 # # Add scale bars
 # mu_ref = 0.07 * (axF.get_ylim()[1] - axF.get_ylim()[0]) + axF.get_ylim()[0]
@@ -452,6 +464,8 @@ axG2.get_yaxis().set_ticks([])
 # Turn off top and right splines
 axG.spines["top"].set_visible(False)
 axG.spines["left"].set_visible(False)
+axG2.spines["top"].set_visible(False)
+axG2.spines["left"].set_visible(False)
 
 # Plot
 
@@ -465,6 +479,8 @@ axG2.plot(p4316['Time'] - p4316['Time'][0],velocity,color='0.7',linewidth=2,
 # Set Velocity Axis Limits
 axG2.set_ylim(0,2100)
 
+# Add annotation for velocity
+axG2.text(3,1900,r'1900 $\mu m/s$',fontsize=10)
 
 # Add scale bars
 # mu_ref = 0.07 * (axG.get_ylim()[1] - axG.get_ylim()[0]) + axG.get_ylim()[0]
