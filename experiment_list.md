@@ -24,3 +24,5 @@
 | p4328      | Titanium/Acrylic | 6                   | 22.7            | 100                   | Slow Slip                       | Y              |
 | p4329      | Titanium/Acrylic | 6                   | 22              | 100                   | Slow Slip                       | Y              |
 | p4330      | Steel            | 6                   | 22.9            | 100                   | Stable - Velocity Steps         | Y              |
+| p4338      | Titanium/Acrylic | 4                   | 24.2            | 100                   | Stable - Velocity Steps         | Y              |
+| p4339      | Steel            | 4                   | 24.8            | 100                   | Stable - Velocity Steps         | Y              |
