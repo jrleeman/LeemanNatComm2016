@@ -4,12 +4,17 @@ Stiffness Short Article
 Development of a paper on stiffness and critical stiffness for submission
 to a peer-review journal. Nature Geoscience?
 
+# Chris' Main Points
+- We need a clean, complete experiment.  Figure 1, or some version of it, can be an inset to that. The current Fig. 1 would go in supp. materials
+- Fig 2, or 1b, should focus on time series showing the emergence of slow stick-slip and the details of it. This fig. will emphasize the observation(s) and the resolution of our measurements –proving that we see flow slip and that we have stable, clean measurements.
+- Replace Fig. 2a with a fric. displ. curve showing vel. step –or just omit 2a.  Figs 2b and 2c show the main story.
+- Fig 4 is too busy; data are noisy.
+- Fig 5 needs annotations. We need to clean up the estimates of Kc.
+
+
 ## Chris/Demian Actions and Questions
 - Edit title suggestions (90 char. max with spaces)
 - Look at reference list
-- Do we want to make the figure of the biax B&W only to save on printing?
-- Do we want to make the RSF parameters figure B&W to save on printing?
-- Begin draft review
 
 ## How to Review with Git
 - Make a new branch and check it out: ex. *>> git checkout -b cjm_edits*
