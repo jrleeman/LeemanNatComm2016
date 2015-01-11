@@ -62,12 +62,59 @@ damage zone evolution.
 
 
 \section{Main}
-Biaxial double-direct shearing experiments were performed with humidified
-Min-U-Sil\textsuperscript{\textregistered} simulated fault gouge. Force and
-displacement are recorded on both the normal and shear axes, as well as a measurement of the shearing
-block position (Fig.\ref{Fig:Biax Schematic}). System compliance can be modified
-by changing the normal stress (2,4,6,8,12 MPa) or the material of which the
-central shearing block is made (steel or cast acrylic).
+
+################################### TO DO ######################################
+Explain the importance and widespread observation of SSE, VLFE, ETS in
+various tectonic environments (references here could include Linde, 1996;
+Dragert et al., 2001; Ide et al., 2007; Ito & Obara, 2005, etc…).
+################################################################################
+
+
+The rate-and-state friction framework is commonly used to describe the dynamic
+frictional behavior of natural and experimental systems to perturbations. This
+empirical relation consists of the paramaters $a$ and $b$ which describe the
+velocity dependence of friction. For materials in which $(a-b)>0$ the friction
+increases with increased driving velocity, termed velocity strengthening. Likewise,
+materials with $(a-b)<0$ are velocity weakening. The model also consists of an
+$e$-folding critical slip distance $D_c$, and a state variable $\theta$. The
+state variable is thought to be a proxy for the age of the frictional contacts, and
+evolves according to a state evolution relation, commonly the Dieterich `slowness'
+or Runia `slip' relation \cite{Marone:1998,Dieterich:1979,Ruina:1983}.
+
+For unstable behavior to occur: 1) that the material be
+velocity neutral to velocity weakening, and 2) that the system stiffness be at
+or below the critical stiffness \cite{Marone:1998, Scholz:2002}. If a
+material is velocity strengthening, any acceleration leading to slip is
+immediately arrested by increased shearing resistance and the energy is
+frictionally dissipated. The stiffness of the system governs the rate at which
+energy stored as strain can be released. If the energy release occurs in such a
+way that the drop in shear resistance with displacement occurs faster than the
+drop in applied shearing force with displacement, the system can support
+unstable failure. The critical stiffness can be described in terms of the
+rate-and-state parameters as show in eq.\ref{eq:kc} The aggregate stiffness of
+the loading system and sample can be measured by fitting the linear-slope
+of the load-point displacement vs. shear load curve on either an unload/reload
+cycle or on the loading portion of a single stick-slip event.
+
+% Equation - Critical Stiffness %
+\begin{equation}
+    k_c = \frac{b-a}{D_c}
+    \label{equation:kc}
+\end{equation}
+% End Equation %
+
+We conducted a suite of biaxial double-direct shearing experiments with fine
+quartz fault gouge simulant (Min-U-Sil\textsuperscript{\textregistered}), chosen
+for its geologic relevance, reproduceable results, and well controlled
+composition and size distribution. This study systematically examines the
+behavior of an experimental fault as a function of nearness to the staility
+criterion $k \sim k_c$. Using the same, well  controlled sample material for
+each experiment and humidifying the samples, we ensure that the rate-and-state
+paramters $(a,b,D_c)$ remain essentially constant. We then explore the stability
+of the system by modifying the stiffness directly by changing the forcing block
+configuration and by changing the applied effective normal stress $(\sigma_n')$.
+Force and displacement are recorded on both the normal and shear axes, as well
+as a measurement of the shearing block position (Fig.\ref{Fig:Biax Schematic}).
 
 % Figure %
 \begin{figure}
@@ -84,19 +131,17 @@ central shearing block is made (steel or cast acrylic).
 \end{figure}
 % End Figure %
 
-For experiments exhibiting stable sliding behavior, velocity steps were imposed
-to obtain the rate-and-state frictional parameters of the material and system.
-The rate-and-state parameters are constants to an empirical fit to transient
-response of a frictional system to a perturbation \cite{Marone:1998,Dieterich:1979,Ruina:1983}. The $a$
-parameter provides a measure of the direct effect in response to a velocity
-step, and $b$ provides the magnitude of friction evolution there-after. The
-difference of $a$ and $b$, then yields a quantitative measure of how strongly
-velocity strengthening or velocity weakening a material is. The critical slip
-distance, $D_c$, is often considered to be the slip required to renew the
-contact population in a granular material. In our experiments, $a$ remains
-relatively constant with displacement, but $b$ evolves asymptotically upwards
-with increasing shear displacement. During this transitional period, the
-critical slip distance evolves downwards (Fig.\ref{Figure:RSF Props}).
+In order to define/measure the RSF parameters for each experiment, we use a
+range of measurements. For experiments in which $K$ is high, stable sliding
+behavior is  observed and we use velocity steps to obtain the rate-and-state
+frictional parameters and therefore $K_c$.  We assume that the evolution of
+these material and layer properties is not dependent on the mode of slip, and
+therefore we use the values measured on stably sliding experiments as a
+framework for evaluating/comparing results from the suite of experiments. In our
+experiments, $a$ remains relatively constant with displacement, but $b$ evolves
+asymptotically upwards with increasing shear displacement. During this
+transitional period, the critical slip distance evolves downwards
+(Fig.\ref{Figure:RSF Props}).
 
 % Figure %
 \begin{figure}
@@ -117,65 +162,53 @@ critical slip distance evolves downwards (Fig.\ref{Figure:RSF Props}).
 \end{figure}
 % End Figure %
 
-There are two conditions for unstable behavior to occur: 1) that the material be
-velocity neutral to velocity weakening, and 2) that the system stiffness be at
-or below the critical stiffness \cite{Marone:1998, Scholz:2002}. Velocity
-weakening is a necessary, but insufficient condition for unstable behavior. If a
-material is velocity strengthening, any acceleration leading to slip is
-immediately arrested by increased shearing resistance and the energy is
-frictionally dissipated. The stiffness of the system governs the rate at which
-energy stored as strain can be released. If the energy release occurs in such a
-way that the drop in shear resistance with displacement occurs faster than the
-drop in applied shearing force with displacement, the system can support
-unstable failure.
+The system stiffness was measured, for both stable and unstable experiments,
+with cycles of unloading and reloading the shear stress at a constant
+displacement rate of $10 \mu m/s$.  This provided an estimate of the aggregate
+system shear stiffness. For experiments that became unstable, a second method of
+stiffness measurement was employed. Loading stiffnesses of individual slip
+events were algorithmically determined \cite{Leeman:2015}. Both of
+these methods to provide comparable results and allow determination the system's
+predicted behavior.
 
-In a stiff (all steel) forcing setup, linearly stable frictional behavior was observed.
-In a more compliant loading system, emergent unstable behavior was observed.
-Unstable behavior began with frictional oscillations, transitioning to dynamic frictional
+\section{Results/Discussion}
+
+Our results show that the mode of slip is consistent with that expected from the
+rate-and-state friction framework. Slip mode varies systematically with $K$,
+and trasitional behavior is observed at $\frac{K}{K_c} \sim 1$. In a stiff (all
+steel) forcing setup, linearly stable behavior was observed, while in a
+more compliant loading system, emergent unstable behavior was observed. Unstable
+behavior began with frictional oscillations, transitioning to dynamic frictional
 failure. Oscillations and dynamic failure are characterized by relatively rapid
 accelerations and decelerations of the system above/below the load point
-velocity when the material yields under excessive shear force. Experiments with
+velocity when the material yields under excessive shear force. In experiments with
 further increased compliance, rapid dynamic failure was observed. These events
 were audible and classified as fast stick-slip.
 
-The system stiffness was measured, for both stable and unstable experiments, with
-cycles of unloading and reloading the shear stress at a constant displacement rate of $10 \mu m/s$.  This provided an estimate
-of the aggregate system shear stiffness. For experiments that became unstable,
-a second method of stiffness measurement was employed. Loading stiffnesses of
-individual slip events were algorithmically determined \cite{Leeman:2015}. We expect both
-of these methods to provide comparable results and allow determination the system's behavior.
+We also observe that there is a relation between the peak velocity or duration
+of slip and $\frac{K}{K_c}$. Systems near the stability transtion exhibit
+lower peak velocities and long duration events, seen as frictional oscillations
+in the experiments. The further the system is from the transtion, the events
+become shorter in duration and faster (WHAT ABOUT SLIP DISTANCE?).
 
-In both determinations of stiffness, we observe increases in measured aggregate
-system stiffness with accumulated shearing displacement. Unload/reload measurements show these increases are most
-prevalent in the first 10 mm of shear, asymptotically approaching steady-state.
-Initial increases in stiffness could be due to layer compaction from
-grain rearrangement, layer thinning with increased shear strain, grain
-comminution, localization of shear, or reduction of
-compliant center block material above the sample due to geometric effects.
-Layer compaction due to rearrangement and geometric thinning with shear
-have been well documented \cite{Scott:1994}.  At these low stresses, grain
-comminution is minimal. Shear localization effects have been shown to play a role in the
-evolution of layer behavior \cite{Logan:1992}, especially before reaching mechanical
-steady-state as R and Y shears develop. The reduction in the amount of
-compliant center block material above the shearing zone with accumulated
+Both $K$ and $K_c$, and thus mode of slip, evolve with net slip. As layer
+accumulates strain and strain is localized, it stiffens. At the same time, RSF
+parameters evolve, modifying the critical stiffness of the system. This explains
+a rich variety of behaviors that may appear unrelated or non-linear initially.
+This is supported by our observations that stick slip does not occur until a
+critical displacement is reached, because Kc is negative until the onset of rate
+weakening behavior. Most stiffness evolution occurs in the first 10 mm of shear,
+asymptotically approaching stead-state. Initial increases in stiffness could be
+due to layer compaction from grain rearrangement, layer thinning with increased
+shear strain, grain comminution, localization of shear, or reduction of
+compliant center block material above the sample due to geometric effects. Layer
+compaction due to rearrangement and geometric thinning with shear have been well
+documented \cite{Scott:1994}.  At these low stresses, grain comminution is
+minimal. Shear localization effects have been shown to play a role in the
+evolution of layer behavior \cite{Logan:1992}, especially before reaching
+mechanical steady-state as R and Y shears develop. The reduction in the amount
+of compliant center block material above the shearing zone with accumulated
 displacement is minimal compared to these other effects.
-
-The transition from velocity strengthening to velocity weakening and
-corresponding decrease in $D_c$ increase the value of the predicted critical
-stiffness (eq.\ref{equation:kc}). Combined with increasing system stiffness,
-a frictional transition is predicted as the critical stiffness intersects the
-measured system stiffness. We begin to see frictional oscillations and dynamic
-failure as $k \sim k_c$. The larger the departure from $k=k_c$, the more dramatic the behavior.
-Very compliant systems exhibit fast dynamic failure. Very stiff systems show no
-tendency to produced damped oscillations after a
-velocity step (Fig.\ref{Figure:Runplot}).
-
-% Equation - Critical Stiffness %
-\begin{equation}
-    k_c = \frac{b-a}{D_c}
-	\label{equation:kc}
-\end{equation}
-% End Equation %
 
 % Figure %
 \begin{figure}
@@ -193,12 +226,24 @@ velocity step (Fig.\ref{Figure:Runplot}).
 \end{figure}
 % End Figure %
 
-Our observations of transitional behavior beginning when $k \sim k_c$ suggests
-that $k_c$ is a valid proxy for the stability of a system, marking a transitory
-zone between stable sliding and stick-slip that encompasses slow-slip and
-oscillatory behavior (Fig.\ref{Figure:Stiffness Evolution}). We also observe that the critical stiffness of a system
-evolves with shear strain, suggesting that tectonic faults may change behavior
-as they accumulate slip and become mature fault zones.
+################################################################################
+d.	Implications for natural faults – e.g., (i) supports previous ideas about
+roles of transitional friction properties (low [a-b]), low normal stress (Audet
+et al., Song et al., Kitajima & Saffer; SAF refs – Shelley et al., recent tidal
+forcing paper for VLF on deep SAF),  (ii) potential effects of fault evolution
+and aging (e.g. Ikari et al., 2011).
+################################################################################
+
+Our results support previous ideas about the role of transitional frictonal
+properties in supporting a range of complex failure behaviors. Natrual factors
+such as compilant and evolving damage zones, low effective normal stress (Audet
+et al., Song et al., Kitajima & Saffer; SAF refs – Shelley et al., recent tidal
+forcing paper for VLF on deep SAF), and fault evoltuion/aging (e.g. Ikari et
+al., 2011) are all captured in the simple ratio of $\frac{K}{K_c}$.  All of this
+suggesting that tectonic faults may change behavior as they accumulate slip and
+become mature fault zones.
+
+############## RESUME HERE ################
 
 % Figure %
 \begin{figure}
@@ -300,7 +345,8 @@ Processed text output is also available
 \bibliography{references}
 
 \section{Acknowledgements}
-The authors with to thank Steve Swavely for his support in the laboratory. This
+The authors with to thank Steve Swavely for his support in the laboratory.
+We also thank Marco Scuderi for many discussions regarding this work. This
 material is based upon work supported by the National Science Foundation under
 Grant No. DGE1255832.  Any opinions, findings, and conclusions or
 recommendations expressed in this material are those of the author(s) and do not
@@ -313,9 +359,7 @@ J. Leeman conducted experiments and data analysis.
 
 \section{Competing Financial Interests}
 The authors declare no competing financial interests. Supplementary information
-accompanies this paper on www.nature.com/naturegeoscience. All data is avaliable
-for download, as well as Python scripts/notebooks to replicate data analysis on
-GitHub (www.github.com/jrleeman). Reprints and permissions information is
+accompanies this paper on www.nature.com/naturegeoscience. Reprints and permissions information is
 available online at http://npg.nature.com/reprintsandpermissions. Correspondence
 and requests for materials should be addressed to J. Leeman.
 
