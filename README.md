@@ -26,10 +26,6 @@ If there are other files listed or problems, let me know.
 - Push to the remote repo *>> git push origin cjm_edits*
 - Done! (Don't forget to switch back to your master branch if you want!)
 
-## Remaining Experiments for This Article:
-- Acrylic center (fine tooth, thick) at 4 MPa Normal Stress with
-unload/reload cycles
-
 ## List of Supplemental Material
 - Raw Data
 - Table of experiments
