@@ -48,7 +48,7 @@ Rica \cite{Jiang:2012}, Japan \cite{Ito:2006}, and New Zealand
 \cite{Wallace:2010}. What causes strain energy to be released across a
 wide-range of failure behaviors is not well understood, but transitional
 frictional stability is a  possible explanation. System stability is defined in
-terms of stiffness as $k \sim k_{critical}$ \cite{Gu:1984} and can be altered by
+terms of system stiffness ($k$) related to the critical stiffness ($k_{c}$) \cite{Gu:1984} and can be altered by
 environmental variables such as effective normal stress, critical slip distance,
 and the velocity dependence of friction. Clustering of slow and transitional
 events around traditional seismic faults in nature suggests that transitional
@@ -57,15 +57,15 @@ behavior is responsible. Laboratory evidence of this behavior is scattered
 models \cite{Gu:1984}. Here we present the first systematic investigation of the
 critical stiffness ratio and its effect on the frictional state of a laboratory
 fault. We also show that stiffness can control the slip mode and that the
-failure mode can change as stiffness is influenced by accumulated fault slip and
+slip mode can change as stiffness is influenced by accumulated fault slip and
 damage zone evolution.
 
 
 \section{Main}
 
 The observation of non-traditional slip modes (slow slip, very low frequency
-earthquakes, episodic tremor and slip, etc) in such a wide variety of locations
-over a decade suggests that this is a common occurrence. There have been
+earthquakes, episodic tremor and slip, etc) in a wide variety of locations
+over the last decade suggests that this is a common occurrence. There have been
 suggestions that these behaviors, often observed at the down-dip limit of
 traditional seismic slip, can influence, interact with, or trigger up-dip
 earthquakes \cite{Dragert:2001ed,Ide:2007fi}. There has also been the suggestion
@@ -79,7 +79,10 @@ empirical relation consists of the parameters $a$ and $b$ which describe the
 velocity dependence of friction. For materials in which $(a-b)>0$ the friction
 increases with increased driving velocity, termed velocity strengthening. Likewise,
 materials with $(a-b)<0$ are velocity weakening. The model also consists of an
-$e$-folding critical slip distance $D_c$, and a state variable $\theta$. The
+$e$-folding critical slip distance $D_c$, and a state variable $\theta$.
+$D_c$ is thought of, in the laboratory, as the distance required to completely
+renew a contact population.
+The
 state variable is thought to be a proxy for the age of the frictional contacts, and
 evolves according to a state evolution relation, commonly the Dieterich `slowness'
 or Runia `slip' relation \cite{Marone:1998,Dieterich:1979,Ruina:1983}.
@@ -94,30 +97,28 @@ energy stored as strain can be released. If the energy release occurs in such a
 way that the drop in shear resistance with displacement occurs faster than the
 drop in applied shearing force with displacement, the system can support
 unstable failure. The critical stiffness can be described in terms of the
-rate-and-state parameters as show in eq.\ref{equation:kc} The aggregate stiffness of
+rate-and-state parameters as (eq.\ref{equation:kc}). The aggregate stiffness of
 the loading system and sample can be measured by fitting the linear-slope
 of the load-point displacement vs. shear load curve on either an unload/reload
-cycle or on the loading portion of a single stick-slip event.
+cycle or on the loading portion of a single stick-slip event \cite{Leeman:2015}.
 
 % Equation - Critical Stiffness %
 \begin{equation}
-    k_c = \sigma_n' \frac{b-a}{D_c}
+    K_c = \sigma_n' \frac{b-a}{D_c}
     \label{equation:kc}
 \end{equation}
 % End Equation %
 
-We conducted a suite of biaxial double-direct shearing experiments with fine
+We conducted a suite of biaxial double-direct shearing experiments with a fine
 quartz fault gouge simulant (Min-U-Sil\textsuperscript{\textregistered}), chosen
 for its geologic relevance, reproducible results, and well controlled
 composition and size distribution. This study systematically examines the
 behavior of an experimental fault as a function of nearness to the stability
 criterion $k \sim k_c$. Using the same, well  controlled sample material for
 each experiment and humidifying the samples, we ensure that the rate-and-state
-parameters $(a,b,D_c)$ remain essentially constant. We then explore the stability
+parameters $(a,b,D_c)$ remain essentially constant between experiments. We then explore the stability
 of the system by modifying the stiffness directly by changing the forcing block
 configuration and by changing the applied effective normal stress $(\sigma_n')$.
-Force and displacement are recorded on both the normal and shear axes, as well
-as a measurement of the shearing block position (Fig.\ref{Fig:Biax Schematic}).
 
 % Figure %
 \begin{figure}
@@ -140,39 +141,8 @@ behavior is  observed and we use velocity steps to obtain the rate-and-state
 frictional parameters and therefore $K_c$.  We assume that the evolution of
 these material and layer properties is not dependent on the mode of slip, and
 therefore we use the values measured on stably sliding experiments as a
-framework for evaluating/comparing results from the suite of experiments. In our
-experiments, $a$ remains relatively constant with displacement, but $b$ evolves
-asymptotically upwards with increasing shear displacement. During this
-transitional period, the critical slip distance evolves downwards
-(Fig.\ref{Figure:RSF Props}).
+framework for evaluating/comparing results from the suite of experiments.
 
-% Figure %
-\begin{figure}
-    \centering
-        \includegraphics[scale=0.45]{../Figures/Fig_RSF_Parameters/RSF_Parameters.png}
-       \caption{Rate-and-state friction parameters obtained from velocity step
-       inversions. All inversions were accomplished with a fixed stiffness of
-       $k=$5.5x$10 ^ {-3} \mu$m. A) rate-and-state parameter $a$ remains relatively
-       constant with displacement and shows a systematic behavior with higher
-       values of $a$ always being observed during velocity up-steps. The $b$
-       parameter shows a similar behavior, but also increases with displacement,
-       reaching a steady-state value $\sim$10 mm displacement. B) The sample
-       transitions from velocity strengthening to velocity weakening  behavior
-       at $\sim$10 mm and remains velocity weakening for the remainder of  the
-       experiment. C) Critical slip distance estimates show considerable
-       scatter,  but do reduce to a steady-state value of 5-10 um.}
-      \label{Figure:RSF Props}
-\end{figure}
-% End Figure %
-
-The system stiffness was measured, for both stable and unstable experiments,
-with cycles of unloading and reloading the shear stress at a constant
-displacement rate of $10 \mu m/s$.  This provided an estimate of the aggregate
-system shear stiffness. For experiments that became unstable, a second method of
-stiffness measurement was employed. Loading stiffnesses of individual slip
-events were algorithmically determined \cite{Leeman:2015}. Both of
-these methods to provide comparable results and allow determination the system's
-predicted behavior.
 
 \section{Results/Discussion}
 
@@ -199,7 +169,7 @@ accumulates strain and strain is localized, it stiffens. At the same time, RSF
 parameters evolve, modifying the critical stiffness of the system. This explains
 a rich variety of behaviors that may appear unrelated or non-linear initially.
 This is supported by our observations that stick slip does not occur until a
-critical displacement is reached, because Kc is negative until the onset of rate
+critical displacement is reached, because $K_c$ is negative until the onset of rate
 weakening behavior. Most stiffness evolution occurs in the first 10 mm of shear,
 asymptotically approaching stead-state. Initial increases in stiffness could be
 due to layer compaction from grain rearrangement, layer thinning with increased
@@ -212,6 +182,30 @@ evolution of layer behavior \cite{Logan:1992}, especially before reaching
 mechanical steady-state as R and Y shears develop. The reduction in the amount
 of compliant center block material above the shearing zone with accumulated
 displacement is minimal compared to these other effects.
+
+In our experiments, $a$ remains relatively constant with displacement, but $b$
+evolves asymptotically upwards with increasing shear displacement. During this
+transitional period, the critical slip distance evolves downwards
+(Fig.\ref{Figure:RSF Props}).
+
+% Figure %
+\begin{figure}
+    \centering
+        \includegraphics[scale=0.45]{../Figures/Fig_RSF_Parameters/RSF_Parameters.png}
+       \caption{Rate-and-state friction parameters obtained from velocity step
+       inversions. All inversions were accomplished with a fixed stiffness of
+       $k=$5.5x$10 ^ {-3} \mu$m. A) rate-and-state parameter $a$ remains relatively
+       constant with displacement and shows a systematic behavior with higher
+       values of $a$ always being observed during velocity up-steps. The $b$
+       parameter shows a similar behavior, but also increases with displacement,
+       reaching a steady-state value $\sim$10 mm displacement. B) The sample
+       transitions from velocity strengthening to velocity weakening  behavior
+       at $\sim$10 mm and remains velocity weakening for the remainder of  the
+       experiment. C) Critical slip distance estimates show considerable
+       scatter,  but do reduce to a steady-state value of 5-10 um.}
+      \label{Figure:RSF Props}
+\end{figure}
+% End Figure %
 
 % Figure %
 \begin{figure}
@@ -232,7 +226,7 @@ displacement is minimal compared to these other effects.
 Our results support previous ideas about the role of transitional frictional
 properties in supporting a range of complex failure behaviors. Natural factors
 such as compliant and evolving damage zones, low effective normal stress
-\cite{audet2009seismic,kitajima2012elevated,shelly2015complexity} SONG ETAL,
+\cite{audet2009seismic,kitajima2012elevated,shelly2015complexity},
 and fault evolution/aging \cite{ikari2011relation} are all captured in the
 simple ratio of $\frac{K}{K_c}$.  All of this
 suggesting that tectonic faults may change behavior as they accumulate slip and
@@ -258,11 +252,9 @@ Nankai have been shown to have critical patch sizes of $L_c = 37-63$ m,
 comparable to laboratory tests on natural materials from the area
 \cite{Ikari:2013}. We likewise calculate  patch sizes of 10's of meters for our
 experiments, but in a simple quartz gouge,  not relying on slip dependent clay
-material properties. The critical patch size (eq.\ref{equation:rc}) grows with
-increasing $k_c$ and/or increasing normal stress. Extending this to large patch
-sizes for slow-slip events, and assuming a nominal shear modulus ($G$), suggests
-lowered normal stress and/or lowered critical stiffnesses. These arguments are
-supported by inference of high pore-pressure.
+material properties. We would expect large critical patch sizes for environments
+with low effective normal stress (such as areas of high pore fluid pressure),
+small critical stiffness values, or reduced moduli.
 
 % Equation - Critical Radius %
 \begin{equation}
@@ -280,7 +272,7 @@ simulated seismic cycle. This provides some insight into the low frequency
 nature of emissions observed from slow-slip and lack of audible report in the
 laboratory. Lower shear stiffnesses will reduce the seed of rupture propagation,
 softening step-like acceleration/deceleration pulses that result in high
-frequency emission. Slowed rupture velocities influence disaster potential, as
+frequency emission. Slowed rupture velocities would also influence disaster potential, as
 tsunamogenic earthquake have generally slow rupture velocities
 \cite{Kanamori:1993, Bilek:1999}.
 
@@ -288,9 +280,7 @@ We suggest that where in the spectrum of failure behavior a fault lies can be
 quantitatively described by the relation of the stiffness of the fault compared
 to the calculated critical stiffness. While factors such as pore pressure and
 material frictional response are important, they are already factored into  the
-stiffness comparison. We observe that the critical stiffness of a system evolves
-as a fabric is developed, suggesting that accumulation of shear can change the
-behavior of a fault during its lifetime.
+stiffness comparison.
 
 \section{Methods}
 All experiments were performed on a servo-controlled biaxial shearing apparatus.
@@ -332,13 +322,10 @@ Rate-and-state models were fit with both the Dieterich and
 Ruina laws, with comparable results. Inversions were done with an iterative
 singular value decomposition technique.
 
-Raw data were recorded in a binary format, and can be read into Python\cite{Leeman:BiaxRead}.
-Processed text output is also available
-
 \bibliography{references}
 
 \section{Acknowledgements}
-The authors with to thank Steve Swavely for his support in the laboratory.
+The authors wish to thank Steve Swavely for his support in the laboratory.
 We also thank Marco Scuderi for many discussions regarding this work. This
 material is based upon work supported by the National Science Foundation under
 Grant No. DGE1255832.  Any opinions, findings, and conclusions or
@@ -354,7 +341,7 @@ J. Leeman conducted experiments and data analysis.
 The authors declare no competing financial interests. Supplementary information
 accompanies this paper on www.nature.com/naturegeoscience. Reprints and permissions information is
 available online at http://npg.nature.com/reprintsandpermissions. Correspondence
-and requests for materials should be addressed to J. Leeman.
+and requests for materials should be addressed to J.R. Leeman.
 
 \newpage
 \section{Supplementary}
