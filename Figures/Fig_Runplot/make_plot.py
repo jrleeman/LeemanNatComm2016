@@ -166,6 +166,20 @@ for i in range(len(tableau20)):
     r, g, b = tableau20[i]
     tableau20[i] = (r / 255., g / 255., b / 255.)
 
+# Read Data
+p4309 = ReadAscii(data_path + '/p4309/p4309_data.txt')
+p4311 = ReadAscii(data_path + '/p4311/p4311_data.txt')
+p4316 = ReadAscii(data_path + '/p4316/p4316_data.txt')
+
+path = '/Users/jleeman/Dropbox/PennState/BiaxExperiments'
+dis_low = 30*1000
+dis_high = 31*1000
+p4343 = ReadExp('p4343',path,dis_low,dis_high)
+p4345 = ReadExp('p4345',path,dis_low,dis_high)
+p4347 = ReadExp('p4347',path,dis_low,dis_high)
+p4342 = ReadExp('p4342',path,dis_low,dis_high)
+p4351 = ReadExp('p4351',path,dis_low,dis_high)
+
 
 #
 # Interpolate Data to 1Hz
@@ -190,13 +204,10 @@ plt.subplots_adjust(hspace=0.35)
 # Plot A
 #
 
-# Read Data
-p4309 = ReadAscii(data_path + '/p4309/p4309_data.txt')
-p4311 = ReadAscii(data_path + '/p4311/p4311_data.txt')
-p4316 = ReadAscii(data_path + '/p4316/p4316_data.txt')
+
 
 # Label Plot
-axA.text(0.01,0.95,'A',transform = axA.transAxes,fontsize=24)
+axA.text(-0.13,0.95,'A',transform = axA.transAxes,fontsize=32)
 
 # Set labels and tick sizes
 axA.set_xlabel(r'Load Point Displacement [mm]',fontsize=18)
@@ -229,14 +240,7 @@ axA.set_xlim(0,25)
 # Plot B
 #
 
-path = '/Users/jleeman/Dropbox/PennState/BiaxExperiments'
-dis_low = 30*1000
-dis_high = 31*1000
-p4343 = ReadExp('p4343',path,dis_low,dis_high)
-p4345 = ReadExp('p4345',path,dis_low,dis_high)
-p4347 = ReadExp('p4347',path,dis_low,dis_high)
-p4342 = ReadExp('p4342',path,dis_low,dis_high)
-p4351 = ReadExp('p4351',path,dis_low,dis_high)
+
 
 # Set labels and tick sizes
 axB.set_xlabel(r'Load Point Displacement [mm]',fontsize=18)
@@ -244,7 +248,7 @@ axB.set_ylabel(r'Friction',fontsize=18)
 axB.tick_params(axis='both', which='major', labelsize=16)
 
 # Label Plot
-axB.text(0.01,0.95,'B',transform = axB.transAxes,fontsize=24)
+axB.text(-0.13,0.95,'B',transform = axB.transAxes,fontsize=32)
 
 # Turns off chart clutter
 
@@ -262,29 +266,29 @@ axB.spines["right"].set_visible(False)
 # p4338['mu'][indices_to_mask] = np.nan
 
 # Plotting
-window_size = 51
-order = 5
-axB.plot(p4343['LP_Disp']/1000.,savitzky_golay(np.ravel(p4343['mu']), window_size, order)+0.05*0,label='6 MPa',color=tableau20[0])
-axB.plot(p4345['LP_Disp']/1000.,savitzky_golay(np.ravel(p4345['mu']), window_size, order)+0.05*1,label='8 MPa',color=tableau20[4])
-axB.plot(p4347['LP_Disp']/1000.,savitzky_golay(np.ravel(p4347['mu']), window_size, order)+0.05*2,label='10 MPa',color=tableau20[8])
-axB.plot(p4342['LP_Disp']/1000.,savitzky_golay(np.ravel(p4342['mu']), window_size, order)+0.05*3,label='12 MPa',color=tableau20[12])
-axB.plot(p4351['LP_Disp']/1000.,savitzky_golay(np.ravel(p4351['mu']), window_size, order)+0.05*4,label='14 MPa',color=tableau20[18])
+window_size = 5
+order = 3
+axB.plot(p4343['LP_Disp']/1000.,savitzky_golay(np.ravel(p4343['mu']), window_size, order)+0.05*0.5,label='6 MPa',color=tableau20[0])
+axB.plot(p4345['LP_Disp']/1000.,savitzky_golay(np.ravel(p4345['mu']), window_size, order)+0.05*2.5,label='8 MPa',color=tableau20[4])
+axB.plot(p4347['LP_Disp']/1000.,savitzky_golay(np.ravel(p4347['mu']), window_size, order)+0.05*4.5,label='10 MPa',color=tableau20[8])
+axB.plot(p4342['LP_Disp']/1000.,savitzky_golay(np.ravel(p4342['mu']), window_size, order)+0.05*6.5,label='12 MPa',color=tableau20[12])
+axB.plot(p4351['LP_Disp']/1000.,savitzky_golay(np.ravel(p4351['mu']), window_size, order)+0.05*8.5,label='14 MPa',color=tableau20[18])
 
-axB.text(30.8,np.max(p4343['mu'])+0.05*0,r'$\sigma_n$ = 6 MPa',fontsize=12,color=tableau20[0])
-axB.text(30.8,np.max(p4345['mu'])+0.05*1,r'$\sigma_n$ = 8 MPa',fontsize=12,color=tableau20[4])
-axB.text(30.8,np.max(p4347['mu'])+0.05*2,r'$\sigma_n$ = 10 MPa',fontsize=12,color=tableau20[8])
-axB.text(30.8,np.max(p4342['mu'])+0.05*3,r'$\sigma_n$ = 12 MPa',fontsize=12,color=tableau20[12])
-axB.text(30.8,np.max(p4351['mu'])+0.05*4,r'$\sigma_n$ = 14 MPa',fontsize=12,color=tableau20[18])
+axB.text(30.4,np.max(p4343['mu'])+0.05*0.6,r'$\sigma_n$ = 6 MPa',fontsize=12,color=tableau20[0])
+axB.text(30.4,np.max(p4345['mu'])+0.05*2.6,r'$\sigma_n$ = 8 MPa',fontsize=12,color=tableau20[4])
+axB.text(30.4,np.max(p4347['mu'])+0.05*4.6,r'$\sigma_n$ = 10 MPa',fontsize=12,color=tableau20[8])
+axB.text(30.4,np.max(p4342['mu'])+0.05*6.6,r'$\sigma_n$ = 12 MPa',fontsize=12,color=tableau20[12])
+axB.text(30.4,np.max(p4351['mu'])+0.05*8.6,r'$\sigma_n$ = 14 MPa',fontsize=12,color=tableau20[18])
 
-axB.text(30.8,np.min(p4343['mu'])+0.05*0,r'p4343',fontsize=10,color=tableau20[0])
-axB.text(30.8,np.min(p4345['mu'])+0.05*1,r'p4345',fontsize=10,color=tableau20[4])
-axB.text(30.8,np.min(p4347['mu'])+0.05*2,r'p4347',fontsize=10,color=tableau20[8])
-axB.text(30.8,np.min(p4342['mu'])+0.05*3,r'p4342',fontsize=10,color=tableau20[12])
-axB.text(30.8,np.min(p4351['mu'])+0.05*4,r'p4351',fontsize=10,color=tableau20[18])
+axB.text(30.4,np.min(p4343['mu'])+0.05*0.3,r'p4343',fontsize=10,color=tableau20[0])
+axB.text(30.4,np.min(p4345['mu'])+0.05*2.4,r'p4345',fontsize=10,color=tableau20[4])
+axB.text(30.4,np.min(p4347['mu'])+0.05*4.4,r'p4347',fontsize=10,color=tableau20[8])
+axB.text(30.4,np.min(p4342['mu'])+0.05*6.3,r'p4342',fontsize=10,color=tableau20[12])
+axB.text(30.4,np.min(p4351['mu'])+0.05*8.2,r'p4351',fontsize=10,color=tableau20[18])
 
 # Set limits
-axB.set_xlim(30,31)
-#axB.set_ylim(0,0.5)
+axB.set_xlim(30,30.5)
+axB.set_ylim(0,0.45)
 print axB.get_ylim()
 
 plt.savefig('runplot.png', bbox_inches="tight")
