@@ -26,6 +26,8 @@
 % (See the fntguide.pdf for font help)
 % (This matches ConTeXt defaults)
 
+\usepackage{rotating}
+
 %%% END Article customizations
 
 \title{Slow Earthquakes: A Manifestation of Transitional Frictional Behavior}
@@ -121,18 +123,18 @@ of the system by modifying the stiffness directly by changing the forcing block
 configuration and by changing the applied effective normal stress $(\sigma_n')$.
 
 % Figure %
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.5]{../Figures/Fig_Biax_Schematic/biax_schematic.pdf}
-       \caption{The biaxial deformation apparatus (A) and sample configuration (B).
-       Two large hydraulic pistons are servo-controlled in either force or
-       displacement control modes. Double direct shear samples are supported by
-       steel blocks. Samples use metal side shields and a plastic membrane to
-       reduce gouge extrusion.  Local displacement transducers (DCDTs) can be
-       referenced to the center block to avoid apparatus stiffness effects on
-       the measurement.}
-      \label{Fig:Biax Schematic}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.5]{../Figures/Fig_Biax_Schematic/biax_schematic.pdf}
+%       \caption{The biaxial deformation apparatus (A) and sample configuration (B).
+%       Two large hydraulic pistons are servo-controlled in either force or
+%       displacement control modes. Double direct shear samples are supported by
+%       steel blocks. Samples use metal side shields and a plastic membrane to
+%       reduce gouge extrusion.  Local displacement transducers (DCDTs) can be
+%       referenced to the center block to avoid apparatus stiffness effects on
+%       the measurement.}
+%      \label{Fig:Biax Schematic}
+%\end{figure}
 % End Figure %
 
 In order to define/measure the RSF parameters for each experiment, we use a
@@ -332,7 +334,8 @@ and requests for materials should be addressed to J.R. Leeman.
 % Begin Table %
 \small
 \begin{center}
-    \begin{tabular}{ | l l p{1.6cm} p{1.7cm} p{1.6cm} p{4cm} p{0.5cm} | }
+\begin{sidewaystable}
+    \begin{tabular}{ | c c c c c c c | }
 \hline
 Experiment & Blocks Used & Normal Stress [MPa] & Temperature [$^\circ$C] & Relative Humidity [\%] & Comments & Unload/Reloads \\
 \hline
@@ -377,21 +380,9 @@ p4351	     & Titanium/Acrylic & 14                  & 23.1            & 100     
 
     \hline
     \end{tabular}
+\end{sidewaystable}
 \end{center}
 % End Table %
-
-
-% Figure %
-\begin{figure}
-    \centering
-        \includegraphics[scale=0.4]{../Figures/Fig_Stiffness_Methods/Stiffness_Methods.pdf}
-       \caption{When the system is at steady-state, the two methods of stiffness
-       estimation provide comparable results. At low displacements, early stick-slip
-       events appear more compliant than bulk system measurements. This is due to the
-       not fully dynamic failure of the events and creep during the loading phase.}
-      \label{Figure:Stiffness Methods}
-\end{figure}
-% End Figure %
 
 
 \end{document}
