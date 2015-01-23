@@ -103,7 +103,7 @@ ax1.text(0.01,0.9,'A',transform = ax1.transAxes,fontsize=24)
 
 low_color = 10.
 high_color = 1110.
-color_map = plt.get_cmap('YlOrRd')
+color_map = plt.get_cmap('hot')
 marker_size = 40
 marker_alpha=0.5
 color_col=11
