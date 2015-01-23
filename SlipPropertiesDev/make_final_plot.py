@@ -56,7 +56,7 @@ for experiment in experiments_with_event_data:
 # Make the plot
 # Setup figure and axes
 # Generally plots is ~1.33x width to height (10,7.5 or 12,9)
-fig = plt.figure(figsize=(12,12))
+fig = plt.figure(figsize=(12,12,))
 ax1 = plt.subplot(2,1,1)
 ax2 = plt.subplot(2,2,3)
 ax3 = plt.subplot(2,2,4)
@@ -101,8 +101,8 @@ ax3.spines["right"].set_visible(False)
 # Make panel A of displacement/stiffness
 ax1.text(0.01,0.9,'A',transform = ax1.transAxes,fontsize=24)
 
-low_color = 0.
-high_color = 1000.
+low_color = 10.
+high_color = 1110.
 color_map = plt.get_cmap('jet')
 marker_size = 40
 marker_alpha=0.5
@@ -111,7 +111,7 @@ color_col=11
 for key in experiment_event_data:
     event_data = experiment_event_data[key]
     sc = ax1.scatter(event_data[:,9]/1000.,event_data[:,5],c=event_data[:,color_col],s=marker_size,alpha=marker_alpha,vmin=low_color,vmax=high_color,cmap=color_map)
-
+    print np.min(event_data[:,color_col]), np.max(event_data[:,color_col])
 # cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])
 # plt.colorbar(sc,cax=cbar_ax)
 # for experiment in experiments_with_unload_reload:
@@ -160,4 +160,4 @@ for key in experiment_event_data:
 ax3.set_ylim(0,1.2)
 ax3.set_xlim(4.5,8.5)
 
-plt.show()
+plt.savefig('figure.png', bbox_inches="tight");
