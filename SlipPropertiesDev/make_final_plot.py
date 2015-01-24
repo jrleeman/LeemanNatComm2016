@@ -102,7 +102,7 @@ ax3.spines["right"].set_visible(False)
 ax1.text(0.01,0.9,'A',transform = ax1.transAxes,fontsize=24)
 
 low_color = 10.
-high_color = 1110.
+high_color = 4000.
 color_map = plt.get_cmap('hot')
 marker_size = 40
 marker_alpha=0.5
@@ -111,13 +111,18 @@ color_col=11
 for key in experiment_event_data:
     event_data = experiment_event_data[key]
     sc = ax1.scatter(event_data[:,9]/1000.,event_data[:,5],c=event_data[:,color_col],s=marker_size,alpha=marker_alpha,vmin=low_color,vmax=high_color,cmap=color_map)
-    print np.min(event_data[:,color_col]), np.max(event_data[:,color_col])
+    print key,np.min(event_data[:,color_col]), np.max(event_data[:,color_col])
 # cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])
 # plt.colorbar(sc,cax=cbar_ax)
 # for experiment in experiments_with_unload_reload:
 #     df = pd.read_csv('/Users/jleeman/Dropbox/PennState/BiaxExperiments/%s/%s_stiffness_cycles.txt'%(experiment,experiment))
 #
 #     ax1.scatter(df['AvgDisp']/1000.,df['Slope'],color='g',s=50,alpha=0.6)
+
+position=fig.add_axes([0.37,0.6,0.5,0.02])  ## the parameters are the specified position you set
+cb = fig.colorbar(sc,cax=position,orientation='horizontal')
+cb.solids.set_edgecolor("face")
+cb.set_label(r'Peak Slip Velocity [$\mu m/s$]',fontsize=14)
 
 ax1.set_ylim(0,0.0009)
 ax1.set_xlim(8,52)
@@ -139,7 +144,7 @@ for key in experiment_event_data:
     ax2.scatter(event_data[:,5]*10000,event_data[:,y_col],color='k',alpha=marker_alpha)
     ax2.errorbar(np.mean(event_data[:,5]*10000),np.mean(event_data[:,y_col]),fmt='ro',ecolor='k',elinewidth=2,xerr=np.std(event_data[:,5]*10000),yerr=np.std(event_data[:,y_col]))
 
-ax2.set_ylim(0,900)
+#ax2.set_ylim(0,2300)
 ax2.set_xlim(4.5,8.5)
 
 # Panel C
