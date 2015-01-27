@@ -274,7 +274,7 @@ axB.plot(p4347['Time']-p4347['Time'][0],savitzky_golay(np.ravel(p4347['mu']), wi
 axB.plot(p4342['Time']-p4342['Time'][0],savitzky_golay(np.ravel(p4342['mu']), window_size, order)+0.05*6.5,label='12 MPa',color=tableau20[12])
 axB.plot(p4351['Time']-p4351['Time'][0],savitzky_golay(np.ravel(p4351['mu']), window_size, order)+0.05*8.5,label='14 MPa',color=tableau20[18])
 
-x_pos = 50.
+x_pos = 22.
 
 axB.text(x_pos,np.max(p4343['mu'])+0.05*0.6,r'$\sigma_n$ = 6 MPa',fontsize=12,color=tableau20[0])
 axB.text(x_pos,np.max(p4345['mu'])+0.05*2.6,r'$\sigma_n$ = 8 MPa',fontsize=12,color=tableau20[4])
@@ -293,7 +293,7 @@ axB.plot([2,2],[0.06,0.085],color='k',linewidth=2)
 axB.text(3,0.07,r'0.025 $\mu$',fontsize=12,color='k')
 
 # Set limits
-axB.set_xlim(0,55)
+axB.set_xlim(0,25)
 axB.set_ylim(0,0.45)
 print axB.get_ylim()
 
