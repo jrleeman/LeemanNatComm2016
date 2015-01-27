@@ -491,7 +491,7 @@ axG.get_yaxis().set_visible(False)
 # Set labels and tick sizes
 axG.set_xlabel(r'',fontsize=18)
 axG.set_ylabel(r'',fontsize=18)
-axG2.set_ylabel(r'Velocity',fontsize=18)
+axG2.set_ylabel(r'Velocity',fontsize=18,color='0.7')
 axG.xaxis.set_ticklabels([])
 axG.yaxis.set_ticklabels([])
 axG2.xaxis.set_ticklabels([])
@@ -546,4 +546,4 @@ axG2.text(3,1900,r'1900 $\mu m/s$',fontsize=10)
 #axG.text(0,-0.07,'%.1f mm' %(p4316['LP_Disp'][0]/1000.),fontsize=10,transform = axG.transAxes)
 
 
-plt.savefig('event_zooms.png', bbox_inches="tight")
+plt.savefig('event_zooms.svg', bbox_inches="tight")
