@@ -189,7 +189,7 @@ class SlipEvent():
         x = x.flatten()
         y = y.flatten()
 
-        window_size = 101
+        window_size = 11
 
         #print failure_row,ending_row
         #print np.shape(x),np.shape(y)
