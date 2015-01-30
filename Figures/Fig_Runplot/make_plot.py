@@ -168,18 +168,6 @@ for i in range(len(tableau20)):
 
 # Read Data
 p4309 = ReadAscii(data_path + '/p4309/p4309_data.txt')
-p4311 = ReadAscii(data_path + '/p4311/p4311_data.txt')
-p4316 = ReadAscii(data_path + '/p4316/p4316_data.txt')
-
-path = '/Users/jleeman/Dropbox/PennState/BiaxExperiments'
-dis_low = 30*1000
-dis_high = 30.55*1000
-p4343 = ReadExp('p4343',path,dis_low,dis_high)
-p4345 = ReadExp('p4345',path,dis_low,dis_high)
-p4347 = ReadExp('p4347',path,dis_low,dis_high)
-p4342 = ReadExp('p4342',path,dis_low,dis_high)
-p4351 = ReadExp('p4351',path,dis_low,dis_high)
-
 
 #
 # Interpolate Data to 1Hz
@@ -195,10 +183,8 @@ p4351 = ReadExp('p4351',path,dis_low,dis_high)
 
 # Setup figure and axes
 # Generally plots is ~1.33x width to height (10,7.5 or 12,9)
-fig = plt.figure(figsize=(9,13))
-axA = fig.add_subplot(2, 1, 1)
-axB = fig.add_subplot(2, 1, 2)
-plt.subplots_adjust(hspace=0.35)
+fig = plt.figure(figsize=(12,9))
+axA = plt.subplot(111)
 
 #
 # Plot A
@@ -206,8 +192,8 @@ plt.subplots_adjust(hspace=0.35)
 
 
 
-# Label Plot
-axA.text(-0.13,0.95,'A',transform = axA.transAxes,fontsize=32)
+# Label experiment
+axA.text(0.94,0.02,'p4309',transform = axA.transAxes,fontsize=14)
 
 # Set labels and tick sizes
 axA.set_xlabel(r'Load Point Displacement [mm]',fontsize=18)
@@ -224,77 +210,10 @@ axA.get_yaxis().tick_left()
 axA.spines["top"].set_visible(False)
 axA.spines["right"].set_visible(False)
 
-axA.plot(p4311['LP_Disp'][::10]/1000.,p4311['mu'][::10],color=tableau20[2],linewidth=1,
-        label='p4311')
-
-axA.plot(p4316['LP_Disp'][::10]/1000.,p4316['mu'][::10],color=tableau20[4],linewidth=1,
-        label='p4316',alpha=0.6)
-
-axA.plot(p4309['LP_Disp'][::10]/1000.,p4309['mu'][::10],color=tableau20[0],linewidth=1,
-        label='p4309')
+axA.plot(p4309['LP_Disp'][::10]/1000.,p4309['mu'][::10],color='k',linewidth=1)
 
 axA.set_ylim(0,0.8)
 axA.set_xlim(0,25)
 
-#
-# Plot B
-#
 
-
-
-# Set labels and tick sizes
-axB.set_xlabel(r'Time [sec]',fontsize=18)
-axB.set_ylabel(r'Friction',fontsize=18)
-axB.tick_params(axis='both', which='major', labelsize=16)
-
-# Label Plot
-axB.text(-0.13,0.95,'B',transform = axB.transAxes,fontsize=32)
-
-# Turns off chart clutter
-
-# Turn off top and right tick marks
-axB.get_xaxis().tick_bottom()
-axB.get_yaxis().tick_left()
-axB.get_yaxis().set_ticks([])
-
-# Turn off top and right splines
-axB.spines["top"].set_visible(False)
-axB.spines["right"].set_visible(False)
-
-# Mask unload in p4338
-# indices_to_mask = p4338['mu'] < -0.03
-# p4338['mu'][indices_to_mask] = np.nan
-
-# Plotting
-window_size = 5
-order = 3
-axB.plot(p4343['Time']-p4343['Time'][0],savitzky_golay(np.ravel(p4343['mu']), window_size, order)+0.05*0.5,label='6 MPa',color=tableau20[0])
-axB.plot(p4345['Time']-p4345['Time'][0],savitzky_golay(np.ravel(p4345['mu']), window_size, order)+0.05*2.5,label='8 MPa',color=tableau20[4])
-axB.plot(p4347['Time']-p4347['Time'][0],savitzky_golay(np.ravel(p4347['mu']), window_size, order)+0.05*4.5,label='10 MPa',color=tableau20[8])
-axB.plot(p4342['Time']-p4342['Time'][0],savitzky_golay(np.ravel(p4342['mu']), window_size, order)+0.05*6.5,label='12 MPa',color=tableau20[12])
-axB.plot(p4351['Time']-p4351['Time'][0],savitzky_golay(np.ravel(p4351['mu']), window_size, order)+0.05*8.5,label='14 MPa',color=tableau20[18])
-
-x_pos = 22.
-
-axB.text(x_pos,np.max(p4343['mu'])+0.05*0.6,r'$\sigma_n$ = 6 MPa',fontsize=12,color=tableau20[0])
-axB.text(x_pos,np.max(p4345['mu'])+0.05*2.6,r'$\sigma_n$ = 8 MPa',fontsize=12,color=tableau20[4])
-axB.text(x_pos,np.max(p4347['mu'])+0.05*4.6,r'$\sigma_n$ = 10 MPa',fontsize=12,color=tableau20[8])
-axB.text(x_pos,np.max(p4342['mu'])+0.05*6.6,r'$\sigma_n$ = 12 MPa',fontsize=12,color=tableau20[12])
-axB.text(x_pos,np.max(p4351['mu'])+0.05*8.6,r'$\sigma_n$ = 14 MPa',fontsize=12,color=tableau20[18])
-
-axB.text(x_pos,np.min(p4343['mu'])+0.05*0.25,r'p4343',fontsize=10,color=tableau20[0])
-axB.text(x_pos,np.min(p4345['mu'])+0.05*2.4,r'p4345',fontsize=10,color=tableau20[4])
-axB.text(x_pos,np.min(p4347['mu'])+0.05*4.4,r'p4347',fontsize=10,color=tableau20[8])
-axB.text(x_pos,np.min(p4342['mu'])+0.05*6.25,r'p4342',fontsize=10,color=tableau20[12])
-axB.text(x_pos,np.min(p4351['mu'])+0.05*8.3,r'p4351',fontsize=10,color=tableau20[18])
-
-# Scale Bar
-axB.plot([2,2],[0.06,0.085],color='k',linewidth=2)
-axB.text(3,0.07,r'0.025 $\mu$',fontsize=12,color='k')
-
-# Set limits
-axB.set_xlim(0,25)
-axB.set_ylim(0,0.45)
-print axB.get_ylim()
-
-plt.savefig('runplot.png', bbox_inches="tight")
+plt.savefig('runplot.svg', bbox_inches="tight")
