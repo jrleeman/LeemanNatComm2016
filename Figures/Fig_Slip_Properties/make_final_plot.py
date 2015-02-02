@@ -113,7 +113,7 @@ for exp in exps:
     df = pd.read_csv('/Users/jleeman/Dropbox/PennState/BiaxExperiments/%s/%s_stiffness_cycles.txt'%(exp,exp))
 
     temp = df[df['Behavior']=='stable']
-    ax1.scatter(temp['AvgDisp']/1000.,temp['Slope']*1000,color='k',s=50,alpha=0.6)
+    ax1.scatter(temp['AvgDisp']/1000.,temp['Slope']*1000,color='k',s=50,alpha=0.6,zorder=50)
 
     #temp = df[df['Behavior']=='slow']
     #ax1.scatter(temp['AvgDisp']/1000.,temp['Slope'],color='r',s=50,alpha=0.6)
