@@ -45,6 +45,18 @@ def get_kc(disp):
     else:
         return slope*disp - 0.0004
 
+# These are the "Tableau 20" colors as RGB.
+tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
+             (44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
+             (148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
+             (227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
+             (188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
+
+# Scale the RGB values to the [0, 1] range, which is the format matplotlib accepts.
+for i in range(len(tableau20)):
+    r, g, b = tableau20[i]
+    tableau20[i] = (r / 255., g / 255., b / 255.)
+
 # Tuple of experiments we'll consider for plotting even data from
 experiments_with_event_data = ('p4342','p4343','p4344','p4345','p4346',
                                'p4347','p4348','p4350','p4351')
@@ -70,7 +82,7 @@ ax2 = plt.subplot(212)
 
 
 #
-# Top Plot
+# Plot A
 #
 
 exps = ['p4267','p4268','p4269','p4270','p4271','p4272','p4273',
@@ -122,42 +134,6 @@ ax1.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height,alpha=0.2, zord
 ax1.set_xlim(0,50)
 ax1.set_ylim(0,0.004*1000)
 
-# Plot Kc
-df = pd.read_excel('/Users/jleeman/Dropbox/PennState/BiaxExperiments/p4309/p4309_rsf_fits.xlsx')
-
-
-
-
-for i,fit in df.iterrows():
-
-    if fit['Grade'] == 'A':
-        #color='#000066'
-        #color='#FFFFFF'
-        color='#0000FF'
-    elif fit['Grade'] == 'B':
-        color='#0066CC'
-        color='#0000FF'
-        #color='#FFFFFF'
-    elif fit['Grade'] == 'C':
-        #color='#00CCFF'
-        color='#FFFFFF'
-        continue
-    elif fit['Grade'] == 'D':
-        #color='#00FFFF'
-        color='#FFFFFF'
-        continue
-
-    if fit['Type']=='Down' and fit['Law']=='r' and fit['k']==0.0055:
-        ax1.scatter(fit['LP_Disp']/1000.,fit['Kc']*1000,c=color,s=60,marker='v',zorder=50)
-        print fit['LP_Disp']/1000.,fit['Kc']
-
-    elif fit['Type']=='Up' and fit['Law']=='r' and fit['k']==0.0055:
-        ax1.scatter(fit['LP_Disp']/1000.,fit['Kc']*1000,c=color,s=60,marker='^',zorder=50)
-        print fit['LP_Disp']/1000.,fit['Kc']
-    else:
-        pass
-
-
 low_color = 10./1000.
 high_color = 4000./1000.
 color_map = plt.get_cmap('rainbow_r')
@@ -167,11 +143,98 @@ color_col=11
 
 for key in experiment_event_data:
     event_data = experiment_event_data[key]
-    sc = ax1.scatter(event_data[:,9]/1000.,event_data[:,5]*1000,c=event_data[:,color_col]/1000.,s=marker_size,alpha=marker_alpha,vmin=low_color,vmax=high_color,cmap=color_map)
+    sc = ax1.scatter(event_data[:,9]/1000.,event_data[:,5]*1000,s=marker_size,alpha=marker_alpha,color='r')
     print key,np.min(event_data[:,color_col]), np.max(event_data[:,color_col])
 
 # Plot line for kc definition
 ax1.plot([6,16,50],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='k',linewidth=2)
+
+#
+# Plot A inset
+#
+df = pd.read_excel('p4309_rsf_fits.xlsx')
+
+data = df[df['Law']=='r']
+data = data[data['k']==0.0055]
+data =  data.query('Grade == ["A","B"]')
+
+axAinset = plt.axes([.125, .95, .465, .1])
+
+# Label Plot
+#axAinset.text(0.01,0.9,'B',transform = axAinset.transAxes,fontsize=24)
+
+# Set labels and tick sizes
+axAinset.set_xlabel(r'Displacement [mm]',fontsize=16)
+axAinset.set_ylabel(r'(a-b)',fontsize=16)
+axAinset.tick_params(axis='both', which='major', labelsize=14)
+
+# Turns off chart clutter
+
+# Turn off top and right tick marks
+axAinset.get_xaxis().tick_bottom()
+axAinset.get_yaxis().tick_left()
+
+# Turn off top and right splines
+axAinset.spines["top"].set_visible(False)
+axAinset.spines["right"].set_visible(False)
+
+# Plotting
+up = data[data['Type']=='Up']
+axAinset.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color=tableau20[6],
+            s=50,marker='^', label='Velocity Step Up')
+
+down = data[data['Type']=='Down']
+axAinset.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color=tableau20[7],
+            s=50,marker='v', label='Velocity Step Down')
+
+axAinset.axhline(y=0,color='k',linewidth='2',linestyle='--')
+
+# Label velocity regions
+axAinset.text(14,0.001,'Velocity Strengthening',fontsize=12)
+axAinset.text(14,-0.002,'Velocity Weakening',fontsize=12)
+
+axAinset.set_ylim(-0.005 ,0.004)
+
+# # Plot Kc
+# df = pd.read_excel('/Users/jleeman/Dropbox/PennState/BiaxExperiments/p4309/p4309_rsf_fits.xlsx')
+#
+#
+#
+#
+# for i,fit in df.iterrows():
+#
+#     if fit['Grade'] == 'A':
+#         #color='#000066'
+#         #color='#FFFFFF'
+#         color='#0000FF'
+#     elif fit['Grade'] == 'B':
+#         color='#0066CC'
+#         color='#0000FF'
+#         #color='#FFFFFF'
+#     elif fit['Grade'] == 'C':
+#         #color='#00CCFF'
+#         color='#FFFFFF'
+#         continue
+#     elif fit['Grade'] == 'D':
+#         #color='#00FFFF'
+#         color='#FFFFFF'
+#         continue
+#
+#     if fit['Type']=='Down' and fit['Law']=='r' and fit['k']==0.0055:
+#         #ax1.scatter(fit['LP_Disp']/1000.,fit['Kc']*1000,c=color,s=60,marker='v',zorder=50)
+#         print fit['LP_Disp']/1000.,fit['Kc']
+#
+#     elif fit['Type']=='Up' and fit['Law']=='r' and fit['k']==0.0055:
+#         #ax1.scatter(fit['LP_Disp']/1000.,fit['Kc']*1000,c=color,s=60,marker='^',zorder=50)
+#         print fit['LP_Disp']/1000.,fit['Kc']
+#     else:
+#         pass
+
+
+
+#
+# Plot B
+#
 
 # Set labels and tick sizes
 ax2.set_xlabel(r'Load Point Displacement [$\mu m$]',fontsize=18,labelpad=15)
