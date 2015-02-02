@@ -149,6 +149,10 @@ for key in experiment_event_data:
 # Plot line for kc definition
 ax1.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='k',linewidth=2)
 
+# Add text
+ax1.text(40,1.1,'Stable',fontsize=22)
+ax1.text(40,0.15,'Unstable',fontsize=22,color='r')
+
 #
 # Plot A inset
 #
