@@ -260,7 +260,7 @@ axAinset.set_ylim(-0.005 ,0.004)
 
 # Set labels and tick sizes
 ax2.set_xlabel(r'Load Point Displacement [$\mu m$]',fontsize=18,labelpad=15)
-ax2.set_ylabel(r'Stiffness [1/$\mu m$]',fontsize=18)
+ax2.set_ylabel(r'$k/k_c$',fontsize=18)
 ax2.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
