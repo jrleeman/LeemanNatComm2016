@@ -122,16 +122,16 @@ for exp in exps:
     #ax1.scatter(temp['AvgDisp']/1000.,temp['Slope'],color='r',s=50,alpha=0.6)
 
 # Add rectangle for where figure B comes from
-rect_x1 = 10.
-rect_x2 = 50.
-rect_y1 = 0.
-rect_y2 = 0.0009*1000
-rect_width = rect_x2-rect_x1
-rect_height = rect_y2-rect_y1
-ax1.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height,alpha=0.2, zorder=0,facecolor="k"))
+# rect_x1 = 10.
+# rect_x2 = 50.
+# rect_y1 = 0.
+# rect_y2 = 0.0009*1000
+# rect_width = rect_x2-rect_x1
+# rect_height = rect_y2-rect_y1
+# ax1.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height,alpha=0.2, zorder=0,facecolor="k"))
 
 # Set limits
-ax1.set_xlim(0,50)
+ax1.set_xlim(0,52)
 ax1.set_ylim(0,0.004*1000)
 
 low_color = 10./1000.
@@ -147,44 +147,61 @@ for key in experiment_event_data:
     print key,np.min(event_data[:,color_col]), np.max(event_data[:,color_col])
 
 # Plot line for kc definition
-ax1.plot([6,16,50],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='k',linewidth=2)
+ax1.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='k',linewidth=2)
 
 #
 # Plot A inset
 #
+axAinset = plt.axes([.138, .8, .733, .1])
+
+ax1.axhline(y=2.9,color='k',xmin=0,xmax=0.962)
+
+# Add rectangle for where figure B comes from
+# rect_x1 = 1.
+# rect_x2 = 50.
+# rect_y1 = 2.45
+# rect_y2 = 4.0
+# rect_width = rect_x2-rect_x1
+# rect_height = rect_y2-rect_y1
+# ax1.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height, zorder=50,facecolor="w",edgecolor="w"))
+
 df = pd.read_excel('p4309_rsf_fits.xlsx')
 
 data = df[df['Law']=='r']
 data = data[data['k']==0.0055]
 data =  data.query('Grade == ["A","B"]')
 
-axAinset = plt.axes([.125, .95, .465, .1])
-
 # Label Plot
 #axAinset.text(0.01,0.9,'B',transform = axAinset.transAxes,fontsize=24)
 
 # Set labels and tick sizes
-axAinset.set_xlabel(r'Displacement [mm]',fontsize=16)
+#axAinset.set_xlabel(r'Displacement [mm]',fontsize=16)
 axAinset.set_ylabel(r'(a-b)',fontsize=16)
 axAinset.tick_params(axis='both', which='major', labelsize=14)
 
 # Turns off chart clutter
 
 # Turn off top and right tick marks
+axAinset.yaxis.tick_right()
+axAinset.yaxis.set_label_position("right")
 axAinset.get_xaxis().tick_bottom()
-axAinset.get_yaxis().tick_left()
+axAinset.get_xaxis().tick_top()
+axAinset.get_xaxis().set_ticks([])
+axAinset.get_yaxis().set_ticks([-0.004,-0.002,0.,0.002,0.004])
+#axAinset.get_yaxis().tick_left()
 
 # Turn off top and right splines
 axAinset.spines["top"].set_visible(False)
-axAinset.spines["right"].set_visible(False)
+axAinset.spines["bottom"].set_visible(False)
+axAinset.spines["left"].set_visible(False)
 
 # Plotting
 up = data[data['Type']=='Up']
-axAinset.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color=tableau20[6],
+axAinset.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color=tableau20[0],
             s=50,marker='^', label='Velocity Step Up')
 
 down = data[data['Type']=='Down']
-axAinset.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color=tableau20[7],
+axAinset.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color=tableau20[1],
             s=50,marker='v', label='Velocity Step Down')
 
 axAinset.axhline(y=0,color='k',linewidth='2',linestyle='--')
@@ -193,6 +210,7 @@ axAinset.axhline(y=0,color='k',linewidth='2',linestyle='--')
 axAinset.text(14,0.001,'Velocity Strengthening',fontsize=12)
 axAinset.text(14,-0.002,'Velocity Weakening',fontsize=12)
 
+axAinset.set_xlim(1, 50)
 axAinset.set_ylim(-0.005 ,0.004)
 
 # # Plot Kc
