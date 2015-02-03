@@ -183,11 +183,15 @@ vel_window = 11
 
 # Setup figure and axes
 # Generally plots is ~1.33x width to height (10,7.5 or 12,9)
-fig = plt.figure(figsize=(12,10))
-axA = fig.add_subplot(2, 1, 1)
-axB = fig.add_subplot(2, 2, 3)
+fig = plt.figure(figsize=(13,14))
+axA = plt.subplot2grid((3,2),(0,0),colspan=2,rowspan=2)
+axB = plt.subplot2grid((3,2),(2,0))
+axC = plt.subplot2grid((3,2),(2,1))
+plt.subplots_adjust(wspace=0.31,hspace=0.35)
+#axA = fig.add_subplot(2, 1, 1)
+#axB = fig.add_subplot(2, 2, 3)
 axBv = axB.twinx()
-axC = fig.add_subplot(2, 2, 4)
+#axC = fig.add_subplot(2, 2, 4)
 
 #
 # Plot A
@@ -199,7 +203,7 @@ axA.set_ylabel(r'Friction',fontsize=18)
 axA.tick_params(axis='both', which='major', labelsize=16)
 
 # Label Plot
-axA.text(-0.05,0.9,'A',transform = axA.transAxes,fontsize=32)
+axA.text(-0.05,0.93,'A',transform = axA.transAxes,fontsize=32)
 
 # Turns off chart clutter
 
@@ -225,23 +229,23 @@ axA.plot(p4347['Time']-p4347['Time'][0],np.ravel(p4347['mu'])+0.05*2.5,label='10
 axA.plot(p4342['Time']-p4342['Time'][0],np.ravel(p4342['mu'])+0.05*3.5,label='12 MPa',color=tableau20[12])
 axA.plot(p4351['Time']-p4351['Time'][0],np.ravel(p4351['mu'])+0.05*4.5,label='14 MPa',color=tableau20[18])
 
-x_pos = 10.
+x_pos = 25.
 
-# axA.text(x_pos,np.max(p4343['mu'])+0.05*0.6,r'$\sigma_n$ = 6 MPa',fontsize=12,color=tableau20[0])
-# axA.text(x_pos,np.max(p4345['mu'])+0.05*2.6,r'$\sigma_n$ = 8 MPa',fontsize=12,color=tableau20[4])
-# axA.text(x_pos,np.max(p4347['mu'])+0.05*4.6,r'$\sigma_n$ = 10 MPa',fontsize=12,color=tableau20[8])
-# axA.text(x_pos,np.max(p4342['mu'])+0.05*6.6,r'$\sigma_n$ = 12 MPa',fontsize=12,color=tableau20[12])
-# axA.text(x_pos,np.max(p4351['mu'])+0.05*8.6,r'$\sigma_n$ = 14 MPa',fontsize=12,color=tableau20[18])
-#
-# axA.text(x_pos,np.min(p4343['mu'])+0.05*0.25,r'p4343',fontsize=10,color=tableau20[0])
-# axA.text(x_pos,np.min(p4345['mu'])+0.05*2.4,r'p4345',fontsize=10,color=tableau20[4])
-# axA.text(x_pos,np.min(p4347['mu'])+0.05*4.4,r'p4347',fontsize=10,color=tableau20[8])
-# axA.text(x_pos,np.min(p4342['mu'])+0.05*6.25,r'p4342',fontsize=10,color=tableau20[12])
-# axA.text(x_pos,np.min(p4351['mu'])+0.05*8.3,r'p4351',fontsize=10,color=tableau20[18])
+axA.text(x_pos,np.min(p4343['mu'])+0.05*0.9,r'$\sigma_n$ = 6 MPa',fontsize=12,color=tableau20[0])
+axA.text(x_pos,np.min(p4345['mu'])+0.05*1.9,r'$\sigma_n$ = 8 MPa',fontsize=12,color=tableau20[4])
+axA.text(x_pos,np.min(p4347['mu'])+0.05*3.1,r'$\sigma_n$ = 10 MPa',fontsize=12,color=tableau20[8])
+axA.text(x_pos,np.min(p4342['mu'])+0.05*4.,r'$\sigma_n$ = 12 MPa',fontsize=12,color=tableau20[12])
+axA.text(x_pos,np.min(p4351['mu'])+0.05*5.3,r'$\sigma_n$ = 14 MPa',fontsize=12,color=tableau20[18])
+
+axA.text(x_pos,np.min(p4343['mu'])+0.05*0.75,r'p4343',fontsize=10,color=tableau20[0])
+axA.text(x_pos,np.min(p4345['mu'])+0.05*1.75,r'p4345',fontsize=10,color=tableau20[4])
+axA.text(x_pos,np.min(p4347['mu'])+0.05*2.95,r'p4347',fontsize=10,color=tableau20[8])
+axA.text(x_pos,np.min(p4342['mu'])+0.05*3.85,r'p4342',fontsize=10,color=tableau20[12])
+axA.text(x_pos,np.min(p4351['mu'])+0.05*5.15,r'p4351',fontsize=10,color=tableau20[18])
 
 # Scale Bar
-axA.plot([0.5,0.5],[0.05,0.05+0.025],color='k',linewidth=2)
-axA.text(0.7,0.06,r'0.025 $\mu$',fontsize=12,color='k')
+axA.plot([1,1],[0.19,0.19+0.025],color='k',linewidth=2)
+axA.text(1.2,0.201,r'0.025 $\mu$',fontsize=12,color='k')
 
 # Set limits
 axA.set_xlim(0,30)
@@ -261,19 +265,20 @@ axB.set_xlabel(r'Time [sec]',fontsize=18)
 axB.set_ylabel(r'Friction',fontsize=18,color=tableau20[0])
 axBv.set_ylabel(r'Velocity',fontsize=18,color=tableau20[6])
 axB.tick_params(axis='both', which='major', labelsize=16)
+axBv.tick_params(axis='both', which='major', labelsize=16)
 
 # Label Plot
-axB.text(-0.1,0.9,'B',transform = axB.transAxes,fontsize=32)
+axB.text(-0.1,0.93,'B',transform = axB.transAxes,fontsize=32)
 
 # Turns off chart clutter
 
 # Turn off top and right tick marks
 axB.get_xaxis().tick_bottom()
 axB.get_yaxis().tick_left()
-axB.get_yaxis().set_ticks([])
+axB.get_yaxis().set_ticks([0.67,0.68,0.69])
 axBv.get_xaxis().tick_bottom()
-axBv.get_yaxis().tick_left()
-axBv.get_yaxis().set_ticks([])
+axBv.get_yaxis().tick_right()
+axBv.get_yaxis().set_ticks([0,20,40,60,80])
 
 # Turn off top and right splines
 axB.spines["top"].set_visible(False)
@@ -290,9 +295,17 @@ axB.plot(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900],p4343_raw
 
 axB.axvspan(p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900], p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900], alpha=0.4, color='k')
 
+# Add double headed arrow
+arrow_x = [p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900], p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900]]
+arrow_y = [0.6945,0.6945]
+axB.annotate('', xy=(arrow_x[0], arrow_y[0]), xycoords='data',xytext=(arrow_x[1], arrow_y[1]), textcoords='data',arrowprops={'arrowstyle': '<->'})
+axB.text(arrow_x[0]-0.1,0.696,'Slip Duration',fontsize=12)
+
 # Set limits
-#axA.set_xlim(0,30)
-#axA.set_ylim(0,0.275)
+axB.set_xlim(0,6)
+axBv.set_xlim(0,6)
+axB.set_ylim(0.67,0.695)
+axBv.set_ylim(0,85)
 
 #
 # Plot C
@@ -300,11 +313,11 @@ axB.axvspan(p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900], p4343_raw['Ti
 
 # Set labels and tick sizes
 axC.set_xlabel(r'Time [sec]',fontsize=18)
-axC.set_ylabel(r'Friction',fontsize=18)
+axC.set_ylabel(r'Normalized Friction',fontsize=18)
 axC.tick_params(axis='both', which='major', labelsize=16)
 
 # Label Plot
-axC.text(-0.1,0.9,'C',transform = axC.transAxes,fontsize=32)
+axC.text(-0.1,0.93,'C',transform = axC.transAxes,fontsize=32)
 
 # Turns off chart clutter
 
@@ -320,19 +333,35 @@ axC.spines["right"].set_visible(False)
 # Plotting
 start_row = 5096
 end_row = 7096
-axC.plot(p4343['Time'][start_row:end_row]-p4343['Time'][start_row],p4343['mu'][start_row:end_row]+0.05*0.95,label='6 MPa',color=tableau20[0])
+#axC.plot(p4343['Time'][start_row:end_row]-p4343['Time'][start_row],p4343['mu'][start_row:end_row]+0.05*0.95,label='6 MPa',color=tableau20[0])
+time = p4343['Time'][start_row:end_row]-p4343['Time'][start_row]
+friction = p4343['mu'][start_row:end_row]
+friction = friction - np.min(friction)
+friction = friction/np.max(friction)
+axC.plot(time,friction,label='6 MPa',color=tableau20[0])
 
 start_row = 7929
-end_row = 9929
-axC.plot(p4347['Time'][start_row:end_row]-p4347['Time'][start_row],p4347['mu'][start_row:end_row]+0.05*0.95,label='10 MPa',color=tableau20[8])
+end_row = 9929+500
+#axC.plot(p4347['Time'][start_row:end_row]-p4347['Time'][start_row],p4347['mu'][start_row:end_row]+0.05*0.95,label='10 MPa',color=tableau20[8])
+time = p4347['Time'][start_row:end_row]-p4347['Time'][start_row]
+friction = p4347['mu'][start_row:end_row]
+friction = friction - np.min(friction)
+friction = friction/np.max(friction)
+axC.plot(time-0.2,friction,label='10 MPa',color=tableau20[8])
 
 start_row = 11398
-end_row = 13398
-axC.plot(p4351['Time'][start_row:end_row]-p4351['Time'][start_row]-.18,p4351['mu'][start_row:end_row]+0.05*0.95,label='14 MPa',color=tableau20[18])
+end_row = 13398+500
+#axC.plot(p4351['Time'][start_row:end_row]-p4351['Time'][start_row]-.18,p4351['mu'][start_row:end_row]+0.05*0.95,label='14 MPa',color=tableau20[18])
+time = p4351['Time'][start_row:end_row]-p4351['Time'][start_row]
+friction = p4351['mu'][start_row:end_row]
+friction = friction - np.min(friction)
+friction = friction/np.max(friction)
+axC.plot(time-0.4,friction,label='14 MPa',color=tableau20[18])
 
 # Set limits
 axC.set_xlim(0,2)
-axC.set_ylim(0,0.05)
+#axC.set_ylim(0,0.05)
 
 
 plt.savefig('events.png', bbox_inches="tight")
+#plt.show()
