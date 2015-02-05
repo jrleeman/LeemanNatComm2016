@@ -204,17 +204,17 @@ axA.tick_params(axis='both', which='major', labelsize=16)
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-axA.get_xaxis().tick_bottom()
-axA.get_yaxis().tick_left()
+#axA.get_xaxis().tick_bottom()
+#axA.get_yaxis().tick_left()
 
 # Turn off top and right splines
-axA.spines["top"].set_visible(False)
-axA.spines["right"].set_visible(False)
+#axA.spines["top"].set_visible(False)
+#axA.spines["right"].set_visible(False)
 
 smoothed_mu = savitzky_golay(np.ravel(p4309['mu']), 11, 1)
 axA.plot(p4309['LP_Disp'][::10]/1000.,smoothed_mu[::10],color='k',linewidth=1)
 
-axA.set_ylim(0,0.8)
+axA.set_ylim(0,0.75)
 axA.set_xlim(0,30)
 
 # Add rectangle for where figure B comes from
@@ -245,7 +245,7 @@ axB.get_xaxis().set_ticks([])
 #axB.spines["top"].set_visible(False)
 #axB.spines["right"].set_visible(False)
 
-axB.plot(p4309['LP_Disp'][::10]/1000.,p4309['mu'][::10],color='k',linewidth=1)
+axB.plot(p4309['LP_Disp'][::10]/1000.,p4309['mu'][::10],color='k',linewidth=2)
 
 axB.set_ylim(0.65,0.72)
 axB.set_xlim(13,13.25)
