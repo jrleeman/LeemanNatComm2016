@@ -77,8 +77,72 @@ for experiment in experiments_with_event_data:
 # Setup figure and axes
 # Generally plots is ~1.33x width to height (10,7.5 or 12,9)
 fig = plt.figure(figsize=(12,12))
-ax1 = plt.subplot(211)
-ax2 = plt.subplot(212)
+ax1 = plt.subplot(311)
+ax2 = plt.subplot(312)
+ax3 = plt.subplot(313)
+
+
+#
+# Plot A top (a-b)
+#
+ax2.axhline(y=2.9,color='k',xmin=0,xmax=0.962)
+
+# Add rectangle for where figure B comes from
+# rect_x1 = 1.
+# rect_x2 = 50.
+# rect_y1 = 2.45
+# rect_y2 = 4.0
+# rect_width = rect_x2-rect_x1
+# rect_height = rect_y2-rect_y1
+# ax2.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height, zorder=50,facecolor="w",edgecolor="w"))
+
+df = pd.read_excel('p4309_rsf_fits.xlsx')
+
+data = df[df['Law']=='r']
+data = data[data['k']==0.0055]
+data =  data.query('Grade == ["A","B"]')
+
+# Label Plot
+#ax1.text(0.01,0.9,'B',transform = ax1.transAxes,fontsize=24)
+
+# Set labels and tick sizes
+#ax1.set_xlabel(r'Displacement [mm]',fontsize=16)
+ax1.set_ylabel(r'(a-b)',fontsize=16)
+ax1.tick_params(axis='both', which='major', labelsize=14)
+
+# Turns off chart clutter
+
+# Turn off top and right tick marks
+ax1.yaxis.tick_right()
+ax1.yaxis.set_label_position("right")
+ax1.get_xaxis().tick_bottom()
+ax1.get_xaxis().tick_top()
+ax1.get_xaxis().set_ticks([])
+ax1.get_yaxis().set_ticks([-0.004,-0.002,0.,0.002,0.004])
+#ax1.get_yaxis().tick_left()
+
+# Turn off top and right splines
+ax1.spines["top"].set_visible(False)
+ax1.spines["bottom"].set_visible(False)
+ax1.spines["left"].set_visible(False)
+
+# Plotting
+up = data[data['Type']=='Up']
+ax1.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color=tableau20[0],
+            s=50,marker='^', label='Velocity Step Up')
+
+down = data[data['Type']=='Down']
+ax1.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color=tableau20[1],
+            s=50,marker='v', label='Velocity Step Down')
+
+ax1.axhline(y=0,color='k',linewidth='2',linestyle='--')
+
+# Label velocity regions
+ax1.text(14,0.001,'Velocity Strengthening',fontsize=12)
+ax1.text(14,-0.002,'Velocity Weakening',fontsize=12)
+
+ax1.set_xlim(1, 50)
+ax1.set_ylim(-0.005 ,0.004)
 
 
 #
@@ -89,22 +153,22 @@ exps = ['p4267','p4268','p4269','p4270','p4271','p4272','p4273',
         'p4309','p4310','p4311','p4312','p4313','p4314','p4316','p4317',
         'p4327','p4328','p4329','p4330']
 
-ax1.text(-0.1,0.9,'A',transform = ax1.transAxes,fontsize=24)
+ax2.text(-0.1,0.9,'A',transform = ax2.transAxes,fontsize=24)
 
 # Set labels and tick sizes
-ax1.set_xlabel(r'Average LP Displacement [mm]',fontsize=18)
-ax1.set_ylabel(r'Stiffness [1/um]x1000',fontsize=18)
-ax1.tick_params(axis='both', which='major', labelsize=16)
+ax2.set_xlabel(r'Average LP Displacement [mm]',fontsize=18)
+ax2.set_ylabel(r'Stiffness [1/um]x1000',fontsize=18)
+ax2.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-ax1.get_xaxis().tick_bottom()
-ax1.get_yaxis().tick_left()
+#ax2.get_xaxis().tick_bottom()
+#ax2.get_yaxis().tick_left()
 
 # Turn off top and right splines
-ax1.spines["top"].set_visible(False)
-ax1.spines["right"].set_visible(False)
+#ax2.spines["top"].set_visible(False)
+#ax2.spines["right"].set_visible(False)
 
 # Plotting
 
@@ -113,13 +177,13 @@ for exp in exps:
     df = pd.read_csv('/Users/jleeman/Dropbox/PennState/BiaxExperiments/%s/%s_stiffness_cycles.txt'%(exp,exp))
 
     temp = df[df['Behavior']=='stable']
-    ax1.scatter(temp['AvgDisp']/1000.,temp['Slope']*1000,color='k',s=50,alpha=0.6,zorder=50)
+    ax2.scatter(temp['AvgDisp']/1000.,temp['Slope']*1000,color='k',s=50,alpha=0.6,zorder=50)
 
     #temp = df[df['Behavior']=='slow']
-    #ax1.scatter(temp['AvgDisp']/1000.,temp['Slope'],color='r',s=50,alpha=0.6)
+    #ax2.scatter(temp['AvgDisp']/1000.,temp['Slope'],color='r',s=50,alpha=0.6)
 
     #temp = df[df['Behavior']=='fast']
-    #ax1.scatter(temp['AvgDisp']/1000.,temp['Slope'],color='r',s=50,alpha=0.6)
+    #ax2.scatter(temp['AvgDisp']/1000.,temp['Slope'],color='r',s=50,alpha=0.6)
 
 # Add rectangle for where figure B comes from
 # rect_x1 = 10.
@@ -128,11 +192,11 @@ for exp in exps:
 # rect_y2 = 0.0009*1000
 # rect_width = rect_x2-rect_x1
 # rect_height = rect_y2-rect_y1
-# ax1.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height,alpha=0.2, zorder=0,facecolor="k"))
+# ax2.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height,alpha=0.2, zorder=0,facecolor="k"))
 
 # Set limits
-ax1.set_xlim(0,52)
-ax1.set_ylim(0,0.004*1000)
+ax2.set_xlim(0,52)
+ax2.set_ylim(0,0.004*1000)
 
 low_color = 10./1000.
 high_color = 4000./1000.
@@ -143,79 +207,17 @@ color_col=11
 
 for key in experiment_event_data:
     event_data = experiment_event_data[key]
-    sc = ax1.scatter(event_data[:,9]/1000.,event_data[:,5]*1000,s=marker_size,alpha=marker_alpha,color='r')
+    sc = ax2.scatter(event_data[:,9]/1000.,event_data[:,5]*1000,s=marker_size,alpha=marker_alpha,color='r')
     print key,np.min(event_data[:,color_col]), np.max(event_data[:,color_col])
 
 # Plot line for kc definition
-ax1.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='k',linewidth=2)
+ax2.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='k',linewidth=2)
 
 # Add text
-ax1.text(40,1.1,'Stable',fontsize=22)
-ax1.text(40,0.15,'Unstable',fontsize=22,color='r')
+ax2.text(40,1.1,'Stable',fontsize=22)
+ax2.text(40,0.15,'Unstable',fontsize=22,color='r')
 
-#
-# Plot A inset
-#
-axAinset = plt.axes([.138, .8, .733, .1])
 
-ax1.axhline(y=2.9,color='k',xmin=0,xmax=0.962)
-
-# Add rectangle for where figure B comes from
-# rect_x1 = 1.
-# rect_x2 = 50.
-# rect_y1 = 2.45
-# rect_y2 = 4.0
-# rect_width = rect_x2-rect_x1
-# rect_height = rect_y2-rect_y1
-# ax1.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height, zorder=50,facecolor="w",edgecolor="w"))
-
-df = pd.read_excel('p4309_rsf_fits.xlsx')
-
-data = df[df['Law']=='r']
-data = data[data['k']==0.0055]
-data =  data.query('Grade == ["A","B"]')
-
-# Label Plot
-#axAinset.text(0.01,0.9,'B',transform = axAinset.transAxes,fontsize=24)
-
-# Set labels and tick sizes
-#axAinset.set_xlabel(r'Displacement [mm]',fontsize=16)
-axAinset.set_ylabel(r'(a-b)',fontsize=16)
-axAinset.tick_params(axis='both', which='major', labelsize=14)
-
-# Turns off chart clutter
-
-# Turn off top and right tick marks
-axAinset.yaxis.tick_right()
-axAinset.yaxis.set_label_position("right")
-axAinset.get_xaxis().tick_bottom()
-axAinset.get_xaxis().tick_top()
-axAinset.get_xaxis().set_ticks([])
-axAinset.get_yaxis().set_ticks([-0.004,-0.002,0.,0.002,0.004])
-#axAinset.get_yaxis().tick_left()
-
-# Turn off top and right splines
-axAinset.spines["top"].set_visible(False)
-axAinset.spines["bottom"].set_visible(False)
-axAinset.spines["left"].set_visible(False)
-
-# Plotting
-up = data[data['Type']=='Up']
-axAinset.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color=tableau20[0],
-            s=50,marker='^', label='Velocity Step Up')
-
-down = data[data['Type']=='Down']
-axAinset.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color=tableau20[1],
-            s=50,marker='v', label='Velocity Step Down')
-
-axAinset.axhline(y=0,color='k',linewidth='2',linestyle='--')
-
-# Label velocity regions
-axAinset.text(14,0.001,'Velocity Strengthening',fontsize=12)
-axAinset.text(14,-0.002,'Velocity Weakening',fontsize=12)
-
-axAinset.set_xlim(1, 50)
-axAinset.set_ylim(-0.005 ,0.004)
 
 # # Plot Kc
 # df = pd.read_excel('/Users/jleeman/Dropbox/PennState/BiaxExperiments/p4309/p4309_rsf_fits.xlsx')
@@ -243,11 +245,11 @@ axAinset.set_ylim(-0.005 ,0.004)
 #         continue
 #
 #     if fit['Type']=='Down' and fit['Law']=='r' and fit['k']==0.0055:
-#         #ax1.scatter(fit['LP_Disp']/1000.,fit['Kc']*1000,c=color,s=60,marker='v',zorder=50)
+#         #ax2.scatter(fit['LP_Disp']/1000.,fit['Kc']*1000,c=color,s=60,marker='v',zorder=50)
 #         print fit['LP_Disp']/1000.,fit['Kc']
 #
 #     elif fit['Type']=='Up' and fit['Law']=='r' and fit['k']==0.0055:
-#         #ax1.scatter(fit['LP_Disp']/1000.,fit['Kc']*1000,c=color,s=60,marker='^',zorder=50)
+#         #ax2.scatter(fit['LP_Disp']/1000.,fit['Kc']*1000,c=color,s=60,marker='^',zorder=50)
 #         print fit['LP_Disp']/1000.,fit['Kc']
 #     else:
 #         pass
@@ -259,27 +261,24 @@ axAinset.set_ylim(-0.005 ,0.004)
 #
 
 # Set labels and tick sizes
-ax2.set_xlabel(r'Load Point Displacement [$\mu m$]',fontsize=18,labelpad=15)
-ax2.set_ylabel(r'$k/k_c$',fontsize=18)
-ax2.tick_params(axis='both', which='major', labelsize=16)
+ax3.set_xlabel(r'Load Point Displacement [$\mu m$]',fontsize=18,labelpad=15)
+ax3.set_ylabel(r'$k/k_c$',fontsize=18)
+ax3.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-ax2.get_xaxis().tick_bottom()
-ax2.get_yaxis().tick_left()
-
-ax2.get_xaxis().tick_bottom()
-ax2.get_yaxis().tick_left()
+#ax3.get_xaxis().tick_bottom()
+#ax3.get_yaxis().tick_left()
 
 # Turn off top and right splines
-ax2.spines["top"].set_visible(False)
-ax2.spines["right"].set_visible(False)
+#ax3.spines["top"].set_visible(False)
+#ax3.spines["right"].set_visible(False)
 
 # Plotting
 
 # Make panel A of displacement/stiffness
-ax2.text(-0.1,0.9,'B',transform = ax2.transAxes,fontsize=24)
+ax3.text(-0.1,0.9,'B',transform = ax3.transAxes,fontsize=24)
 
 low_color = 10./1000.
 high_color = 4000./1000.
@@ -295,23 +294,23 @@ for key in experiment_event_data:
     for k,disp in zip(event_data[:,5],event_data[:,9]/1000.):
         k_kc_ratio.append(k/get_kc(disp))
 
-    sc = ax2.scatter(event_data[:,9]/1000.,k_kc_ratio,c=event_data[:,color_col]/1000.,s=marker_size,alpha=marker_alpha,vmin=low_color,vmax=high_color,cmap=color_map)
+    sc = ax3.scatter(event_data[:,9]/1000.,k_kc_ratio,c=event_data[:,color_col]/1000.,s=marker_size,alpha=marker_alpha,vmin=low_color,vmax=high_color,cmap=color_map)
     print key,np.min(event_data[:,color_col]), np.max(event_data[:,color_col])
 # cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])
 # plt.colorbar(sc,cax=cbar_ax)
 # for experiment in experiments_with_unload_reload:
 #     df = pd.read_csv('/Users/jleeman/Dropbox/PennState/BiaxExperiments/%s/%s_stiffness_cycles.txt'%(experiment,experiment))
 #
-#     ax2.scatter(df['AvgDisp']/1000.,df['Slope'],color='g',s=50,alpha=0.6)
+#     ax3.scatter(df['AvgDisp']/1000.,df['Slope'],color='g',s=50,alpha=0.6)
 
 position=fig.add_axes([0.37,0.16,0.5,0.02])  ## the parameters are the specified position you set [left, bottom, width, height]
 cb = fig.colorbar(sc,cax=position,orientation='horizontal')
 cb.solids.set_edgecolor("face")
 cb.set_label(r'Peak Slip Velocity [$mm/s$]',fontsize=14)
 
-ax2.set_ylim(0,1.4)
-ax2.set_xlim(8,52)
+ax3.set_ylim(0,1.4)
+ax3.set_xlim(8,52)
 
-ax2.axvspan(40, 50, alpha=0.2, color='k', zorder=0)
+ax3.axvspan(40, 50, alpha=0.2, color='k', zorder=0)
 
 plt.savefig('figure.png', bbox_inches="tight");
