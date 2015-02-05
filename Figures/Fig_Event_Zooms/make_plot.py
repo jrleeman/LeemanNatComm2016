@@ -208,13 +208,13 @@ axA.text(-0.05,0.93,'A',transform = axA.transAxes,fontsize=32)
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-axA.get_xaxis().tick_bottom()
+#axA.get_xaxis().tick_bottom()
 axA.get_yaxis().tick_left()
 axA.get_yaxis().set_ticks([])
 
 # Turn off top and right splines
-axA.spines["top"].set_visible(False)
-axA.spines["right"].set_visible(False)
+#axA.spines["top"].set_visible(False)
+#axA.spines["right"].set_visible(False)
 
 # Mask unload in p4338
 # indices_to_mask = p4338['mu'] < -0.03
@@ -233,13 +233,13 @@ x_pos = 25.
 
 axA.text(x_pos,np.min(p4343['mu'])+0.05*0.9,r'$\sigma_n$ = 6 MPa',fontsize=12,color=tableau20[0])
 axA.text(x_pos,np.min(p4345['mu'])+0.05*1.9,r'$\sigma_n$ = 8 MPa',fontsize=12,color=tableau20[4])
-axA.text(x_pos,np.min(p4347['mu'])+0.05*3.1,r'$\sigma_n$ = 10 MPa',fontsize=12,color=tableau20[8])
+axA.text(x_pos,np.min(p4347['mu'])+0.05*3.05,r'$\sigma_n$ = 10 MPa',fontsize=12,color=tableau20[8])
 axA.text(x_pos,np.min(p4342['mu'])+0.05*4.,r'$\sigma_n$ = 12 MPa',fontsize=12,color=tableau20[12])
 axA.text(x_pos,np.min(p4351['mu'])+0.05*5.3,r'$\sigma_n$ = 14 MPa',fontsize=12,color=tableau20[18])
 
 axA.text(x_pos,np.min(p4343['mu'])+0.05*0.75,r'p4343',fontsize=10,color=tableau20[0])
 axA.text(x_pos,np.min(p4345['mu'])+0.05*1.75,r'p4345',fontsize=10,color=tableau20[4])
-axA.text(x_pos,np.min(p4347['mu'])+0.05*2.95,r'p4347',fontsize=10,color=tableau20[8])
+axA.text(x_pos,np.min(p4347['mu'])+0.05*2.9,r'p4347',fontsize=10,color=tableau20[8])
 axA.text(x_pos,np.min(p4342['mu'])+0.05*3.85,r'p4342',fontsize=10,color=tableau20[12])
 axA.text(x_pos,np.min(p4351['mu'])+0.05*5.15,r'p4351',fontsize=10,color=tableau20[18])
 
@@ -263,7 +263,7 @@ p4343_raw = ReadAscii(data_path+'/p4343/p4343_data.txt')
 # Set labels and tick sizes
 axB.set_xlabel(r'Time [sec]',fontsize=18)
 axB.set_ylabel(r'Friction',fontsize=18,color=tableau20[0])
-axBv.set_ylabel(r'Velocity',fontsize=18,color=tableau20[6])
+axBv.set_ylabel(r'Velocity [$\mu m/s$]',fontsize=18,color=tableau20[6])
 axB.tick_params(axis='both', which='major', labelsize=16)
 axBv.tick_params(axis='both', which='major', labelsize=16)
 
@@ -273,16 +273,16 @@ axB.text(-0.1,0.93,'B',transform = axB.transAxes,fontsize=32)
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-axB.get_xaxis().tick_bottom()
+#axB.get_xaxis().tick_bottom()
 axB.get_yaxis().tick_left()
 axB.get_yaxis().set_ticks([0.67,0.68,0.69])
-axBv.get_xaxis().tick_bottom()
+#axBv.get_xaxis().tick_bottom()
 axBv.get_yaxis().tick_right()
 axBv.get_yaxis().set_ticks([0,20,40,60,80])
 
 # Turn off top and right splines
-axB.spines["top"].set_visible(False)
-axBv.spines["top"].set_visible(False)
+#axB.spines["top"].set_visible(False)
+#axBv.spines["top"].set_visible(False)
 
 velocity = rslope(np.ravel(p4343_raw['Time'][3799900:3805900]),np.ravel(p4343_raw['OB_Top'][3799900:3805900]),11)
 axBv.plot(np.ravel(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900]),velocity,color=tableau20[6],zorder=0)
@@ -293,13 +293,16 @@ axB.plot(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900],p4343_raw
 #axB.scatter(p4343_raw['Time'][3804529],p4343_raw['mu'][3804529],color='r',s=50,zorder=2)
 #axB.scatter(p4343_raw['Time'][3805433],p4343_raw['mu'][3805433],color='g',s=50,zorder=2)
 
-axB.axvspan(p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900], p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900], alpha=0.4, color='k')
+# Mark the slip duration window
+#axB.axvspan(p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900], p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900], alpha=0.4, color='k')
+axB.axvline(x=p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900],linestyle='--',color='k')
+axB.axvline(x=p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900],linestyle='--',color='k')
 
 # Add double headed arrow
 arrow_x = [p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900], p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900]]
 arrow_y = [0.6945,0.6945]
 axB.annotate('', xy=(arrow_x[0], arrow_y[0]), xycoords='data',xytext=(arrow_x[1], arrow_y[1]), textcoords='data',arrowprops={'arrowstyle': '<->'})
-axB.text(arrow_x[0]-0.1,0.696,'Slip Duration',fontsize=12)
+axB.text(arrow_x[0]-0.2,0.696,'Slip Duration',fontsize=12)
 
 # Set limits
 axB.set_xlim(0,6)
@@ -322,13 +325,13 @@ axC.text(-0.1,0.93,'C',transform = axC.transAxes,fontsize=32)
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-axC.get_xaxis().tick_bottom()
+#axC.get_xaxis().tick_bottom()
 axC.get_yaxis().tick_left()
 axC.get_yaxis().set_ticks([])
 
 # Turn off top and right splines
-axC.spines["top"].set_visible(False)
-axC.spines["right"].set_visible(False)
+#axC.spines["top"].set_visible(False)
+#axC.spines["right"].set_visible(False)
 
 # Plotting
 start_row = 5096
@@ -360,7 +363,7 @@ axC.plot(time-0.4,friction,label='14 MPa',color=tableau20[18])
 
 # Set limits
 axC.set_xlim(0,2)
-#axC.set_ylim(0,0.05)
+axC.set_ylim(-0.05,1.1)
 
 
 plt.savefig('events.png', bbox_inches="tight")
