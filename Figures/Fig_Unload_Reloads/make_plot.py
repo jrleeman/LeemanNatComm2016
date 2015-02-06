@@ -20,7 +20,6 @@ for i in range(len(tableau20)):
     tableau20[i] = (r / 255., g / 255., b / 255.)
 
 # Read Data
-p4309 = ReadAscii(data_path + '/p4309/p4309_data.txt')
 p4316 = ReadAscii(data_path + '/p4316/p4316_data.txt')
 
 # Setup figure and axes
@@ -33,8 +32,7 @@ axA = plt.subplot(111)
 #
 
 # Label experiment
-axA.text(0.94,0.05,'p4309',transform = axA.transAxes,fontsize=14,color=tableau20[0])
-axA.text(0.94,0.02,'p4316',transform = axA.transAxes,fontsize=14,color=tableau20[2])
+axA.text(0.01,0.98,'p4316',transform = axA.transAxes,fontsize=14,color=tableau20[2])
 
 # Set labels and tick sizes
 axA.set_xlabel(r'Load Point Displacement [mm]',fontsize=18)
@@ -51,15 +49,9 @@ axA.get_yaxis().tick_left()
 axA.spines["top"].set_visible(False)
 axA.spines["right"].set_visible(False)
 
-axA.plot(p4309['LP_Disp'][::10]/1000.,p4309['mu'][::10],color=tableau20[0],linewidth=1)
 axA.plot(p4316['LP_Disp'][::10]/1000.,p4316['mu'][::10],color=tableau20[2],linewidth=1)
 
-axA.set_ylim(0,0.8)
-axA.set_xlim(0,25)
-
-axA.set_ylim(0,0.6)
-axA.set_xlim(15.6,17.7)
-
+axA.set_ylim(0,0.75)
+axA.set_xlim(0,42)
 
 plt.savefig('figure.png', bbox_inches="tight")
-plt.show()
