@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 from biaxread import *
 
 def ReadExp(exp,path,disp_low,disp_high):
@@ -167,13 +168,13 @@ for i in range(len(tableau20)):
     tableau20[i] = (r / 255., g / 255., b / 255.)
 
 # Read Data
-p4309 = ReadAscii(data_path + '/p4309/p4309_data.txt')
+p4347 = ReadAscii(data_path + '/p4347/p4347_data.txt')
 
 #
 # Interpolate Data to 1Hz
 #
-#f = interpolate.interp1d(p4309['Time'],p4309['LP_Disp'])
-#p4309_LP_1Hz = interpolate.interp1d(p4309['Time'],p4309['LP_Disp'])
+#f = interpolate.interp1d(p4347['Time'],p4347['LP_Disp'])
+#p4347_LP_1Hz = interpolate.interp1d(p4347['Time'],p4347['LP_Disp'])
 
 
 # 4 Panel figure
@@ -187,33 +188,53 @@ fig = plt.figure(figsize=(12,9))
 axA = plt.subplot(111)
 
 #
-# Plot A
+# Runplot of p4347
 #
 
 
 
 # Label experiment
-axA.text(0.94,0.02,'p4309',transform = axA.transAxes,fontsize=14)
+axA.text(0.93,0.02,'p4347',transform = axA.transAxes,fontsize=14)
 
 # Set labels and tick sizes
 axA.set_xlabel(r'Load Point Displacement [mm]',fontsize=18)
 axA.set_ylabel(r'Friction',fontsize=18)
 axA.tick_params(axis='both', which='major', labelsize=16)
 
+# Smooth and plot
+smoothed_mu = savitzky_golay(np.ravel(p4347['mu']), 11, 1)
+axA.plot(p4347['LP_Disp'][::10]/1000.,smoothed_mu[::10],color='k',linewidth=1)
+
+axA.set_ylim(0.4,0.75)
+axA.set_xlim(1,30)
+
+# Add rectangle for where figure B comes from
+rect_x1 = 13.
+rect_x2 = 13.25
+rect_y1 = 0.65
+rect_y2 = 0.72
+rect_width = rect_x2-rect_x1
+rect_height = rect_y2-rect_y1
+axA.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height,alpha=0.3, zorder=0,facecolor="k"))
+
+
+
+#
+# Inset Plot of Stick-Slip Events
+#
+axB = plt.axes([.45, .37, .4, .2])
+
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-axA.get_xaxis().tick_bottom()
-axA.get_yaxis().tick_left()
+#axB.get_xaxis().tick_bottom()
+#axB.get_yaxis().tick_left()
+#axB.get_yaxis().set_ticks([])
+#axB.get_xaxis().set_ticks([])
 
-# Turn off top and right splines
-axA.spines["top"].set_visible(False)
-axA.spines["right"].set_visible(False)
+axB.plot(p4347['LP_Disp'][::10]/1000.,p4347['mu'][::10],color='k',linewidth=2)
 
-axA.plot(p4309['LP_Disp'][::10]/1000.,p4309['mu'][::10],color='k',linewidth=1)
-
-axA.set_ylim(0,0.8)
-axA.set_xlim(0,25)
-
+axB.set_ylim(0.66,0.71)
+axB.set_xlim(13,13.25)
 
 plt.savefig('runplot.svg', bbox_inches="tight")
