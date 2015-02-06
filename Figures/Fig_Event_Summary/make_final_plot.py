@@ -89,7 +89,8 @@ for key in experiment_event_data:
     event_data = filter(event_data,filter_col,low_val,high_val)
 
     ax1.scatter(event_data[:,5]/0.0007,event_data[:,y_col]/1000.,color='k',alpha=marker_alpha)
-    ax1.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]/1000.),fmt='ro',ecolor='k',elinewidth=2,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]/1000.))
+    ax1.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]/1000.),fmt='ro',ecolor='w',elinewidth=2,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]/1000.))
+    ax1.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]/1000.),fmt='ro',markeredgecolor='w',ecolor='k',elinewidth=1,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]/1000.))
 
 ax1.set_ylim(0,4)
 #ax1.set_xlim(4.5,8.5)
@@ -124,7 +125,10 @@ for key in experiment_event_data:
     event_data = filter(event_data,filter_col,low_val,high_val)
 
     ax2.scatter(event_data[:,5]/0.0007,event_data[:,y_col],color='k',alpha=marker_alpha)
-    ax2.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]),fmt='ro',ecolor='k',elinewidth=2,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]))
+    ax2.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]),fmt='ro',ecolor='w',elinewidth=2,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]))
+    ax2.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]),fmt='ro',markeredgecolor='w',ecolor='k',elinewidth=1,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]))
+
+    #ax2.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]),fmt='ro',ecolor='k',elinewidth=2,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]))
 
 ax2.set_ylim(0,1.2)
 #ax2.set_xlim(4.5,8.5)
