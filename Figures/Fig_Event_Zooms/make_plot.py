@@ -229,7 +229,7 @@ axA.plot(p4347['Time']-p4347['Time'][0],np.ravel(p4347['mu'])+0.05*2.5,label='10
 axA.plot(p4342['Time']-p4342['Time'][0],np.ravel(p4342['mu'])+0.05*3.5,label='12 MPa',color=tableau20[12])
 axA.plot(p4351['Time']-p4351['Time'][0],np.ravel(p4351['mu'])+0.05*4.5,label='14 MPa',color=tableau20[18])
 
-x_pos = 25.
+x_pos = 24.85
 
 axA.text(x_pos,np.min(p4343['mu'])+0.05*0.9,r'$\sigma_n$ = 6 MPa',fontsize=12,color=tableau20[0])
 axA.text(x_pos,np.min(p4345['mu'])+0.05*1.9,r'$\sigma_n$ = 8 MPa',fontsize=12,color=tableau20[4])
@@ -263,9 +263,14 @@ p4343_raw = ReadAscii(data_path+'/p4343/p4343_data.txt')
 # Set labels and tick sizes
 axB.set_xlabel(r'Time [sec]',fontsize=18)
 axB.set_ylabel(r'Friction',fontsize=18,color=tableau20[0])
-axBv.set_ylabel(r'Velocity [$\mu m/s$]',fontsize=18,color=tableau20[6])
+axBv.set_ylabel(r'Velocity [$\mu m/s$]',fontsize=18)
 axB.tick_params(axis='both', which='major', labelsize=16)
 axBv.tick_params(axis='both', which='major', labelsize=16)
+
+# Change colors of plot axes
+axB.spines['left'].set_color(tableau20[0])
+axB.yaxis.label.set_color(tableau20[0])
+axB.tick_params(axis='y', colors=tableau20[0])
 
 # Label Plot
 axB.text(-0.1,0.93,'B',transform = axB.transAxes,fontsize=32)
@@ -285,7 +290,7 @@ axBv.get_yaxis().set_ticks([0,20,40,60,80])
 #axBv.spines["top"].set_visible(False)
 
 velocity = rslope(np.ravel(p4343_raw['Time'][3799900:3805900]),np.ravel(p4343_raw['OB_Top'][3799900:3805900]),11)
-axBv.plot(np.ravel(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900]),velocity,color=tableau20[6],zorder=0)
+axBv.plot(np.ravel(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900]),velocity,color='k',zorder=0)
 
 # Plotting
 axB.plot(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900],p4343_raw['mu'][3799900:3805900],label='6 MPa',color=tableau20[0],zorder=1)
@@ -294,7 +299,7 @@ axB.plot(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900],p4343_raw
 #axB.scatter(p4343_raw['Time'][3805433],p4343_raw['mu'][3805433],color='g',s=50,zorder=2)
 
 # Mark the slip duration window
-#axB.axvspan(p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900], p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900], alpha=0.4, color='k')
+axB.axvspan(p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900], p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900], alpha=0.1, color='k')
 axB.axvline(x=p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900],linestyle='--',color='k')
 axB.axvline(x=p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900],linestyle='--',color='k')
 
