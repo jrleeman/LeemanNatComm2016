@@ -76,10 +76,13 @@ for experiment in experiments_with_event_data:
 # Make the plot
 # Setup figure and axes
 # Generally plots is ~1.33x width to height (10,7.5 or 12,9)
-fig = plt.figure(figsize=(12,12))
-ax1 = plt.subplot(311)
-ax2 = plt.subplot(312)
-ax3 = plt.subplot(313)
+fig = plt.figure(figsize=(12,13))
+#ax1 = plt.subplot(311)
+#ax2 = plt.subplot(312)
+#ax3 = plt.subplot(313)
+ax1 = plt.subplot2grid((5,1), (0,0), rowspan=1)
+ax2 = plt.subplot2grid((5,1), (1,0), rowspan=2)
+ax3 = plt.subplot2grid((5,1), (3,0), rowspan=2)
 
 
 #
@@ -110,21 +113,24 @@ data =  data.query('Grade == ["A","B"]')
 ax1.set_ylabel(r'(a-b)',fontsize=16)
 ax1.tick_params(axis='both', which='major', labelsize=14)
 
+ax1.text(-0.1,0.9,'A',transform = ax1.transAxes,fontsize=24)
+
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-ax1.yaxis.tick_right()
-ax1.yaxis.set_label_position("right")
-ax1.get_xaxis().tick_bottom()
-ax1.get_xaxis().tick_top()
-ax1.get_xaxis().set_ticks([])
+#ax1.yaxis.tick_right()
+#ax1.yaxis.set_label_position("right")
+#ax1.get_xaxis().tick_bottom()
+#ax1.get_xaxis().tick_top()
+#ax1.get_xaxis().set_ticks([])
+ax1.set_xticklabels([])
 ax1.get_yaxis().set_ticks([-0.004,-0.002,0.,0.002,0.004])
 #ax1.get_yaxis().tick_left()
 
 # Turn off top and right splines
-ax1.spines["top"].set_visible(False)
-ax1.spines["bottom"].set_visible(False)
-ax1.spines["left"].set_visible(False)
+#ax1.spines["top"].set_visible(False)
+#ax1.spines["bottom"].set_visible(False)
+#ax1.spines["left"].set_visible(False)
 
 # Plotting
 up = data[data['Type']=='Up']
@@ -141,7 +147,7 @@ ax1.axhline(y=0,color='k',linewidth='2',linestyle='--')
 ax1.text(14,0.001,'Velocity Strengthening',fontsize=12)
 ax1.text(14,-0.002,'Velocity Weakening',fontsize=12)
 
-ax1.set_xlim(1, 50)
+ax1.set_xlim(0, 52)
 ax1.set_ylim(-0.005 ,0.004)
 
 
@@ -152,8 +158,6 @@ ax1.set_ylim(-0.005 ,0.004)
 exps = ['p4267','p4268','p4269','p4270','p4271','p4272','p4273',
         'p4309','p4310','p4311','p4312','p4313','p4314','p4316','p4317',
         'p4327','p4328','p4329','p4330']
-
-ax2.text(-0.1,0.9,'A',transform = ax2.transAxes,fontsize=24)
 
 # Set labels and tick sizes
 ax2.set_xlabel(r'Average LP Displacement [mm]',fontsize=18)
@@ -309,7 +313,7 @@ cb.solids.set_edgecolor("face")
 cb.set_label(r'Peak Slip Velocity [$mm/s$]',fontsize=14)
 
 ax3.set_ylim(0,1.4)
-ax3.set_xlim(8,52)
+ax3.set_xlim(16,52)
 
 ax3.axvspan(40, 50, alpha=0.2, color='k', zorder=0)
 
