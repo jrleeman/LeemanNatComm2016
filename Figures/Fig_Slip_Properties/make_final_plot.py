@@ -88,7 +88,6 @@ ax3 = plt.subplot2grid((5,1), (3,0), rowspan=2)
 #
 # Plot A top (a-b)
 #
-ax2.axhline(y=2.9,color='k',xmin=0,xmax=0.962)
 
 # Add rectangle for where figure B comes from
 # rect_x1 = 1.
