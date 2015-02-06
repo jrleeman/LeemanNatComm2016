@@ -340,34 +340,43 @@ axC.get_yaxis().set_ticks([])
 
 # Plotting
 start_row = 5096
-end_row = 7096
+end_row = 7096+500
 #axC.plot(p4343['Time'][start_row:end_row]-p4343['Time'][start_row],p4343['mu'][start_row:end_row]+0.05*0.95,label='6 MPa',color=tableau20[0])
-time = p4343['Time'][start_row:end_row]-p4343['Time'][start_row]
+
 friction = p4343['mu'][start_row:end_row]
 friction = friction - np.min(friction)
 friction = friction/np.max(friction)
+max_friction_idx = np.argmax(friction)
+time = p4343['Time'][start_row:end_row]
+time = time - time[max_friction_idx]
 axC.plot(time,friction,label='6 MPa',color=tableau20[0])
 
 start_row = 7929
 end_row = 9929+500
 #axC.plot(p4347['Time'][start_row:end_row]-p4347['Time'][start_row],p4347['mu'][start_row:end_row]+0.05*0.95,label='10 MPa',color=tableau20[8])
-time = p4347['Time'][start_row:end_row]-p4347['Time'][start_row]
+
 friction = p4347['mu'][start_row:end_row]
 friction = friction - np.min(friction)
 friction = friction/np.max(friction)
-axC.plot(time-0.2,friction,label='10 MPa',color=tableau20[8])
+max_friction_idx = np.argmax(friction)
+time = p4347['Time'][start_row:end_row]
+time = time - time[max_friction_idx]
+axC.plot(time,friction,label='10 MPa',color=tableau20[8])
 
 start_row = 11398
 end_row = 13398+500
 #axC.plot(p4351['Time'][start_row:end_row]-p4351['Time'][start_row]-.18,p4351['mu'][start_row:end_row]+0.05*0.95,label='14 MPa',color=tableau20[18])
-time = p4351['Time'][start_row:end_row]-p4351['Time'][start_row]
+
 friction = p4351['mu'][start_row:end_row]
 friction = friction - np.min(friction)
 friction = friction/np.max(friction)
-axC.plot(time-0.4,friction,label='14 MPa',color=tableau20[18])
+max_friction_idx = np.argmax(friction)
+time = p4351['Time'][start_row:end_row]
+time = time - time[max_friction_idx]
+axC.plot(time,friction,label='14 MPa',color=tableau20[18])
 
 # Set limits
-axC.set_xlim(0,2)
+axC.set_xlim(-0.25,1.5)
 axC.set_ylim(-0.05,1.1)
 
 
