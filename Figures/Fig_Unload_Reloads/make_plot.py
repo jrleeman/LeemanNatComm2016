@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 from biaxread import *
 
 # Path to folders of biax data
@@ -20,21 +21,21 @@ for i in range(len(tableau20)):
     tableau20[i] = (r / 255., g / 255., b / 255.)
 
 # Read Data
-p4309 = ReadAscii(data_path + '/p4309/p4309_data.txt')
 p4316 = ReadAscii(data_path + '/p4316/p4316_data.txt')
+ur_disp,ur_stiffness = np.loadtxt('p4316_stiffness_cycles.txt',unpack=True,delimiter=',',skiprows=1,usecols=[3,4])
+ev_disp,ev_stiffness = np.loadtxt('p4316_event_properties.txt',unpack=True,delimiter=',',skiprows=1,usecols=[9,5])
 
 # Setup figure and axes
 # Generally plots is ~1.33x width to height (10,7.5 or 12,9)
 fig = plt.figure(figsize=(12,9))
 axA = plt.subplot(111)
-
+axB = plt.axes([0.57,0.17,0.3,0.3])
 #
 # Plot A
 #
 
 # Label experiment
-axA.text(0.94,0.05,'p4309',transform = axA.transAxes,fontsize=14,color=tableau20[0])
-axA.text(0.94,0.02,'p4316',transform = axA.transAxes,fontsize=14,color=tableau20[2])
+axA.text(0.01,0.96,'p4316',transform = axA.transAxes,fontsize=14,color=tableau20[2])
 
 # Set labels and tick sizes
 axA.set_xlabel(r'Load Point Displacement [mm]',fontsize=18)
@@ -44,22 +45,31 @@ axA.tick_params(axis='both', which='major', labelsize=16)
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-axA.get_xaxis().tick_bottom()
-axA.get_yaxis().tick_left()
+#axA.get_xaxis().tick_bottom()
+#axA.get_yaxis().tick_left()
 
 # Turn off top and right splines
-axA.spines["top"].set_visible(False)
-axA.spines["right"].set_visible(False)
+#axA.spines["top"].set_visible(False)
+#axA.spines["right"].set_visible(False)
 
-axA.plot(p4309['LP_Disp'][::10]/1000.,p4309['mu'][::10],color=tableau20[0],linewidth=1)
 axA.plot(p4316['LP_Disp'][::10]/1000.,p4316['mu'][::10],color=tableau20[2],linewidth=1)
 
-axA.set_ylim(0,0.8)
-axA.set_xlim(0,25)
+axA.set_ylim(0,0.75)
+axA.set_xlim(0,42)
 
-axA.set_ylim(0,0.6)
-axA.set_xlim(15.6,17.7)
+rect = mpatches.Rectangle((22,0.0),19,0.37, ec="none",fc="white",zorder=10)
+axA.add_patch(rect)
 
+#
+# Inset Axes
+#
+axB.scatter(ur_disp/1000.,ur_stiffness*10000,color='r',s=50)
+axB.scatter(ev_disp/1000.,ev_stiffness*10000,color='k',s=15)
+axB.set_xlabel(r'Load Point Displacement [mm]',fontsize=14)
+axB.set_ylabel(r'Stiffnessx10000 [$1/\mu$]',fontsize=14)
+axB.tick_params(axis='both', which='major', labelsize=12)
+
+axB.set_ylim(0,6)
+axB.set_xlim(0,42)
 
 plt.savefig('figure.png', bbox_inches="tight")
-plt.show()
