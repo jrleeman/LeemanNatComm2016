@@ -142,9 +142,9 @@ class SlipEvent():
         self.friction_25_percent_idx = None
         self.friction_75_percent_idx = None
         self.velocity = None
-        self.mean_middle_50_percent_velocity =None
+        self.mean_middle_50_percent_velocity =0.
         self.stiffness_correlation = None
-        self.peak_velocity = None
+        self.peak_velocity = 0.
 
     def plot(self,data,plot_name):
         ax1 = plt.subplot(111)
@@ -154,8 +154,8 @@ class SlipEvent():
         ax1.plot(data['LP_Disp'][self.start_row:self.end_row],data['mu'][self.start_row:self.end_row],color='k')
 
         # Plot velocity Data
-        print np.shape(data['LP_Disp'][self.start_row:self.end_row]),np.shape(self.velocity)
-        ax2.plot(data['LP_Disp'][self.start_row:self.end_row],self.velocity,color='b')
+        #print np.shape(data['LP_Disp'][self.start_row:self.end_row]),np.shape(self.velocity)
+        #ax2.plot(data['LP_Disp'][self.start_row:self.end_row],self.velocity,color='b')
 
         # Plot stiffness fit and fit limit
         ax1.axvline(x=data['LP_Disp'][self.start_row+self.npts_stiffness_fit],color='r')
@@ -224,6 +224,7 @@ data = ReadAscii(path + '%s/%s_data.txt' %(experiment,experiment))
 # list of events.
 event_list = []
 for i in np.arange(1,len(events)):
+    print i,"/",len(events)
     slip_event = SlipEvent()
 
     # Assign rows for event parts
@@ -240,15 +241,16 @@ for i in np.arange(1,len(events)):
     slip_event.slip_duration = data['Time'][slip_event.end_row] - data['Time'][slip_event.failure_row]
 
     # Assign quartile portions, velocity, etc
-    try:
-        slip_event.velocity_analysis(data)
-        print i,slip_event.mean_middle_50_percent_velocity
-    except:
-        pass
-
+    # try:
+    #     slip_event.velocity_analysis(data)
+    #     print i,slip_event.mean_middle_50_percent_velocity
+    # except:
+    #     print "pass on velocity_analysis"
+    #     continue
 
     # Calculate the stiffness
     try:
+        print "Trying Stiffness calculation"
         correlation_results = CalcCorrelation(np.ravel(data['LP_Disp'][slip_event.start_row:slip_event.failure_row]),np.ravel(data['mu'][slip_event.start_row:slip_event.failure_row]))
         npts_bestfit,coeffs = FitBestCorrelation(np.ravel(data['LP_Disp'][slip_event.start_row:slip_event.failure_row]),np.ravel(data['mu'][slip_event.start_row:slip_event.failure_row]),correlation_results)
     except:
@@ -263,6 +265,7 @@ for i in np.arange(1,len(events)):
     if slip_event.failure_row < slip_event.end_row:
         event_list.append(slip_event)
     else:
+        print "pass slip_event.failure_row > slip_event.end_row"
         pass
 
 outfile = open('%s_event_properties.txt'%experiment,'w')
@@ -273,5 +276,9 @@ for i,event in enumerate(event_list):
     except:
         print i,event.start_row,event.failure_row,event.end_row,event.slip_duration,event.stiffness,event.npts_stiffness_fit,event.stiffness_intercept,event.failure_time,event.failure_displacement,event.mean_middle_50_percent_velocity,event.peak_velocity
         break
-    event.plot(data,'%s_plots/%s_%d'%(experiment,experiment,i))
+
+    try:
+        event.plot(data,'%s_plots/%s_%d'%(experiment,experiment,i))
+    except:
+        print "Can't plot ", i
 outfile.close()
