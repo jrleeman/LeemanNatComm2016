@@ -83,7 +83,7 @@ fig = plt.figure(figsize=(12,13))
 ax1 = plt.subplot2grid((5,1), (0,0), rowspan=1)
 ax2 = plt.subplot2grid((5,1), (1,0), rowspan=2)
 ax3 = plt.subplot2grid((5,1), (3,0), rowspan=2)
-
+ax1.set_position([0.125,0.735,0.775,0.2])
 
 #
 # Plot A top (a-b)
@@ -159,9 +159,10 @@ exps = ['p4267','p4268','p4269','p4270','p4271','p4272','p4273',
         'p4327','p4328','p4329','p4330']
 
 # Set labels and tick sizes
-ax2.set_xlabel(r'Average LP Displacement [mm]',fontsize=18)
+#ax2.set_xlabel(r'Average LP Displacement [mm]',fontsize=18)
 ax2.set_ylabel(r'Stiffness [1/um]x1000',fontsize=18)
 ax2.tick_params(axis='both', which='major', labelsize=16)
+ax2.get_yaxis().set_ticks([0,0.5,1,1.5,2,2.5,3,3.5])
 
 # Turns off chart clutter
 
