@@ -136,15 +136,16 @@ ax1.spines["right"].set_visible(False)
 # Plotting
 window_size = 51
 order = 5
-ax1.plot(p4343['LP_Disp']/1000.,savitzky_golay(np.ravel(p4343['mu']), window_size, order),label='6 MPa',color=tableau20[0])
-ax1.plot(p4344['LP_Disp']/1000.,savitzky_golay(np.ravel(p4344['mu']), window_size, order)+0.05,label='7 MPa',color=tableau20[2])
-ax1.plot(p4345['LP_Disp']/1000.,savitzky_golay(np.ravel(p4345['mu']), window_size, order)+0.05*2,label='8 MPa',color=tableau20[4])
-ax1.plot(p4346['LP_Disp']/1000.,savitzky_golay(np.ravel(p4346['mu']), window_size, order)+0.05*3,label='9 MPa',color=tableau20[6])
-ax1.plot(p4347['LP_Disp']/1000.,savitzky_golay(np.ravel(p4347['mu']), window_size, order)+0.05*4,label='10 MPa',color=tableau20[8])
-ax1.plot(p4348['LP_Disp']/1000.,savitzky_golay(np.ravel(p4348['mu']), window_size, order)+0.05*5,label='11 MPa',color=tableau20[10])
-ax1.plot(p4342['LP_Disp']/1000.,savitzky_golay(np.ravel(p4342['mu']), window_size, order)+0.05*6,label='12 MPa',color=tableau20[12])
-ax1.plot(p4350['LP_Disp']/1000.,savitzky_golay(np.ravel(p4350['mu']), window_size, order)+0.05*7,label='13 MPa',color=tableau20[14])
-ax1.plot(p4351['LP_Disp']/1000.,savitzky_golay(np.ravel(p4351['mu']), window_size, order)+0.05*8,label='14 MPa',color=tableau20[18])
+decimate = 10
+ax1.plot(p4343['LP_Disp'][::decimate]/1000.,savitzky_golay(np.ravel(p4343['mu']), window_size, order)[::decimate],label='6 MPa',color=tableau20[0],linewidth=2)
+ax1.plot(p4344['LP_Disp'][::decimate]/1000.,savitzky_golay(np.ravel(p4344['mu']), window_size, order)[::decimate]+0.05,label='7 MPa',color=tableau20[2],linewidth=2)
+ax1.plot(p4345['LP_Disp'][::decimate]/1000.,savitzky_golay(np.ravel(p4345['mu']), window_size, order)[::decimate]+0.05*2,label='8 MPa',color=tableau20[4],linewidth=2)
+ax1.plot(p4346['LP_Disp'][::decimate]/1000.,savitzky_golay(np.ravel(p4346['mu']), window_size, order)[::decimate]+0.05*3,label='9 MPa',color=tableau20[6],linewidth=2)
+ax1.plot(p4347['LP_Disp'][::decimate]/1000.,savitzky_golay(np.ravel(p4347['mu']), window_size, order)[::decimate]+0.05*4,label='10 MPa',color=tableau20[8],linewidth=2)
+ax1.plot(p4348['LP_Disp'][::decimate]/1000.,savitzky_golay(np.ravel(p4348['mu']), window_size, order)[::decimate]+0.05*5,label='11 MPa',color=tableau20[10],linewidth=2)
+ax1.plot(p4342['LP_Disp'][::decimate]/1000.,savitzky_golay(np.ravel(p4342['mu']), window_size, order)[::decimate]+0.05*6,label='12 MPa',color=tableau20[12],linewidth=2)
+ax1.plot(p4350['LP_Disp'][::decimate]/1000.,savitzky_golay(np.ravel(p4350['mu']), window_size, order)[::decimate]+0.05*7,label='13 MPa',color=tableau20[14],linewidth=2)
+ax1.plot(p4351['LP_Disp'][::decimate]/1000.,savitzky_golay(np.ravel(p4351['mu']), window_size, order)[::decimate]+0.05*8,label='14 MPa',color=tableau20[18],linewidth=2)
 
 #ax1.text(9.1,np.mean(p4343['mu'])+0.05*0.25,r'$\mu = $%0.2f' %np.mean(p4343['mu']),fontsize=16,color=tableau20[0])
 #ax1.text(9.1,np.mean(p4344['mu'])+0.05*1.25,r'$\mu = $%0.2f' %np.mean(p4344['mu']),fontsize=16,color=tableau20[2])
@@ -176,11 +177,8 @@ ax1.text(17.1,np.mean(p4342['mu'])+0.05*6-0.01,r'p4342',fontsize=14,color=tablea
 ax1.text(17.1,np.mean(p4350['mu'])+0.05*7-0.01,r'p4350',fontsize=14,color=tableau20[14])
 ax1.text(17.1,np.mean(p4351['mu'])+0.05*8-0.01,r'p4351',fontsize=14,color=tableau20[18])
 
-
-
-
 # Set limits
-ax1.set_xlim(9,17)
+ax1.set_xlim(9,17.05)
 #ax1.set_ylim(0.65,1.12)
 
 plt.savefig('AllNormal_Runplots.pdf', bbox_inches="tight")
