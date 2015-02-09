@@ -100,10 +100,13 @@ data =  data.query('Grade == ["A","B"]')
 
 # Setup figure and axes
 # Generally plots is ~1.33x width to height (10,7.5 or 12,9)
-fig = plt.figure(figsize=(26,8))
-axB = fig.add_subplot(1, 3, 1)
-ax3 = fig.add_subplot(1, 3, 2)
-ax4 = fig.add_subplot(1, 3, 3)
+fig = plt.figure(figsize=(17,12))
+ax1 = fig.add_subplot(2, 2, 1)
+ax2 = fig.add_subplot(2, 2, 2)
+ax3 = fig.add_subplot(2, 2, 3)
+ax4 = fig.add_subplot(2, 2, 4)
+
+plt.subplots_adjust(wspace=0.3)
 #fig.subplots_adjust(hspace=0.1, wspace=0.35)
 
 #
@@ -111,98 +114,132 @@ ax4 = fig.add_subplot(1, 3, 3)
 #
 
 # Label Plot
-axB.text(0.01,0.9,'A',transform = axB.transAxes,fontsize=24)
+ax1.text(0.01,0.9,'A',transform = ax1.transAxes,fontsize=24)
 
 # Set labels and tick sizes
-axB.set_xlabel(r'Load Point Displacement [$\mu m$]',fontsize=18)
-axB.set_ylabel(r'Friction',fontsize=18)
-axB.tick_params(axis='both', which='major', labelsize=16)
+ax1.set_xlabel(r'Displacement [$\mu m$]',fontsize=18)
+ax1.set_ylabel(r'Friction',fontsize=18)
+ax1.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-axB.get_xaxis().tick_bottom()
-axB.get_yaxis().tick_left()
+# ax1.get_xaxis().tick_bottom()
+# ax1.get_yaxis().tick_left()
 
 # Turn off top and right splines
-axB.spines["top"].set_visible(False)
-axB.spines["right"].set_visible(False)
+# ax1.spines["top"].set_visible(False)
+# ax1.spines["right"].set_visible(False)
 
-axB.plot(p4309['LP_Disp'] - p4309['LP_Disp'][0],savitzky_golay(np.ravel(p4309['mu']),201,5),color=tableau20[0],linewidth=1,
+ax1.plot(p4309['LP_Disp'] - p4309['LP_Disp'][0],savitzky_golay(np.ravel(p4309['mu']),201,5),color=tableau20[0],linewidth=1,
         label='p4309')
 
-axB.set_xlim(0,175)
+ax1.set_xlim(0,175)
 
 #
 # Left Plot of a-b
 #
 
 # Label Plot
-ax3.text(0.01,0.9,'B',transform = ax3.transAxes,fontsize=24)
+ax2.text(0.01,0.9,'B',transform = ax2.transAxes,fontsize=24)
 
 # Set labels and tick sizes
-ax3.set_xlabel(r'Displacement [mm]',fontsize=18)
-ax3.set_ylabel(r'(a-b)',fontsize=18)
-ax3.tick_params(axis='both', which='major', labelsize=16)
+ax2.set_xlabel(r'Displacement [mm]',fontsize=18)
+ax2.set_ylabel(r'(a-b)',fontsize=18)
+ax2.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-ax3.get_xaxis().tick_bottom()
-ax3.get_yaxis().tick_left()
+# ax2.get_xaxis().tick_bottom()
+# ax2.get_yaxis().tick_left()
 
 # Turn off top and right splines
-ax3.spines["top"].set_visible(False)
-ax3.spines["right"].set_visible(False)
+# ax2.spines["top"].set_visible(False)
+# ax2.spines["right"].set_visible(False)
 
 # Plotting
 up = data[data['Type']=='Up']
-ax3.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color=tableau20[6],
+ax2.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color=tableau20[6],
             s=50,marker='^', label='Velocity Step Up')
 
 down = data[data['Type']=='Down']
-ax3.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color=tableau20[7],
+ax2.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color=tableau20[7],
             s=50,marker='v', label='Velocity Step Down')
 
-ax3.axhline(y=0,color='k',linewidth='2',linestyle='--')
+ax2.axhline(y=0,color='k',linewidth='2',linestyle='--')
 
 # Label velocity regions
-ax3.text(15,0.0005,'Velocity Strengthening',fontsize=14)
-ax3.text(16,-0.0007,'Velocity Weakening',fontsize=14)
+ax2.text(15,0.0005,'Velocity Strengthening',fontsize=14)
+ax2.text(16,-0.0007,'Velocity Weakening',fontsize=14)
 
-ax3.set_ylim(-0.006 ,0.006)
+ax2.set_ylim(-0.006 ,0.006)
 
 #
 # Right Plot of Dc
 #
 
 # Label Plot
-ax4.text(0.01,0.9,'C',transform = ax4.transAxes,fontsize=24)
+ax3.text(0.01,0.9,'C',transform = ax3.transAxes,fontsize=24)
+
+# Set labels and tick sizes
+ax3.set_xlabel(r'Displacement [mm]',fontsize=18)
+ax3.set_ylabel(r'Dc [$\mu m$]',fontsize=18)
+ax3.tick_params(axis='both', which='major', labelsize=16)
+
+# Turns off chart clutter
+
+# Turn off top and right tick marks
+# ax3.get_xaxis().tick_bottom()
+# ax3.get_yaxis().tick_left()
+
+# Turn off top and right splines
+# ax3.spines["top"].set_visible(False)
+# ax3.spines["right"].set_visible(False)
+
+# Plotting
+up = data[data['Type']=='Up']
+ax3.scatter(up['LP_Disp']/1000,up['Dc'],color=tableau20[4],
+            s=50,marker='^', label='Velocity Step Up')
+
+down = data[data['Type']=='Down']
+ax3.scatter(down['LP_Disp']/1000,down['Dc'],color=tableau20[5],
+            s=50,marker='v', label='Velocity Step Down')
+
+ax3.set_ylim(0.0,35)
+
+#
+# Kc
+#
+
+# Label Plot
+ax4.text(0.01,0.9,'D',transform = ax4.transAxes,fontsize=24)
 
 # Set labels and tick sizes
 ax4.set_xlabel(r'Displacement [mm]',fontsize=18)
-ax4.set_ylabel(r'Dc [$\mu m$]',fontsize=18)
+ax4.set_ylabel(r'kc [1/$\mu m$]',fontsize=18)
 ax4.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-ax4.get_xaxis().tick_bottom()
-ax4.get_yaxis().tick_left()
+# ax3.get_xaxis().tick_bottom()
+# ax3.get_yaxis().tick_left()
 
 # Turn off top and right splines
-ax4.spines["top"].set_visible(False)
-ax4.spines["right"].set_visible(False)
+# ax3.spines["top"].set_visible(False)
+# ax3.spines["right"].set_visible(False)
 
 # Plotting
 up = data[data['Type']=='Up']
-ax4.scatter(up['LP_Disp']/1000,up['Dc'],color=tableau20[4],
+ax4.scatter(up['LP_Disp']/1000,up['Kc'],color=tableau20[8],
             s=50,marker='^', label='Velocity Step Up')
 
 down = data[data['Type']=='Down']
-ax4.scatter(down['LP_Disp']/1000,down['Dc'],color=tableau20[5],
+ax4.scatter(down['LP_Disp']/1000,down['Kc'],color=tableau20[9],
             s=50,marker='v', label='Velocity Step Down')
 
-ax4.set_ylim(0.0,35)
+ax4.set_ylim(0.0,0.001)
 
 plt.savefig('RSF_Parameters.svg', bbox_inches="tight")
+#plt.show()
