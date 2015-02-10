@@ -131,7 +131,7 @@ ax1.tick_params(axis='both', which='major', labelsize=16)
 # ax1.spines["top"].set_visible(False)
 # ax1.spines["right"].set_visible(False)
 
-ax1.plot(p4309['LP_Disp'] - p4309['LP_Disp'][0],savitzky_golay(np.ravel(p4309['mu']),201,5),color=tableau20[0],linewidth=1,
+ax1.plot(p4309['LP_Disp'] - p4309['LP_Disp'][0],savitzky_golay(np.ravel(p4309['mu']),201,5),color='k',linewidth=1,
         label='p4309')
 
 ax1.set_xlim(0,175)
@@ -160,11 +160,11 @@ ax2.tick_params(axis='both', which='major', labelsize=16)
 
 # Plotting
 up = data[data['Type']=='Up']
-ax2.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color=tableau20[6],
+ax2.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color='k',
             s=50,marker='^', label='Velocity Step Up')
 
 down = data[data['Type']=='Down']
-ax2.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color=tableau20[7],
+ax2.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color='k',
             s=50,marker='v', label='Velocity Step Down')
 
 ax2.axhline(y=0,color='k',linewidth='2',linestyle='--')
@@ -199,11 +199,11 @@ ax3.tick_params(axis='both', which='major', labelsize=16)
 
 # Plotting
 up = data[data['Type']=='Up']
-ax3.scatter(up['LP_Disp']/1000,up['Dc'],color=tableau20[4],
+ax3.scatter(up['LP_Disp']/1000,up['Dc'],color='k',
             s=50,marker='^', label='Velocity Step Up')
 
 down = data[data['Type']=='Down']
-ax3.scatter(down['LP_Disp']/1000,down['Dc'],color=tableau20[5],
+ax3.scatter(down['LP_Disp']/1000,down['Dc'],color='k',
             s=50,marker='v', label='Velocity Step Down')
 
 ax3.set_ylim(0.0,35)
@@ -217,7 +217,7 @@ ax4.text(0.01,0.9,'D',transform = ax4.transAxes,fontsize=24)
 
 # Set labels and tick sizes
 ax4.set_xlabel(r'Displacement [mm]',fontsize=18)
-ax4.set_ylabel(r'kc [1/$\mu m$]',fontsize=18)
+ax4.set_ylabel(r'$k_c$ x 10000 [1/$\mu m$]',fontsize=18)
 ax4.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
@@ -232,14 +232,17 @@ ax4.tick_params(axis='both', which='major', labelsize=16)
 
 # Plotting
 up = data[data['Type']=='Up']
-ax4.scatter(up['LP_Disp']/1000,up['Kc'],color=tableau20[8],
+kc = 10000*(up['b']-up['a'])/up['Dc']
+ax4.scatter(up['LP_Disp']/1000,kc,color='k',
             s=50,marker='^', label='Velocity Step Up')
 
 down = data[data['Type']=='Down']
-ax4.scatter(down['LP_Disp']/1000,down['Kc'],color=tableau20[9],
+kc = 10000*(down['b']-down['a'])/down['Dc']
+ax4.scatter(down['LP_Disp']/1000,kc,color='k',
             s=50,marker='v', label='Velocity Step Down')
 
-ax4.set_ylim(0.0,0.001)
+ax4.set_ylim(0.0,16)
+ax4.set_xlim(0,30)
 
 plt.savefig('RSF_Parameters.svg', bbox_inches="tight")
 #plt.show()
