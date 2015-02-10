@@ -54,7 +54,11 @@ axA.tick_params(axis='both', which='major', labelsize=16)
 
 axA.plot(p4316['LP_Disp'][::10]/1000.,p4316['mu'][::10],color=tableau20[2],linewidth=1)
 
-axA.set_ylim(0,0.75)
+# Add horizontal lines to denote where stiffness was picked
+axA.axhline(y=0.3,color='k',linestyle='--')
+axA.axhline(y=0.4,color='k',linestyle='--')
+
+axA.set_ylim(0,0.8)
 axA.set_xlim(0,42)
 
 rect = mpatches.Rectangle((22,0.0),19,0.37, ec="none",fc="white",zorder=10)
