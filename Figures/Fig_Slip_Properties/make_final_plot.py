@@ -65,7 +65,8 @@ experiments_with_event_data = ('p4342','p4343','p4344','p4345','p4346',
 experiments_with_unload_reload = ('p4267','p4268','p4269','p4270','p4271',
                                   'p4272','p4273','p4309','p4310','p4311',
                                   'p4312','p4313','p4314','p4316','p4317',
-                                  'p4327','p4328','p4329','p4330')
+                                  'p4327','p4328','p4329','p4330','p4338',
+                                  'p4339')
 
 # Read those experiments into a dictionary of event data
 experiment_event_data = dict()
@@ -176,7 +177,7 @@ ax2.get_yaxis().set_ticks([0,0.5,1,1.5,2,2.5,3,3.5])
 
 # Plotting
 
-for exp in exps:
+for exp in experiments_with_unload_reload:
 
     df = pd.read_csv('/Users/jleeman/Dropbox/PennState/BiaxExperiments/%s/%s_stiffness_cycles.txt'%(exp,exp))
 
