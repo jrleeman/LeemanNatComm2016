@@ -8,14 +8,14 @@ def load_event_properties(experiment):
     Load event property file picks for a given experiment number and return
     that data as an array
     """
-    return np.loadtxt('%s_event_properties.txt'%experiment,delimiter=',',skiprows=1)
+    return np.loadtxt('../Slip_Property_Data/%s_event_properties.txt'%experiment,delimiter=',',skiprows=1)
 
 def load_blacklist(experiment):
     """
     Load event numbers from the blacklist file for each experiment and
     return them as an array
     """
-    blacklist = np.loadtxt('%s_blacklist.txt'%experiment)
+    blacklist = np.loadtxt('../Slip_Property_Data/%s_blacklist.txt'%experiment)
     return blacklist
 
 def load_events(experiment):
@@ -99,7 +99,7 @@ ax1.set_position([0.125,0.735,0.775,0.2])
 # rect_height = rect_y2-rect_y1
 # ax2.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height, zorder=50,facecolor="w",edgecolor="w"))
 
-df = pd.read_excel('p4309_rsf_fits.xlsx')
+df = pd.read_excel('../Slip_Property_Data/p4309_rsf_fits.xlsx')
 
 data = df[df['Law']=='r']
 data = data[data['k']==0.0055]
@@ -204,7 +204,7 @@ ax2.set_xlim(0,52)
 ax2.set_ylim(0,0.004*1000)
 
 low_color = 10./1000.
-high_color = 4000./1000.
+high_color = 4600./1000.
 color_map = plt.get_cmap('rainbow_r')
 marker_size = 40
 marker_alpha=0.5
@@ -286,7 +286,7 @@ ax3.tick_params(axis='both', which='major', labelsize=16)
 ax3.text(-0.1,0.9,'B',transform = ax3.transAxes,fontsize=24)
 
 low_color = 10./1000.
-high_color = 4000./1000.
+high_color = 4600./1000.
 color_map = plt.get_cmap('rainbow_r')
 marker_size = 40
 marker_alpha=0.5

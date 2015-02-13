@@ -8,14 +8,14 @@ def load_event_properties(experiment):
     Load event property file picks for a given experiment number and return
     that data as an array
     """
-    return np.loadtxt('%s_event_properties.txt'%experiment,delimiter=',',skiprows=1)
+    return np.loadtxt('../Slip_Property_Data/%s_event_properties.txt'%experiment,delimiter=',',skiprows=1)
 
 def load_blacklist(experiment):
     """
     Load event numbers from the blacklist file for each experiment and
     return them as an array
     """
-    blacklist = np.loadtxt('%s_blacklist.txt'%experiment)
+    blacklist = np.loadtxt('../Slip_Property_Data/%s_blacklist.txt'%experiment)
     return blacklist
 
 def load_events(experiment):
