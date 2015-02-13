@@ -1,9 +1,0 @@
-python get_event_properties.py p4342
-python get_event_properties.py p4343
-python get_event_properties.py p4344
-python get_event_properties.py p4345
-python get_event_properties.py p4346
-python get_event_properties.py p4347
-python get_event_properties.py p4348
-python get_event_properties.py p4350
-python get_event_properties.py p4351

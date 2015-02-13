@@ -258,8 +258,10 @@ class SlipEvent():
         x = data['Time'][self.start_row:self.end_row]
         y = data['OB_Top'][self.start_row:self.end_row]
         mu = data['mu'][self.start_row:self.end_row]
+        Fs = data['Samp_Freq'][self.start_row:self.end_row]
         x = x.flatten()
         y = y.flatten()
+        Fs = Fs.flatten()
 
         window_size = 11
         window_size = 23
@@ -270,7 +272,7 @@ class SlipEvent():
 
         #self.velocity = rslope(x,y,window_size)
         self.velocity = savitzky_golay(y, window_size, order, deriv=1, rate=1)
-        self.velocity = self.velocity * data['Samp_Freq']
+        self.velocity = self.velocity * Fs
 
         minimum_friction = data['mu'][self.end_row]
         maximum_friction = data['mu'][self.failure_row]
@@ -290,16 +292,19 @@ experiment = sys.argv[1]
 # Load the biax data from the given project folder
 path = '/Users/jleeman/Dropbox/PennState/BiaxExperiments/'
 
-events = np.loadtxt('%s_event_rows.txt'%experiment,skiprows=1,delimiter=',')
+events = np.loadtxt('../Slip_Property_Data/%s_event_rows.txt'%experiment,skiprows=1,delimiter=',')
 
 # Get experiment name and read data
 data = ReadAscii(path + '%s/%s_data.txt' %(experiment,experiment))
+
+print "Read Done"
 
 # We can't use the first event, because we don't have an end point
 # of an earlier event for stiffness calculation. So, let's make a
 # list of events.
 event_list = []
 for i in np.arange(1,len(events)):
+    print "Event ", i
     slip_event = SlipEvent()
 
     # Assign rows for event parts
