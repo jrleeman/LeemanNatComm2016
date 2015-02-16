@@ -58,7 +58,8 @@ for i in range(len(tableau20)):
     tableau20[i] = (r / 255., g / 255., b / 255.)
 
 # Tuple of experiments we'll consider for plotting even data from
-experiments_with_event_data = ('p4342','p4343','p4344','p4345','p4346',
+# Removed p4342 due to data quality issues 2/16/15
+experiments_with_event_data = ('p4343','p4344','p4345','p4346',
                                'p4347','p4348','p4350','p4351')
 
 # Tuple of experiments we'll plot unload/reload stiffness from
