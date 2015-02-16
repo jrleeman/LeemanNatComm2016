@@ -39,7 +39,7 @@ def filter(data,col,low,high):
     return data_trim
 
 # Tuple of experiments we'll consider for plotting even data from
-experiments_with_event_data = ('p4342','p4343','p4344','p4345','p4346',
+experiments_with_event_data = ('p4343','p4344','p4345','p4346',
                                'p4347','p4348','p4350','p4351')
 
 # Tuple of experiments we'll plot unload/reload stiffness from
@@ -92,8 +92,13 @@ for key in experiment_event_data:
     ax1.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]/1000.),fmt='ro',ecolor='w',elinewidth=2,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]/1000.))
     ax1.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]/1000.),fmt='ro',markeredgecolor='w',ecolor='k',elinewidth=1,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]/1000.))
 
-ax1.set_ylim(0,4)
-#ax1.set_xlim(4.5,8.5)
+# Add audible/non-audible annotation
+ax1.axvline(x=0.75,color='k',linestyle='--')
+ax1.text(0.65,4.5,'Audible',fontsize=14)
+ax1.text(0.9,2.0,'Silent',fontsize=14)
+
+ax1.set_ylim(0,4.5)
+ax1.set_xlim(0.63,1.15)
 
 # Panel B
 
@@ -129,7 +134,12 @@ for key in experiment_event_data:
     ax2.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]),fmt='ro',markeredgecolor='w',ecolor='k',elinewidth=1,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]))
 
     #ax2.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]),fmt='ro',ecolor='k',elinewidth=2,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]))
+# Add audible/non-audible annotation
+ax2.axvline(x=0.75,color='k',linestyle='--')
+ax2.text(0.65,1.0,'Audible',fontsize=14)
+ax2.text(0.9,0.2,'Silent',fontsize=14)
 
+ax2.set_xlim(0.63,1.15)
 ax2.set_ylim(0,1.2)
 #ax2.set_xlim(4.5,8.5)
 
