@@ -86,6 +86,7 @@ ax1 = plt.subplot2grid((5,1), (0,0), rowspan=1)
 ax2 = plt.subplot2grid((5,1), (1,0), rowspan=2)
 ax3 = plt.subplot2grid((5,1), (3,0), rowspan=2)
 ax1.set_position([0.125,0.735,0.775,0.2])
+ax3.set_position([0.125,0.1,0.775,0.28])
 
 #
 # Plot A top (a-b)
@@ -220,7 +221,7 @@ for key in experiment_event_data:
 ax2.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='k',linewidth=2)
 
 # Add text
-ax2.text(40,1.1,'Stable',fontsize=22)
+ax2.text(40,0.95,'Stable',fontsize=22)
 ax2.text(40,0.15,'Unstable',fontsize=22,color='r')
 
 
@@ -276,7 +277,7 @@ ax3.tick_params(axis='both', which='major', labelsize=16)
 # Turn off top and right tick marks
 #ax3.get_xaxis().tick_bottom()
 #ax3.get_yaxis().tick_left()
-
+ax3.get_yaxis().set_ticks([0,0.2,0.4,0.6,0.8,1.0,1.2])
 # Turn off top and right splines
 #ax3.spines["top"].set_visible(False)
 #ax3.spines["right"].set_visible(False)
@@ -315,8 +316,8 @@ cb.solids.set_edgecolor("face")
 cb.set_label(r'Peak Slip Velocity [$mm/s$]',fontsize=14)
 
 ax3.set_ylim(0,1.4)
-ax3.set_xlim(16,52)
+ax3.set_xlim(16,50)
 
 ax3.axvspan(40, 50, alpha=0.2, color='k', zorder=0)
 
-plt.savefig('figure.png', bbox_inches="tight");
+plt.savefig('figure.svg', bbox_inches="tight");
