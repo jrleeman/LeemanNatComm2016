@@ -224,11 +224,11 @@ axA.get_yaxis().set_ticklabels([])
 # Plotting
 window_size = 5
 order = 3
-axA.plot(p4343['Time']-p4343['Time'][0],np.ravel(p4343['mu'])+0.05*0.7,label='6 MPa',linewidth=2,color=tableau20[0])
-axA.plot(p4345['Time']-p4345['Time'][0],np.ravel(p4345['mu'])+0.05*1.5,label='8 MPa',linewidth=2,color=tableau20[4])
-axA.plot(p4347['Time']-p4347['Time'][0],np.ravel(p4347['mu'])+0.05*2.5,label='10 MPa',linewidth=2,color=tableau20[8])
-axA.plot(p4342['Time']-p4342['Time'][0],np.ravel(p4342['mu'])+0.05*3.5,label='12 MPa',linewidth=2,color=tableau20[12])
-axA.plot(p4351['Time']-p4351['Time'][0],np.ravel(p4351['mu'])+0.05*4.5,label='14 MPa',linewidth=2,color=tableau20[18])
+axA.plot(p4343['Time']-p4343['Time'][0],np.ravel(p4343['mu'])+0.05*0.7,label='6 MPa',linewidth=2,color='k')
+axA.plot(p4345['Time']-p4345['Time'][0],np.ravel(p4345['mu'])+0.05*1.5,label='8 MPa',linewidth=2,color='1.0')
+axA.plot(p4347['Time']-p4347['Time'][0],np.ravel(p4347['mu'])+0.05*2.5,label='10 MPa',linewidth=2,color='0.95')
+axA.plot(p4342['Time']-p4342['Time'][0],np.ravel(p4342['mu'])+0.05*3.5,label='12 MPa',linewidth=2,color='0.9')
+axA.plot(p4351['Time']-p4351['Time'][0],np.ravel(p4351['mu'])+0.05*4.5,label='14 MPa',linewidth=2,color='0.85')
 
 x_pos = 24.85
 
