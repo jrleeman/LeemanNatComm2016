@@ -63,7 +63,7 @@ axB = plt.axes([0.57,0.17,0.3,0.3])
 #
 
 # Label experiment
-axA.text(0.01,0.96,'p4316',transform = axA.transAxes,fontsize=14,color=tableau20[2])
+axA.text(0.01,0.96,'p4316',transform = axA.transAxes,fontsize=14,color='k')
 
 # Set labels and tick sizes
 axA.set_xlabel(r'Load Point Displacement [mm]',fontsize=18)
@@ -80,11 +80,12 @@ axA.tick_params(axis='both', which='major', labelsize=16)
 #axA.spines["top"].set_visible(False)
 #axA.spines["right"].set_visible(False)
 
-axA.plot(p4316['LP_Disp'][::10]/1000.,p4316['mu'][::10],color=tableau20[2],linewidth=1)
+axA.plot(p4316['LP_Disp'][::10]/1000.,p4316['mu'][::10],color='k',linewidth=1)
 
 # Add horizontal lines to denote where stiffness was picked
 axA.axhline(y=0.3,color='k',linestyle='--')
 axA.axhline(y=0.4,color='k',linestyle='--')
+axA.axhspan(0.3,0.4,color='0.5')
 
 axA.set_ylim(0,0.8)
 axA.set_xlim(0,42)
@@ -95,7 +96,7 @@ axA.add_patch(rect)
 #
 # Inset Axes
 #
-axB.scatter(ur_disp/1000.,ur_stiffness*10000,color='r',s=50)
+axB.scatter(ur_disp/1000.,ur_stiffness*10000,color='0.5',s=50)
 axB.scatter(ev_disp/1000.,ev_stiffness*10000,color='k',s=15)
 axB.set_xlabel(r'Load Point Displacement [mm]',fontsize=14)
 axB.set_ylabel(r'Stiffnessx10000 [$1/\mu$]',fontsize=14)
