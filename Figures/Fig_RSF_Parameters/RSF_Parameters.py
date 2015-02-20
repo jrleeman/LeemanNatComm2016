@@ -77,8 +77,9 @@ def savitzky_golay(y, window_size, order, deriv=0, rate=1):
 
 # Path to folders of biax data
 data_path = '/Users/jleeman/Dropbox/PennState/BiaxExperiments'
-p4309 = ReadAscii(data_path + '/p4309/p4309_data.txt')
-p4309 = p4309[211642:220000]
+#p4309 = ReadAscii(data_path + '/p4309/p4309_data.txt')
+#p4309 = p4309[211642:220000]
+#p4309 = p4309[95564:99876]
 
 # These are the "Tableau 20" colors as RGB.
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
@@ -131,10 +132,34 @@ ax1.tick_params(axis='both', which='major', labelsize=16)
 # ax1.spines["top"].set_visible(False)
 # ax1.spines["right"].set_visible(False)
 
-ax1.plot(p4309['LP_Disp'] - p4309['LP_Disp'][0],savitzky_golay(np.ravel(p4309['mu']),201,5),color='k',linewidth=1,
-        label='p4309')
+#ax1.plot(p4309['LP_Disp'] - p4309['LP_Disp'][0],savitzky_golay(np.ravel(p4309['mu']),201,5),color='k',linewidth=1,
+#        label='p4309')
 
-ax1.set_xlim(0,175)
+p4309 = np.loadtxt('step_35_model.txt',skiprows=5,usecols=[1,8,10])
+ax1.scatter(p4309[:,0]-p4309[0,0],p4309[:,1],color='0.6',s=40, label='p4309 Data')
+ax1.plot(p4309[:,0]-p4309[0,0],p4309[:,2],color='k',linewidth=2, label='p4309 Model')
+
+# Add "a" arrow
+arrow_x = [20,20]
+arrow_y = [0.687,0.705]
+ax1.annotate('', xy=(arrow_x[0], arrow_y[0]), xycoords='data',xytext=(arrow_x[1], arrow_y[1]), textcoords='data',arrowprops={'arrowstyle': '<->'})
+ax1.text(arrow_x[0]-5,np.mean(arrow_y),'a',fontsize=14)
+
+# Add "b" arrow
+arrow_x = [90,90]
+arrow_y = [0.705,0.691]
+ax1.annotate('', xy=(arrow_x[0], arrow_y[0]), xycoords='data',xytext=(arrow_x[1], arrow_y[1]), textcoords='data',arrowprops={'arrowstyle': '<->'})
+ax1.text(arrow_x[0]-5,np.mean(arrow_y),'b',fontsize=14)
+
+# Add "Dc" arrow
+arrow_x = [32,43]
+arrow_y = [0.706,0.706]
+ax1.annotate('', xy=(arrow_x[0], arrow_y[0]), xycoords='data',xytext=(arrow_x[1], arrow_y[1]), textcoords='data',arrowprops={'arrowstyle': '<->'})
+ax1.text(np.mean(arrow_x)-3,arrow_y[0]+0.001,r'D$_c$',fontsize=14)
+
+
+ax1.set_ylim(0.675,0.71)
+ax1.set_xlim(0,140)
 
 #
 # Left Plot of a-b
@@ -244,5 +269,5 @@ ax4.scatter(down['LP_Disp']/1000,kc,color='k',
 ax4.set_ylim(0.0,16)
 ax4.set_xlim(0,30)
 
-plt.savefig('RSF_Parameters.svg', bbox_inches="tight")
+plt.savefig('RSF_Parameters.png', bbox_inches="tight")
 #plt.show()
