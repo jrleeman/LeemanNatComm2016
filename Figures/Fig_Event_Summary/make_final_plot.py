@@ -69,13 +69,13 @@ ax1.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
 
-# Turn off top and right tick marks
-ax1.get_xaxis().tick_bottom()
-ax1.get_yaxis().tick_left()
-
-# Turn off top and right splines
-ax1.spines["top"].set_visible(False)
-ax1.spines["right"].set_visible(False)
+# # Turn off top and right tick marks
+# ax1.get_xaxis().tick_bottom()
+# ax1.get_yaxis().tick_left()
+#
+# # Turn off top and right splines
+# ax1.spines["top"].set_visible(False)
+# ax1.spines["right"].set_visible(False)
 
 ax1.text(-0.2,0.95,'A',transform = ax1.transAxes,fontsize=24)
 
@@ -94,10 +94,42 @@ for key in experiment_event_data:
 
 # Add audible/non-audible annotation
 ax1.axvline(x=0.75,color='k',linestyle='--')
-ax1.text(0.65,4.5,'Audible',fontsize=14)
-ax1.text(0.9,2.0,'Silent',fontsize=14)
+ax1.axvline(x=1.1,color='k',linestyle='--')
+ax1.text(0.647,4.4,'Audible',fontsize=14)
+ax1.text(0.9,4.4,'Silent',fontsize=14)
+ax1.text(1.11,2.555,'Stable',fontsize=14,rotation=90)
+ax1.axvspan(1.1,1.15,color='k',alpha=0.2)
 
-ax1.set_ylim(0,4.5)
+ax1.annotate("",
+            xy=(0.63, 4.35), xycoords='data',
+            xytext=(0.75,4.35), textcoords='data',
+            arrowprops=dict(arrowstyle="->",
+                            connectionstyle="arc3"),
+            )
+
+ax1.annotate("",
+            xy=(0.75, 4.35), xycoords='data',
+            xytext=(1.1,4.35), textcoords='data',
+            arrowprops=dict(arrowstyle="<->",
+                            connectionstyle="arc3"),
+            )
+
+ax1.annotate("",
+            xy=(1.1, 4.35), xycoords='data',
+            xytext=(1.15,4.35), textcoords='data',
+            arrowprops=dict(arrowstyle="<-",
+                            connectionstyle="arc3"),
+            )
+
+ax1.annotate("",
+            xy=(1.1, 0.35), xycoords='data',
+            xytext=(1.15,0.35), textcoords='data',
+            arrowprops=dict(arrowstyle="<-",
+                            connectionstyle="arc3"),
+            )
+
+
+ax1.set_ylim(0,4.7)
 ax1.set_xlim(0.63,1.15)
 
 # Panel B
@@ -107,18 +139,20 @@ ax2.set_xlabel(r'$k/k_c$',fontsize=18)
 ax2.set_ylabel(r'Slip Duration [$s$]',fontsize=18)
 ax2.tick_params(axis='both', which='major', labelsize=16)
 
+ax2.get_yaxis().set_ticks([0,0.2,0.4,0.6,0.8,1.0])
+
 # Turns off chart clutter
 
-# Turn off top and right tick marks
-ax2.get_xaxis().tick_bottom()
-ax2.get_yaxis().tick_left()
+# # Turn off top and right tick marks
+# ax2.get_xaxis().tick_bottom()
+# ax2.get_yaxis().tick_left()
+#
+# # Turn off top and right splines
+# ax2.spines["top"].set_visible(False)
+# ax2.spines["right"].set_visible(False)
 
-# Turn off top and right splines
-ax2.spines["top"].set_visible(False)
-ax2.spines["right"].set_visible(False)
 
-
-ax2.text(-0.2,0.95,'B',transform = ax2.transAxes,fontsize=24)
+ax2.text(-0.08,0.95,'B',transform = ax2.transAxes,fontsize=24)
 
 filter_col = 9
 low_val = 40000.
@@ -136,8 +170,39 @@ for key in experiment_event_data:
     #ax2.errorbar(np.mean(event_data[:,5]/0.0007),np.mean(event_data[:,y_col]),fmt='ro',ecolor='k',elinewidth=2,xerr=np.std(event_data[:,5]/0.0007),yerr=np.std(event_data[:,y_col]))
 # Add audible/non-audible annotation
 ax2.axvline(x=0.75,color='k',linestyle='--')
-ax2.text(0.65,1.0,'Audible',fontsize=14)
-ax2.text(0.9,0.2,'Silent',fontsize=14)
+ax2.axvline(x=1.1,color='k',linestyle='--')
+ax2.text(0.647,1.123,'Audible',fontsize=14)
+ax2.text(0.9,1.123,'Silent',fontsize=14)
+ax2.text(1.11,0.65,'Stable',fontsize=14,rotation=90)
+ax2.axvspan(1.1,1.15,color='k',alpha=0.2)
+
+ax2.annotate("",
+            xy=(0.63, 1.11), xycoords='data',
+            xytext=(0.75,1.11), textcoords='data',
+            arrowprops=dict(arrowstyle="->",
+                            connectionstyle="arc3"),
+            )
+
+ax2.annotate("",
+            xy=(0.75, 1.11), xycoords='data',
+            xytext=(1.1,1.11), textcoords='data',
+            arrowprops=dict(arrowstyle="<->",
+                            connectionstyle="arc3"),
+            )
+
+ax2.annotate("",
+            xy=(1.1, 1.11), xycoords='data',
+            xytext=(1.15,1.11), textcoords='data',
+            arrowprops=dict(arrowstyle="<-",
+                            connectionstyle="arc3"),
+            )
+
+ax2.annotate("",
+            xy=(1.1, 0.09), xycoords='data',
+            xytext=(1.15,0.09), textcoords='data',
+            arrowprops=dict(arrowstyle="<-",
+                            connectionstyle="arc3"),
+            )
 
 ax2.set_xlim(0.63,1.15)
 ax2.set_ylim(0,1.2)
