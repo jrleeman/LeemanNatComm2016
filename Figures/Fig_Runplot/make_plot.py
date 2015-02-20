@@ -224,12 +224,15 @@ axA.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height,alpha=0.3, zord
 #
 axB = plt.axes([.45, .37, .4, .2])
 
+axB.set_xlabel(r'Load Point Displacement [mm]',fontsize=16)
+axB.set_ylabel(r'Friction',fontsize=16)
+
 # Turns off chart clutter
 
 # Turn off top and right tick marks
 #axB.get_xaxis().tick_bottom()
 #axB.get_yaxis().tick_left()
-#axB.get_yaxis().set_ticks([])
+axB.get_yaxis().set_ticks([0.67,0.68,0.69,0.7,0.71])
 #axB.get_xaxis().set_ticks([])
 
 axB.plot(p4347['LP_Disp'][::10]/1000.,p4347['mu'][::10],color='k',linewidth=2)
