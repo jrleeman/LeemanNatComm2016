@@ -85,7 +85,7 @@ fig = plt.figure(figsize=(12,13))
 ax1 = plt.subplot2grid((5,1), (0,0), rowspan=1)
 ax2 = plt.subplot2grid((5,1), (1,0), rowspan=2)
 ax3 = plt.subplot2grid((5,1), (3,0), rowspan=2)
-ax1.set_position([0.125,0.735,0.775,0.2])
+ax1.set_position([0.125,0.745,0.775,0.2])
 ax3.set_position([0.125,0.1,0.775,0.28])
 
 #
@@ -320,4 +320,4 @@ ax3.set_xlim(16,50)
 
 ax3.axvspan(40, 50, alpha=0.2, color='k', zorder=0)
 
-plt.savefig('figure.svg', bbox_inches="tight");
+plt.savefig('figure1.png', bbox_inches="tight");
