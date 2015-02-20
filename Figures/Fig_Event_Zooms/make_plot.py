@@ -160,6 +160,16 @@ tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
              (227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
              (188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
 
+colors = [(255,150,150),(255,102,102),(255,51,51),(204,0,0), (153,0,0)]
+colors = colors[::-1]
+
+# Scale the RGB values to the [0, 1] range, which is the format
+# matplotlib accepts.
+for i in range(len(colors)):
+    r, g, b = colors[i]
+    colors[i] = (r / 255., g / 255., b / 255.)
+
+
 # Scale the RGB values to the [0, 1] range, which is the format
 # matplotlib accepts.
 for i in range(len(tableau20)):
@@ -209,7 +219,7 @@ axA.text(-0.05,0.93,'A',transform = axA.transAxes,fontsize=32)
 
 # Turn off top and right tick marks
 #axA.get_xaxis().tick_bottom()
-axA.get_yaxis().tick_left()
+#axA.get_yaxis().tick_left()
 axA.get_yaxis().set_ticks(np.arange(0,0.025*10,0.025))
 axA.get_yaxis().set_ticklabels([])
 
@@ -224,11 +234,11 @@ axA.get_yaxis().set_ticklabels([])
 # Plotting
 window_size = 5
 order = 3
-axA.plot(p4343['Time']-p4343['Time'][0],np.ravel(p4343['mu'])+0.05*0.7,label='6 MPa',linewidth=2,color='k')
-axA.plot(p4345['Time']-p4345['Time'][0],np.ravel(p4345['mu'])+0.05*1.5,label='8 MPa',linewidth=2,color='1.0')
-axA.plot(p4347['Time']-p4347['Time'][0],np.ravel(p4347['mu'])+0.05*2.5,label='10 MPa',linewidth=2,color='0.95')
-axA.plot(p4342['Time']-p4342['Time'][0],np.ravel(p4342['mu'])+0.05*3.5,label='12 MPa',linewidth=2,color='0.9')
-axA.plot(p4351['Time']-p4351['Time'][0],np.ravel(p4351['mu'])+0.05*4.5,label='14 MPa',linewidth=2,color='0.85')
+axA.plot(p4343['Time']-p4343['Time'][0],np.ravel(p4343['mu'])+0.05*0.7,label='6 MPa',linewidth=2,color=colors[0])
+axA.plot(p4345['Time']-p4345['Time'][0],np.ravel(p4345['mu'])+0.05*1.5,label='8 MPa',linewidth=2,color=colors[1])
+axA.plot(p4347['Time']-p4347['Time'][0],np.ravel(p4347['mu'])+0.05*2.5,label='10 MPa',linewidth=2,color=colors[2])
+axA.plot(p4342['Time']-p4342['Time'][0],np.ravel(p4342['mu'])+0.05*3.5,label='12 MPa',linewidth=2,color=colors[3])
+axA.plot(p4351['Time']-p4351['Time'][0],np.ravel(p4351['mu'])+0.05*4.5,label='14 MPa',linewidth=2,color=colors[4])
 
 x_pos = 24.85
 
@@ -263,15 +273,15 @@ p4343_raw = ReadAscii(data_path+'/p4343/p4343_data.txt')
 
 # Set labels and tick sizes
 axB.set_xlabel(r'Time [sec]',fontsize=18)
-axB.set_ylabel(r'Friction',fontsize=18,color=tableau20[0])
+axB.set_ylabel(r'Friction',fontsize=18,color=colors[0])
 axBv.set_ylabel(r'Velocity [$\mu m/s$]',fontsize=18)
 axB.tick_params(axis='both', which='major', labelsize=16)
 axBv.tick_params(axis='both', which='major', labelsize=16)
 
 # Change colors of plot axes
-axB.spines['left'].set_color(tableau20[0])
-axB.yaxis.label.set_color(tableau20[0])
-axB.tick_params(axis='y', colors=tableau20[0])
+axB.spines['left'].set_color(colors[0])
+axB.yaxis.label.set_color(colors[0])
+axB.tick_params(axis='y', colors=colors[0])
 
 # Label Plot
 axB.text(-0.1,0.93,'B',transform = axB.transAxes,fontsize=32)
@@ -294,7 +304,7 @@ velocity = rslope(np.ravel(p4343_raw['Time'][3799900:3805900]),np.ravel(p4343_ra
 axBv.plot(np.ravel(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900]),velocity,color='k',zorder=0,linewidth=2)
 
 # Plotting
-axB.plot(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900],p4343_raw['mu'][3799900:3805900],label='6 MPa',color=tableau20[0],zorder=1,linewidth=2)
+axB.plot(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900],p4343_raw['mu'][3799900:3805900],label='6 MPa',color=colors[0],zorder=1,linewidth=2)
 #axB.scatter(p4343_raw['Time'][3800095],p4343_raw['mu'][3800095],color='g',s=50,zorder=2)
 #axB.scatter(p4343_raw['Time'][3804529],p4343_raw['mu'][3804529],color='r',s=50,zorder=2)
 #axB.scatter(p4343_raw['Time'][3805433],p4343_raw['mu'][3805433],color='g',s=50,zorder=2)
@@ -350,7 +360,7 @@ friction = friction/np.max(friction)
 max_friction_idx = np.argmax(friction)
 time = p4343['Time'][start_row:end_row]
 time = time - time[max_friction_idx]
-axC.plot(time,friction,label='6 MPa',color=tableau20[0],linewidth=2)
+axC.plot(time,friction,label='6 MPa',color=colors[0],linewidth=2)
 
 start_row = 7929
 end_row = 9929+500
@@ -362,7 +372,7 @@ friction = friction/np.max(friction)
 max_friction_idx = np.argmax(friction)
 time = p4347['Time'][start_row:end_row]
 time = time - time[max_friction_idx]
-axC.plot(time,friction,label='10 MPa',color=tableau20[8],linewidth=2)
+axC.plot(time,friction,label='10 MPa',color=colors[2],linewidth=2)
 
 start_row = 11398
 end_row = 13398+500
@@ -374,7 +384,7 @@ friction = friction/np.max(friction)
 max_friction_idx = np.argmax(friction)
 time = p4351['Time'][start_row:end_row]
 time = time - time[max_friction_idx]
-axC.plot(time,friction,label='14 MPa',color=tableau20[18],linewidth=2)
+axC.plot(time,friction,label='14 MPa',color=colors[4],linewidth=2)
 
 # Set limits
 axC.set_xlim(-0.25,1.5)
