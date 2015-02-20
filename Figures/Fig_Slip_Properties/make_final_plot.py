@@ -214,15 +214,16 @@ color_col=11
 
 for key in experiment_event_data:
     event_data = experiment_event_data[key]
-    sc = ax2.scatter(event_data[:,9]/1000.,event_data[:,5]*1000,s=marker_size,alpha=marker_alpha,color='r')
+    sc = ax2.scatter(event_data[:,9]/1000.,event_data[:,5]*1000,s=20,alpha=marker_alpha,color='0.6',marker='x')
     print key,np.min(event_data[:,color_col]), np.max(event_data[:,color_col])
 
 # Plot line for kc definition
-ax2.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='k',linewidth=2)
+ax2.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='r',linewidth=2)
 
 # Add text
-ax2.text(40,0.95,'Stable',fontsize=22)
-ax2.text(40,0.15,'Unstable',fontsize=22,color='r')
+ax2.text(35,0.95,'Stable',fontsize=22)
+ax2.text(35,0.15,'Unstable',fontsize=22,color='0.6')
+ax2.text(47,0.95,r'kc',fontsize=22,color='r')
 
 
 
@@ -320,4 +321,4 @@ ax3.set_xlim(16,50)
 
 ax3.axvspan(40, 50, alpha=0.2, color='k', zorder=0)
 
-plt.savefig('figure1.png', bbox_inches="tight");
+plt.savefig('figure.svg', bbox_inches="tight");
