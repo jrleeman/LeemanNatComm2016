@@ -125,13 +125,13 @@ ax1.tick_params(axis='both', which='major', labelsize=24)
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-ax1.get_xaxis().tick_bottom()
-ax1.get_yaxis().tick_left()
+# ax1.get_xaxis().tick_bottom()
+# ax1.get_yaxis().tick_left()
 ax1.get_yaxis().set_ticks([])
 
 # Turn off top and right splines
-ax1.spines["top"].set_visible(False)
-ax1.spines["right"].set_visible(False)
+# ax1.spines["top"].set_visible(False)
+# ax1.spines["right"].set_visible(False)
 
 # Plotting
 window_size = 51
@@ -157,28 +157,39 @@ ax1.plot(p4351['LP_Disp'][::decimate]/1000.,savitzky_golay(np.ravel(p4351['mu'])
 #ax1.text(9.1,np.mean(p4350['mu'])+0.05*7.25,r'$\mu = $%0.2f' %np.mean(p4350['mu']),fontsize=16,color=tableau20[14])
 #ax1.text(9.1,np.mean(p4351['mu'])+0.05*8.25,r'$\mu = $%0.2f' %np.mean(p4351['mu']),fontsize=16,color=tableau20[18])
 
-ax1.text(17.1,np.mean(p4343['mu'])+0.05*0,r'$\sigma_n$ = 6 MPa',fontsize=22,color='k')
-ax1.text(17.1,np.mean(p4344['mu'])+0.05*1,r'$\sigma_n$ = 7 MPa',fontsize=22,color='k')
-ax1.text(17.1,np.mean(p4345['mu'])+0.05*2,r'$\sigma_n$ = 8 MPa',fontsize=22,color='k')
-ax1.text(17.1,np.mean(p4346['mu'])+0.05*3,r'$\sigma_n$ = 9 MPa',fontsize=22,color='k')
-ax1.text(17.1,np.mean(p4347['mu'])+0.05*4,r'$\sigma_n$ = 10 MPa',fontsize=22,color='k')
-ax1.text(17.1,np.mean(p4348['mu'])+0.05*5,r'$\sigma_n$ = 11 MPa',fontsize=22,color='k')
-ax1.text(17.1,np.mean(p4342['mu'])+0.05*6,r'$\sigma_n$ = 12 MPa',fontsize=22,color='k')
-ax1.text(17.1,np.mean(p4350['mu'])+0.05*7,r'$\sigma_n$ = 13 MPa',fontsize=22,color='k')
-ax1.text(17.1,np.mean(p4351['mu'])+0.05*8,r'$\sigma_n$ = 14 MPa',fontsize=22,color='k')
+ax1.text(9.1,np.mean(p4343['mu'][0:5000])+0.05*0+0.006,r'6 MPa',fontsize=22,color='k')
+ax1.text(9.1,np.mean(p4344['mu'][0:5000])+0.05*1+0.006,r'7 MPa',fontsize=22,color='k')
+ax1.text(9.1,np.mean(p4345['mu'][0:5000])+0.05*2+0.006,r'8 MPa',fontsize=22,color='k')
+ax1.text(9.1,np.mean(p4346['mu'][0:5000])+0.05*3+0.006,r'9 MPa',fontsize=22,color='k')
+ax1.text(9.1,np.mean(p4347['mu'][0:5000])+0.05*4+0.006,r'10 MPa',fontsize=22,color='k')
+ax1.text(9.1,np.mean(p4348['mu'][0:5000])+0.05*5+0.006,r'11 MPa',fontsize=22,color='k')
+ax1.text(9.1,np.mean(p4342['mu'][0:5000])+0.05*6+0.006,r'12 MPa',fontsize=22,color='k')
+ax1.text(9.1,np.mean(p4350['mu'][0:5000])+0.05*7+0.006,r'13 MPa',fontsize=22,color='k')
+ax1.text(9.1,np.mean(p4351['mu'][0:5000])+0.05*8+0.006,r'14 MPa',fontsize=22,color='k')
 
-ax1.text(17.1,np.mean(p4343['mu'])+0.05*0-0.01,r'p4343',fontsize=14,color='k')
-ax1.text(17.1,np.mean(p4344['mu'])+0.05*1-0.01,r'p4344',fontsize=14,color='k')
-ax1.text(17.1,np.mean(p4345['mu'])+0.05*2-0.01,r'p4345',fontsize=14,color='k')
-ax1.text(17.1,np.mean(p4346['mu'])+0.05*3-0.01,r'p4346',fontsize=14,color='k')
-ax1.text(17.1,np.mean(p4347['mu'])+0.05*4-0.01,r'p4347',fontsize=14,color='k')
-ax1.text(17.1,np.mean(p4348['mu'])+0.05*5-0.01,r'p4348',fontsize=14,color='k')
-ax1.text(17.1,np.mean(p4342['mu'])+0.05*6-0.01,r'p4342',fontsize=14,color='k')
-ax1.text(17.1,np.mean(p4350['mu'])+0.05*7-0.01,r'p4350',fontsize=14,color='k')
-ax1.text(17.1,np.mean(p4351['mu'])+0.05*8-0.01,r'p4351',fontsize=14,color='k')
+ax1.text(9.1,np.mean(p4343['mu'][0:5000])+0.05*0-0.01,r'p4343',fontsize=14,color='k')
+ax1.text(9.1,np.mean(p4344['mu'][0:5000])+0.05*1-0.01,r'p4344',fontsize=14,color='k')
+ax1.text(9.1,np.mean(p4345['mu'][0:5000])+0.05*2-0.01,r'p4345',fontsize=14,color='k')
+ax1.text(9.1,np.mean(p4346['mu'][0:5000])+0.05*3-0.01,r'p4346',fontsize=14,color='k')
+ax1.text(9.1,np.mean(p4347['mu'][0:5000])+0.05*4-0.01,r'p4347',fontsize=14,color='k')
+ax1.text(9.1,np.mean(p4348['mu'][0:5000])+0.05*5-0.01,r'p4348',fontsize=14,color='k')
+ax1.text(9.1,np.mean(p4342['mu'][0:5000])+0.05*6-0.01,r'p4342',fontsize=14,color='k')
+ax1.text(9.1,np.mean(p4350['mu'][0:5000])+0.05*7-0.01,r'p4350',fontsize=14,color='k')
+ax1.text(9.1,np.mean(p4351['mu'][0:5000])+0.05*8-0.01,r'p4351',fontsize=14,color='k')
+
+
+ax1.plot([17.25,17.25],[0,0.375],linewidth=6,color='k')
+ax1.scatter([17.25],[0],marker='v',s=300,color='k')
+
+ax1.plot([9.8,9.8],[0.011,0.011+0.025],color='k',linewidth=2)
+ax1.text(9.85,0.022,r'0.025 $\mu$',fontsize=18)
+
+ax1.text(17.07,-0.013,'0.99',fontsize=24)
+ax1.text(17.07,0.38,'0.70',fontsize=24)
+ax1.text(17.35,0.1835,r'$\kappa$',fontsize=42,rotation=90)
 
 # Set limits
-ax1.set_xlim(9,17.05)
-#ax1.set_ylim(0.65,1.12)
+ax1.set_xlim(9,17.7)
+ax1.set_ylim(-0.025,0.425)
 
-plt.savefig('AllNormal_Runplots.pdf', bbox_inches="tight")
+plt.savefig('AllNormal_Runplots.png', bbox_inches="tight")
