@@ -146,8 +146,9 @@ p4309_disp_downsampled = p4309[:,0]-p4309[0,0]
 p4309_disp_downsampled = p4309_disp_downsampled[7:].reshape((60,10))
 p4309_disp_downsampled = np.mean(p4309_disp_downsampled,axis=1)
 
-ax1.scatter(p4309[:,0]-p4309[0,0],p4309[:,1],color='0.6',s=40, label='p4309 Data')
-ax1.scatter(p4309_disp_downsampled, p4309_mu_downsampled, color='r',s=40, label='p4309 Data')
+# row 215 to end for high velocity, 0-19 for red
+ax1.scatter(p4309[215:,0]-p4309[0,0],p4309[215:,1],color='0.6',s=40, label='p4309 Data')
+ax1.scatter(p4309_disp_downsampled[0:19], p4309_mu_downsampled[0:19], color='0.6',s=40, label='p4309 Data')
 ax1.plot(p4309[:,0]-p4309[0,0],p4309[:,2],color='k',linewidth=2, label='p4309 Model')
 
 # Add "a" arrow
