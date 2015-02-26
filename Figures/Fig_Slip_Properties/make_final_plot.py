@@ -136,12 +136,12 @@ ax1.get_yaxis().set_ticks([-0.004,-0.002,0.,0.002,0.004])
 
 # Plotting
 up = data[data['Type']=='Up']
-ax1.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color=tableau20[0],
-            s=50,marker='^', label='Velocity Step Up')
+ax1.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color='k',
+            s=70,marker='^', label='Velocity Step Up')
 
 down = data[data['Type']=='Down']
-ax1.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color=tableau20[1],
-            s=50,marker='v', label='Velocity Step Down')
+ax1.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color='k',
+            s=70,marker='v', label='Velocity Step Down')
 
 ax1.axhline(y=0,color='k',linewidth='2',linestyle='--')
 
@@ -152,6 +152,7 @@ ax1.text(14,-0.002,'Velocity Weakening',fontsize=12)
 ax1.set_xlim(0, 52)
 ax1.set_ylim(-0.005 ,0.004)
 
+ax1.text(48,0.003,'p4309',fontsize=12)
 
 #
 # Plot A
@@ -163,7 +164,7 @@ exps = ['p4267','p4268','p4269','p4270','p4271','p4272','p4273',
 
 # Set labels and tick sizes
 #ax2.set_xlabel(r'Average LP Displacement [mm]',fontsize=18)
-ax2.set_ylabel(r'Stiffness [1/um]x1000',fontsize=18)
+ax2.set_ylabel(r'Stiffness [1/$\mu$m]x1000',fontsize=18)
 ax2.tick_params(axis='both', which='major', labelsize=16)
 ax2.get_yaxis().set_ticks([0,0.5,1,1.5,2,2.5,3,3.5])
 
@@ -184,7 +185,7 @@ for exp in experiments_with_unload_reload:
     df = pd.read_csv('/Users/jleeman/Dropbox/PennState/BiaxExperiments/%s/%s_stiffness_cycles.txt'%(exp,exp))
 
     temp = df[df['Behavior']=='stable']
-    ax2.scatter(temp['AvgDisp']/1000.,temp['Slope']*1000,color='k',s=50,alpha=0.6,zorder=50)
+    ax2.scatter(temp['AvgDisp']/1000.,temp['Slope']*1000,color='#FFFFFF',s=50,alpha=0.6,zorder=50,edgecolor='k')
 
     #temp = df[df['Behavior']=='slow']
     #ax2.scatter(temp['AvgDisp']/1000.,temp['Slope'],color='r',s=50,alpha=0.6)
@@ -209,21 +210,21 @@ low_color = 10./1000.
 high_color = 4600./1000.
 color_map = plt.get_cmap('rainbow_r')
 marker_size = 40
-marker_alpha=0.5
+marker_alpha=0.7
 color_col=11
 
 for key in experiment_event_data:
     event_data = experiment_event_data[key]
-    sc = ax2.scatter(event_data[:,9]/1000.,event_data[:,5]*1000,s=20,alpha=marker_alpha,color='0.6',marker='x')
+    sc = ax2.scatter(event_data[:,9]/1000.,event_data[:,5]*1000,s=40,alpha=marker_alpha,color='k',edgecolor='k')
     print key,np.min(event_data[:,color_col]), np.max(event_data[:,color_col])
 
 # Plot line for kc definition
-ax2.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='r',linewidth=2)
+ax2.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='r',linewidth=4)
 
 # Add text
 ax2.text(35,0.95,'Stable',fontsize=22)
-ax2.text(35,0.15,'Unstable',fontsize=22,color='0.6')
-ax2.text(47,0.95,r'kc',fontsize=22,color='r')
+ax2.text(35,0.15,'Unstable',fontsize=22,color='k')
+ax2.text(47,0.87,r'kc',fontsize=22,color='r')
 
 
 
@@ -269,8 +270,8 @@ ax2.text(47,0.95,r'kc',fontsize=22,color='r')
 #
 
 # Set labels and tick sizes
-ax3.set_xlabel(r'Load Point Displacement [$\mu m$]',fontsize=18,labelpad=15)
-ax3.set_ylabel(r'$k/k_c$',fontsize=18)
+ax3.set_xlabel(r'Load Point Displacement [mm]',fontsize=18,labelpad=15)
+ax3.set_ylabel(r'$\kappa$',fontsize=18)
 ax3.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
