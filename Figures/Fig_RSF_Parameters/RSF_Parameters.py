@@ -116,7 +116,7 @@ plt.subplots_adjust(wspace=0.3)
 #
 
 # Label Plot
-ax1.text(0.01,0.9,'A',transform = ax1.transAxes,fontsize=24)
+ax1.text(0.95,0.9,'A',transform = ax1.transAxes,fontsize=24)
 
 # Set labels and tick sizes
 ax1.set_xlabel(r'Displacement [$\mu m$]',fontsize=18)
@@ -217,7 +217,7 @@ ax2.set_ylim(-0.006 ,0.006)
 #
 
 # Label Plot
-ax3.text(0.01,0.9,'C',transform = ax3.transAxes,fontsize=24)
+ax3.text(0.95,0.9,'C',transform = ax3.transAxes,fontsize=24)
 
 # Set labels and tick sizes
 ax3.set_xlabel(r'Displacement [mm]',fontsize=18)
