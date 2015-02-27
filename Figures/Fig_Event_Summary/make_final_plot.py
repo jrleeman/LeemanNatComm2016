@@ -63,7 +63,7 @@ ax2 = plt.subplot(122)
 
 # Panel A
 # Set labels and tick sizes
-ax1.set_xlabel(r'$k/k_c$',fontsize=18)
+ax1.set_xlabel(r'$\kappa$',fontsize=18)
 ax1.set_ylabel(r'Peak Slip Velocity [$mm/s$]',fontsize=18)
 ax1.tick_params(axis='both', which='major', labelsize=16)
 
@@ -135,7 +135,7 @@ ax1.set_xlim(0.63,1.15)
 # Panel B
 
 # Set labels and tick sizes
-ax2.set_xlabel(r'$k/k_c$',fontsize=18)
+ax2.set_xlabel(r'$\kappa$',fontsize=18)
 ax2.set_ylabel(r'Slip Duration [$s$]',fontsize=18)
 ax2.tick_params(axis='both', which='major', labelsize=16)
 
