@@ -99,7 +99,7 @@ axA.add_patch(rect)
 axB.scatter(ur_disp/1000.,ur_stiffness*10000,color='0.5',s=50)
 axB.scatter(ev_disp/1000.,ev_stiffness*10000,color='k',s=15)
 axB.set_xlabel(r'Load Point Displacement [mm]',fontsize=14)
-axB.set_ylabel(r'Stiffnessx10000 [$1/\mu$]',fontsize=14)
+axB.set_ylabel(r'Stiffnessx10000 [$1/\mu m$]',fontsize=14)
 axB.tick_params(axis='both', which='major', labelsize=12)
 
 axB.set_ylim(0,6)
