@@ -2,6 +2,7 @@ import matplotlib.pylab as plt
 import numpy as np
 import pandas as pd
 from biaxread import *
+from scipy.signal import medfilt
 
 def savitzky_golay(y, window_size, order, deriv=0, rate=1):
     r"""Smooth (and optionally differentiate) data with a Savitzky-Golay filter.
@@ -115,7 +116,7 @@ plt.subplots_adjust(wspace=0.3)
 #
 
 # Label Plot
-ax1.text(0.01,0.9,'A',transform = ax1.transAxes,fontsize=24)
+ax1.text(0.95,0.9,'A',transform = ax1.transAxes,fontsize=24)
 
 # Set labels and tick sizes
 ax1.set_xlabel(r'Displacement [$\mu m$]',fontsize=18)
@@ -136,7 +137,18 @@ ax1.tick_params(axis='both', which='major', labelsize=16)
 #        label='p4309')
 
 p4309 = np.loadtxt('step_35_model.txt',skiprows=5,usecols=[1,8,10])
-ax1.scatter(p4309[:,0]-p4309[0,0],p4309[:,1],color='0.6',s=40, label='p4309 Data')
+
+p4309_mu_downsampled = p4309[:,1][7:]
+p4309_mu_downsampled = p4309_mu_downsampled.reshape((60,10))
+p4309_mu_downsampled = np.mean(p4309_mu_downsampled,axis=1)
+
+p4309_disp_downsampled = p4309[:,0]-p4309[0,0]
+p4309_disp_downsampled = p4309_disp_downsampled[7:].reshape((60,10))
+p4309_disp_downsampled = np.mean(p4309_disp_downsampled,axis=1)
+
+# row 215 to end for high velocity, 0-19 for red
+ax1.scatter(p4309[215:,0]-p4309[0,0],p4309[215:,1],color='0.6',s=40, label='p4309 Data')
+ax1.scatter(p4309_disp_downsampled[0:19], p4309_mu_downsampled[0:19], color='0.6',s=40, label='p4309 Data')
 ax1.plot(p4309[:,0]-p4309[0,0],p4309[:,2],color='k',linewidth=2, label='p4309 Model')
 
 # Add "a" arrow
@@ -205,7 +217,7 @@ ax2.set_ylim(-0.006 ,0.006)
 #
 
 # Label Plot
-ax3.text(0.01,0.9,'C',transform = ax3.transAxes,fontsize=24)
+ax3.text(0.95,0.9,'C',transform = ax3.transAxes,fontsize=24)
 
 # Set labels and tick sizes
 ax3.set_xlabel(r'Displacement [mm]',fontsize=18)
