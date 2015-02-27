@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from biaxread import *
+from scipy.signal import medfilt
 
 def savitzky_golay(y, window_size, order, deriv=0, rate=1):
     r"""Smooth (and optionally differentiate) data with a Savitzky-Golay filter.
@@ -289,19 +290,31 @@ axB.text(-0.1,0.93,'B',transform = axB.transAxes,fontsize=32)
 # Turns off chart clutter
 
 # Turn off top and right tick marks
-#axB.get_xaxis().tick_bottom()
+axB.get_xaxis().tick_bottom()
 axB.get_yaxis().tick_left()
 axB.get_yaxis().set_ticks([0.67,0.68,0.69])
-#axBv.get_xaxis().tick_bottom()
+axBv.get_xaxis().tick_bottom()
 axBv.get_yaxis().tick_right()
 axBv.get_yaxis().set_ticks([0,20,40,60,80])
+axBv.get_xaxis().set_ticks([0,1,2,3,4,5,6])
+axB.get_xaxis().set_ticklabels([0,1])
 
 # Turn off top and right splines
 #axB.spines["top"].set_visible(False)
 #axBv.spines["top"].set_visible(False)
 
+axB.get_xaxis().set_tick_params(which='both', direction='inout',length=5)
+
+y1 = 500
+y2 = 5000
+y3 = 5500
+y4 = 5999
 velocity = rslope(np.ravel(p4343_raw['Time'][3799900:3805900]),np.ravel(p4343_raw['OB_Top'][3799900:3805900]),11)
-axBv.plot(np.ravel(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900]),velocity,color='k',zorder=0,linewidth=2)
+time = np.ravel(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900])
+#EaxBv.plot(,velocity,color='k',zorder=0,linewidth=2)
+axBv.plot(time[y1:y2],medfilt(velocity[y1:y2],35),color='k',zorder=0,linewidth=2)
+axBv.plot(time[y2:y3],velocity[y2:y3],color='k',zorder=0,linewidth=2)
+axBv.plot(time[y3:y4],medfilt(velocity[y3:y4],35),color='k',zorder=0,linewidth=2)
 
 # Plotting
 axB.plot(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900],p4343_raw['mu'][3799900:3805900],label='6 MPa',color=colors[0],zorder=1,linewidth=2)
