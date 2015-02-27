@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.patches import Rectangle
+import matplotlib
 
 def load_event_properties(experiment):
     """
@@ -136,12 +137,12 @@ ax1.get_yaxis().set_ticks([-0.004,-0.002,0.,0.002,0.004])
 
 # Plotting
 up = data[data['Type']=='Up']
-ax1.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color=tableau20[0],
-            s=50,marker='^', label='Velocity Step Up')
+ax1.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color='k',
+            s=70,marker='^', label='Velocity Step Up')
 
 down = data[data['Type']=='Down']
-ax1.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color=tableau20[1],
-            s=50,marker='v', label='Velocity Step Down')
+ax1.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color='k',
+            s=70,marker='v', label='Velocity Step Down')
 
 ax1.axhline(y=0,color='k',linewidth='2',linestyle='--')
 
@@ -152,6 +153,7 @@ ax1.text(14,-0.002,'Velocity Weakening',fontsize=12)
 ax1.set_xlim(0, 52)
 ax1.set_ylim(-0.005 ,0.004)
 
+ax1.text(48,0.003,'p4309',fontsize=12)
 
 #
 # Plot A
@@ -163,9 +165,11 @@ exps = ['p4267','p4268','p4269','p4270','p4271','p4272','p4273',
 
 # Set labels and tick sizes
 #ax2.set_xlabel(r'Average LP Displacement [mm]',fontsize=18)
-ax2.set_ylabel(r'Stiffness [1/um]x1000',fontsize=18)
+ax2.set_ylabel(r'Stiffness [1/$\mu$m]x1000',fontsize=18)
 ax2.tick_params(axis='both', which='major', labelsize=16)
 ax2.get_yaxis().set_ticks([0,0.5,1,1.5,2,2.5,3,3.5])
+
+ax2.text(-0.1,0.9,'B',transform = ax2.transAxes,fontsize=24)
 
 # Turns off chart clutter
 
@@ -184,7 +188,7 @@ for exp in experiments_with_unload_reload:
     df = pd.read_csv('/Users/jleeman/Dropbox/PennState/BiaxExperiments/%s/%s_stiffness_cycles.txt'%(exp,exp))
 
     temp = df[df['Behavior']=='stable']
-    ax2.scatter(temp['AvgDisp']/1000.,temp['Slope']*1000,color='k',s=50,alpha=0.6,zorder=50)
+    ax2.scatter(temp['AvgDisp']/1000.,temp['Slope']*1000,color='k',s=50,alpha=0.6,zorder=50,edgecolor='k')
 
     #temp = df[df['Behavior']=='slow']
     #ax2.scatter(temp['AvgDisp']/1000.,temp['Slope'],color='r',s=50,alpha=0.6)
@@ -209,21 +213,21 @@ low_color = 10./1000.
 high_color = 4600./1000.
 color_map = plt.get_cmap('rainbow_r')
 marker_size = 40
-marker_alpha=0.5
+marker_alpha=0.7
 color_col=11
 
 for key in experiment_event_data:
     event_data = experiment_event_data[key]
-    sc = ax2.scatter(event_data[:,9]/1000.,event_data[:,5]*1000,s=20,alpha=marker_alpha,color='0.6',marker='x')
+    sc = ax2.scatter(event_data[:,9]/1000.,event_data[:,5]*1000,s=40,alpha=marker_alpha,color='r',edgecolor='r')
     print key,np.min(event_data[:,color_col]), np.max(event_data[:,color_col])
 
 # Plot line for kc definition
-ax2.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='r',linewidth=2)
+ax2.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='k',linewidth=4)
 
 # Add text
 ax2.text(35,0.95,'Stable',fontsize=22)
-ax2.text(35,0.15,'Unstable',fontsize=22,color='0.6')
-ax2.text(47,0.95,r'kc',fontsize=22,color='r')
+ax2.text(35,0.15,'Unstable',fontsize=22,color='r')
+ax2.text(47,0.87,r'kc',fontsize=22,color='k')
 
 
 
@@ -269,8 +273,8 @@ ax2.text(47,0.95,r'kc',fontsize=22,color='r')
 #
 
 # Set labels and tick sizes
-ax3.set_xlabel(r'Load Point Displacement [$\mu m$]',fontsize=18,labelpad=15)
-ax3.set_ylabel(r'$k/k_c$',fontsize=18)
+ax3.set_xlabel(r'Load Point Displacement [mm]',fontsize=18,labelpad=15)
+ax3.set_ylabel(r'$\kappa$',fontsize=18)
 ax3.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
@@ -286,11 +290,16 @@ ax3.get_yaxis().set_ticks([0,0.2,0.4,0.6,0.8,1.0,1.2])
 # Plotting
 
 # Make panel A of displacement/stiffness
-ax3.text(-0.1,0.9,'B',transform = ax3.transAxes,fontsize=24)
+ax3.text(-0.1,0.9,'C',transform = ax3.transAxes,fontsize=24)
 
 low_color = 10./1000.
-high_color = 4600./1000.
+high_color = 4000./1000.
 color_map = plt.get_cmap('rainbow_r')
+color_map = plt.get_cmap('YlOrBr_r')
+color_map = plt.get_cmap('YlOrRd_r')
+color_map = plt.get_cmap('Reds_r')
+
+
 marker_size = 40
 marker_alpha=0.5
 color_col=11
@@ -321,4 +330,35 @@ ax3.set_xlim(16,50)
 
 ax3.axvspan(40, 50, alpha=0.2, color='k', zorder=0)
 
-plt.savefig('figure.svg', bbox_inches="tight");
+# Add call out lines between plots
+
+transFigure = fig.transFigure.inverted()
+### LEFT
+coord1 = transFigure.transform(ax2.transData.transform([16,0]))
+coord2 = transFigure.transform(ax2.transData.transform([16,-0.3]))
+line1 = matplotlib.lines.Line2D((coord1[0],coord2[0]),(coord1[1],coord2[1]),
+                               transform=fig.transFigure,color='k')
+
+coord3 = transFigure.transform(ax3.transData.transform([16,1.4]))
+line2 = matplotlib.lines.Line2D((coord2[0],coord3[0]),(coord2[1],coord3[1]),
+                               transform=fig.transFigure,color='k')
+### RIGHT
+coord1 = transFigure.transform(ax2.transData.transform([50,0]))
+coord2 = transFigure.transform(ax2.transData.transform([50,-0.3]))
+line3 = matplotlib.lines.Line2D((coord1[0],coord2[0]),(coord1[1],coord2[1]),
+                               transform=fig.transFigure,color='k')
+
+coord3 = transFigure.transform(ax3.transData.transform([50,1.4]))
+line4 = matplotlib.lines.Line2D((coord2[0],coord3[0]),(coord2[1],coord3[1]),
+                               transform=fig.transFigure,color='k')
+
+fig.lines = line1,line2,line3,line4
+
+# coord1 = transFigure.transform(ax2.transData.transform([16,0]))
+# coord2 = transFigure.transform(ax3.transData.transform([16,1.4]))
+#
+# line = matplotlib.lines.Line2D((coord1[0],coord2[0]),(coord1[1],coord2[1]),
+#                                transform=fig.transFigure,color='k')
+# fig.lines = line,
+
+plt.savefig('figure.png', bbox_inches="tight");
