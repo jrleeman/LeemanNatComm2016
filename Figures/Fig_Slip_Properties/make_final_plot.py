@@ -293,11 +293,12 @@ ax3.get_yaxis().set_ticks([0,0.2,0.4,0.6,0.8,1.0,1.2])
 ax3.text(-0.1,0.9,'C',transform = ax3.transAxes,fontsize=24)
 
 low_color = 10./1000.
+low_color = -0.5
 high_color = 4000./1000.
 color_map = plt.get_cmap('rainbow_r')
-color_map = plt.get_cmap('YlOrBr_r')
-color_map = plt.get_cmap('YlOrRd_r')
-color_map = plt.get_cmap('Reds_r')
+#color_map = plt.get_cmap('YlOrBr_r')
+#color_map = plt.get_cmap('YlOrRd_r')
+#color_map = plt.get_cmap('Reds_r')
 
 
 marker_size = 40
