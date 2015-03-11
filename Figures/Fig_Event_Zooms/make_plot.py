@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from biaxread import *
+from scipy.signal import medfilt
+import matplotlib.patches as mpatches
 
 def savitzky_golay(y, window_size, order, deriv=0, rate=1):
     r"""Smooth (and optionally differentiate) data with a Savitzky-Golay filter.
@@ -189,18 +191,40 @@ p4347 = ReadExp('p4347',path,30016,dis_high)
 p4342 = ReadExp('p4342',path,30031,dis_high)
 p4351 = ReadExp('p4351',path,30049,dis_high)
 
+colors = [(255,150,150),(255,102,102),(255,51,51),(204,0,0), (153,0,0)]
+colors = colors[::-1]
+
+# Scale the RGB values to the [0, 1] range, which is the format
+# matplotlib accepts.
+for i in range(len(colors)):
+    r, g, b = colors[i]
+    colors[i] = (r / 255., g / 255., b / 255.)
+
+colors = ['0.8','0.6','0.4','0.2','0']
+
+colors = [(255,150,150),(255,102,102),(255,51,51),(204,0,0), (153,0,0)]
+colors = colors[::-1]
+
+# Scale the RGB values to the [0, 1] range, which is the format
+# matplotlib accepts.
+for i in range(len(colors)):
+    r, g, b = colors[i]
+    colors[i] = (r / 255., g / 255., b / 255.)
+
+colors = ['0.8','0.6','0.4','0.2','0']
+
 vel_window = 11
 
 # Setup figure and axes
 # Generally plots is ~1.33x width to height (10,7.5 or 12,9)
-fig = plt.figure(figsize=(13,14))
-axA = plt.subplot2grid((3,2),(0,0),colspan=2,rowspan=2)
-axB = plt.subplot2grid((3,2),(2,0))
-axC = plt.subplot2grid((3,2),(2,1))
+fig = plt.figure(figsize=(12,9))
+axA = plt.subplot(111)
+# l,b,w,h
+axC = plt.axes([0.67,0.65,0.2,0.2])
 plt.subplots_adjust(wspace=0.31,hspace=0.35)
 #axA = fig.add_subplot(2, 1, 1)
 #axB = fig.add_subplot(2, 2, 3)
-axBv = axB.twinx()
+#axBv = axB.twinx()
 #axC = fig.add_subplot(2, 2, 4)
 
 #
@@ -211,9 +235,6 @@ axBv = axB.twinx()
 axA.set_xlabel(r'Time [sec]',fontsize=18)
 axA.set_ylabel(r'Friction',fontsize=18)
 axA.tick_params(axis='both', which='major', labelsize=16)
-
-# Label Plot
-axA.text(-0.05,0.93,'A',transform = axA.transAxes,fontsize=32)
 
 # Turns off chart clutter
 
@@ -254,77 +275,11 @@ x_pos = 24.85
 # axA.text(x_pos,np.min(p4342['mu'])+0.05*3.85,r'p4342',fontsize=10,color=tableau20[12])
 # axA.text(x_pos,np.min(p4351['mu'])+0.05*5.15,r'p4351',fontsize=10,color=tableau20[18])
 
-# Scale Bar
-axA.plot([1,1],[0.19,0.19+0.0242],color='k',linewidth=2)
-axA.text(1.2,0.201,r'0.025 $\mu$',fontsize=12,color='k')
+
 
 # Set limits
 axA.set_xlim(0,30)
 axA.set_ylim(0,0.24)
-
-#
-# Plot B
-#
-
-# Event,StartRow,FailRow,EndRow,SlipDuration,Stiffness,NptsStiffness,StiffnessIntercept,FailTime,FailDisplacement,50_Mean_Velocity,Peak_Velocity
-# 413,3800095,3804529,3805433,0.900000,0.000652,3770,-21.272030,7036.910000,33692.700000,4.640566,81.252189
-
-p4343_raw = ReadAscii(data_path+'/p4343/p4343_data.txt')
-
-# Set labels and tick sizes
-axB.set_xlabel(r'Time [sec]',fontsize=18)
-axB.set_ylabel(r'Friction',fontsize=18,color=colors[0])
-axBv.set_ylabel(r'Velocity [$\mu m/s$]',fontsize=18)
-axB.tick_params(axis='both', which='major', labelsize=16)
-axBv.tick_params(axis='both', which='major', labelsize=16)
-
-# Change colors of plot axes
-axB.spines['left'].set_color(colors[0])
-axB.yaxis.label.set_color(colors[0])
-axB.tick_params(axis='y', colors=colors[0])
-
-# Label Plot
-axB.text(-0.1,0.93,'B',transform = axB.transAxes,fontsize=32)
-
-# Turns off chart clutter
-
-# Turn off top and right tick marks
-#axB.get_xaxis().tick_bottom()
-axB.get_yaxis().tick_left()
-axB.get_yaxis().set_ticks([0.67,0.68,0.69])
-#axBv.get_xaxis().tick_bottom()
-axBv.get_yaxis().tick_right()
-axBv.get_yaxis().set_ticks([0,20,40,60,80])
-
-# Turn off top and right splines
-#axB.spines["top"].set_visible(False)
-#axBv.spines["top"].set_visible(False)
-
-velocity = rslope(np.ravel(p4343_raw['Time'][3799900:3805900]),np.ravel(p4343_raw['OB_Top'][3799900:3805900]),11)
-axBv.plot(np.ravel(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900]),velocity,color='k',zorder=0,linewidth=2)
-
-# Plotting
-axB.plot(p4343_raw['Time'][3799900:3805900]-p4343_raw['Time'][3799900],p4343_raw['mu'][3799900:3805900],label='6 MPa',color=colors[0],zorder=1,linewidth=2)
-#axB.scatter(p4343_raw['Time'][3800095],p4343_raw['mu'][3800095],color='g',s=50,zorder=2)
-#axB.scatter(p4343_raw['Time'][3804529],p4343_raw['mu'][3804529],color='r',s=50,zorder=2)
-#axB.scatter(p4343_raw['Time'][3805433],p4343_raw['mu'][3805433],color='g',s=50,zorder=2)
-
-# Mark the slip duration window
-axB.axvspan(p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900], p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900], alpha=0.1, color='k')
-axB.axvline(x=p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900],linestyle='--',color='k')
-axB.axvline(x=p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900],linestyle='--',color='k')
-
-# Add double headed arrow
-arrow_x = [p4343_raw['Time'][3804529]-p4343_raw['Time'][3799900], p4343_raw['Time'][3805433]-p4343_raw['Time'][3799900]]
-arrow_y = [0.6945,0.6945]
-axB.annotate('', xy=(arrow_x[0], arrow_y[0]), xycoords='data',xytext=(arrow_x[1], arrow_y[1]), textcoords='data',arrowprops={'arrowstyle': '<->'})
-axB.text(arrow_x[0]-0.2,0.696,'Slip Duration',fontsize=12)
-
-# Set limits
-axB.set_xlim(0,6)
-axBv.set_xlim(0,6)
-axB.set_ylim(0.67,0.695)
-axBv.set_ylim(0,85)
 
 #
 # Plot C
@@ -334,9 +289,6 @@ axBv.set_ylim(0,85)
 axC.set_xlabel(r'Time [sec]',fontsize=18)
 axC.set_ylabel(r'Normalized Friction',fontsize=18)
 axC.tick_params(axis='both', which='major', labelsize=16)
-
-# Label Plot
-axC.text(-0.1,0.93,'C',transform = axC.transAxes,fontsize=32)
 
 # Turns off chart clutter
 
@@ -390,6 +342,30 @@ axC.plot(time,friction,label='14 MPa',color=colors[4],linewidth=2)
 axC.set_xlim(-0.25,1.5)
 axC.set_ylim(-0.05,1.1)
 
+# White rectangle
+rect = mpatches.Rectangle((20,0.13),10,0.1, ec="none",fc="white",zorder=10)
+axA.add_patch(rect)
 
-plt.savefig('events.svg', bbox_inches="tight")
+# Add Text Annotation
+x_position = 0.15
+font = 12
+plt.figtext(x_position,0.2,'6MPa',fontsize=font,color='k')
+plt.figtext(x_position,0.31,'8 MPa',fontsize=font,color='k')
+plt.figtext(x_position,0.46,'10 MPa',fontsize=font,color='k')
+plt.figtext(x_position,0.62,'12 MPa',fontsize=font,color='k')
+plt.figtext(x_position,0.77,'14 MPa',fontsize=font,color='k')
+
+y_offset = 0.025
+plt.figtext(x_position,0.2+y_offset,'p4343',fontsize=font,color='k')
+plt.figtext(x_position,0.31+y_offset,'p4345',fontsize=font,color='k')
+plt.figtext(x_position,0.46+y_offset,'p4347',fontsize=font,color='k')
+plt.figtext(x_position,0.62+y_offset,'p4342',fontsize=font,color='k')
+plt.figtext(x_position,0.77+y_offset,'p4351',fontsize=font,color='k')
+
+# Scale Bar
+x_pos = 27
+axA.plot([x_pos,x_pos],[0.005,0.005+0.0242],color='k',linewidth=2)
+axA.text(x_pos-2.3,0.015,r'0.025 $\mu$',fontsize=12,color='k')
+
+plt.savefig('figure.png', bbox_inches="tight")
 #plt.show()
