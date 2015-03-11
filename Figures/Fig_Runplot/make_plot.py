@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 from biaxread import *
+from scipy.signal import detrend
 
 def ReadExp(exp,path,disp_low,disp_high):
     data = ReadAscii('%s/%s/%s_data.txt'%(path,exp,exp))
@@ -205,7 +206,7 @@ axA.tick_params(axis='both', which='major', labelsize=16)
 smoothed_mu = savitzky_golay(np.ravel(p4347['mu']), 11, 1)
 axA.plot(p4347['LP_Disp'][::10]/1000.,smoothed_mu[::10],color='k',linewidth=1)
 
-axA.set_ylim(0.4,0.75)
+axA.set_ylim(0.4,0.73)
 axA.set_xlim(1,30)
 
 # Add rectangle for where figure B comes from
@@ -222,7 +223,7 @@ axA.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height,alpha=0.3, zord
 #
 # Inset Plot of Stick-Slip Events
 #
-axB = plt.axes([.45, .37, .4, .2])
+axB = plt.axes([.45, .47, .4, .2])
 
 axB.set_xlabel(r'Load Point Displacement [mm]',fontsize=16)
 axB.set_ylabel(r'Friction',fontsize=16)
@@ -240,4 +241,39 @@ axB.plot(p4347['LP_Disp'][::10]/1000.,p4347['mu'][::10],color='k',linewidth=2)
 axB.set_ylim(0.66,0.71)
 axB.set_xlim(13,13.25)
 
-plt.savefig('runplot.svg', bbox_inches="tight")
+#
+# Another Inset
+#
+
+inset_data = p4347[1084500:1367671]
+
+# [left, bottom, width, height]
+axC = plt.axes([.45, .19, .4, .2])
+axC2 = axC.twinx()
+
+axC.set_xlabel(r'Time [sec]',fontsize=16)
+axC.set_ylabel(r'Friction',fontsize=16)
+axC2.set_ylabel(r'Fault Displacement',fontsize=16)
+
+# Turns off chart clutter
+
+# Turn off top and right tick marks
+#axB.get_xaxis().tick_bottom()
+#axB.get_yaxis().tick_left()
+axC.get_yaxis().set_ticks([])
+axC.get_xaxis().set_ticks([])
+axC2.get_yaxis().set_ticks([])
+axC2.get_xaxis().set_ticks([])
+
+OB_detrend = inset_data['OB_Top'] - inset_data['Time']*((inset_data['OB_Top'][-1] - inset_data['OB_Top'][0])/(inset_data['Time'][-1] - inset_data['Time'][0]))
+axC.plot(inset_data['Time'],inset_data['mu'],color='k',linewidth=1)
+axC2.plot(inset_data['Time'],OB_detrend,color='b',linewidth=1)
+
+axC.set_ylim(0.672,0.7)
+#axC2.set_ylim(-30,5)
+print axC2.get_ylim()
+axC.set_xlim(3750,3900)
+axC2.set_xlim(3750,3900)
+
+
+plt.savefig('runplot.png', bbox_inches="tight")
