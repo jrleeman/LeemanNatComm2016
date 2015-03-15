@@ -80,12 +80,12 @@ axA.tick_params(axis='both', which='major', labelsize=16)
 #axA.spines["top"].set_visible(False)
 #axA.spines["right"].set_visible(False)
 
-axA.plot(p4316['LP_Disp'][::10]/1000.,p4316['mu'][::10],color='k',linewidth=1)
+axA.plot(p4316['LP_Disp'][::10]/1000.,p4316['mu'][::10],color=tableau20[0],linewidth=1)
 
 # Add horizontal lines to denote where stiffness was picked
 axA.axhline(y=0.3,color='k',linestyle='--')
 axA.axhline(y=0.4,color='k',linestyle='--')
-axA.axhspan(0.3,0.4,color='0.5')
+axA.axhspan(0.3,0.4,color='0.8')
 
 axA.set_ylim(0,0.8)
 axA.set_xlim(0,42)
@@ -93,11 +93,11 @@ axA.set_xlim(0,42)
 rect = mpatches.Rectangle((22,0.0),19,0.39, ec="none",fc="white",zorder=10)
 axA.add_patch(rect)
 
-#
-# Inset Axes
-#
-axB.scatter(ur_disp/1000.,ur_stiffness*10000,color='0.5',s=50)
-axB.scatter(ev_disp/1000.,ev_stiffness*10000,color='k',s=15)
+# #
+# # Inset Axes
+# #
+axB.scatter(ur_disp/1000.,ur_stiffness*10000,color='0.8',s=50,edgecolor='k')
+axB.scatter(ev_disp/1000.,ev_stiffness*10000,color=tableau20[0],s=15)
 axB.set_xlabel(r'Load Point Displacement [mm]',fontsize=14)
 axB.set_ylabel(r'Stiffnessx10000 [$1/\mu m$]',fontsize=14)
 axB.tick_params(axis='both', which='major', labelsize=12)
