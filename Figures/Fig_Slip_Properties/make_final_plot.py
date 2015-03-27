@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.patches import Rectangle
 import matplotlib
+from biaxread import *
 
 def load_event_properties(experiment):
     """
@@ -45,6 +46,54 @@ def get_kc(disp):
         return 7e-4
     else:
         return slope*disp - 0.0004
+
+def get_aminusb(experiment,steps):
+    data = ReadAscii('/Users/jleeman/Dropbox/PennState/BiaxExperiments/%s/%s_data.txt'%(experiment,experiment))
+    picks = np.loadtxt('%s_picks.txt'%experiment,delimiter=',')
+    V0,V1,row= np.loadtxt('%s_step_rows.csv'%experiment,delimiter=',',skiprows=1,unpack=True)
+    dv = V1-V0
+    friction = picks[:,1].reshape((steps,2))
+    temp = picks[:,0].reshape((steps,2))
+    disp = temp[:,0]/1000
+
+    d_mu = friction[:,1]-friction[:,0]
+    amb = d_mu/np.log(V1/V0)
+
+    res = np.array([disp,amb,dv])
+
+    return np.transpose(res)
+
+
+def bin_steps(steps,bin_width):
+    min_disp = np.min(steps[:,0])
+    max_disp = np.max(steps[:,0])
+    print "min, max", min_disp,max_disp
+    print np.shape(steps)
+
+    exclude_dv = [-7]
+
+    for dv in exclude_dv:
+        steps = steps[steps[:,2]!=dv]
+
+    disp_means = []
+    amb_means = []
+
+    for i in range(int(max_disp/bin_width)+1):
+        bin_bottom = i * bin_width
+        bin_top = i * bin_width + bin_width
+        print "Bin bot,top", bin_bottom, bin_top
+        #print steps[:,0] > bin_bottom
+        #print steps[:,0] < bin_top
+        bin_steps = steps[(steps[:,0] > bin_bottom)]
+        bin_steps = bin_steps[(bin_steps[:,0] < bin_top)]
+        print "Steps:", np.shape(bin_steps)
+        if len(bin_steps)!= 0:
+            disp_means.append(np.mean(bin_steps[:,0]))
+            amb_means.append(np.mean(bin_steps[:,1]))
+            #amb_means.append(np.median(bin_steps[:,1]))
+    print bin_steps[:,2]
+    return disp_means,amb_means
+
 
 # These are the "Tableau 20" colors as RGB.
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
@@ -138,23 +187,35 @@ ax1.get_yaxis().set_ticks([-0.004,-0.002,0.,0.002,0.004])
 # Plotting
 up = data[data['Type']=='Up']
 ax1.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color='k',
-            s=70,marker='^', label='Velocity Step Up')
+            s=70,marker='.',label='p4309')
 
 down = data[data['Type']=='Down']
 ax1.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color='k',
-            s=70,marker='v', label='Velocity Step Down')
+            s=70,marker='.')
 
 ax1.axhline(y=0,color='k',linewidth='2',linestyle='--')
 
 # Label velocity regions
-ax1.text(14,0.001,'Velocity Strengthening',fontsize=12)
-ax1.text(14,-0.002,'Velocity Weakening',fontsize=12)
+ax1.text(35,0.001,'Velocity Strengthening',fontsize=12)
+ax1.text(35,-0.003,'Velocity Weakening',fontsize=12)
 
-ax1.set_xlim(0, 52)
+ax1.set_xlim(0, 55)
 ax1.set_ylim(-0.005 ,0.004)
 
-ax1.text(48,0.003,'p4309',fontsize=12)
+#ax1.text(48,0.003,'p4309',fontsize=12)
 
+p4381_steps = get_aminusb('p4381',83)
+p4382_steps = get_aminusb('p4382',84)
+
+p4381_d,p4381_amb = bin_steps(p4381_steps,5)
+p4382_d,p4382_amb = bin_steps(p4382_steps,5)
+
+ax1.scatter(p4381_d,p4381_amb,color='k',marker='v',s=70,label='P4381')
+ax1.scatter(p4382_d,p4382_amb,color='k',marker='*',s=70,label='P4382')
+
+
+handles, labels = ax1.get_legend_handles_labels()
+ax1.legend(handles, labels, scatterpoints=1, frameon=False)
 #
 # Plot A
 #
