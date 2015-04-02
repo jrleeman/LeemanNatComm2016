@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.patches import Rectangle
+from matplotlib.colors import LinearSegmentedColormap
 import matplotlib
 from biaxread import *
 
@@ -272,7 +273,7 @@ ax2.set_ylim(0,0.004*1000)
 
 low_color = 10./1000.
 high_color = 4600./1000.
-color_map = plt.get_cmap('rainbow_r')
+
 marker_size = 40
 marker_alpha=0.7
 color_col=11
@@ -354,13 +355,15 @@ ax3.get_yaxis().set_ticks([0,0.2,0.4,0.6,0.8,1.0,1.2])
 ax3.text(-0.1,0.9,'C',transform = ax3.transAxes,fontsize=24)
 
 low_color = 10./1000.
-low_color = -0.5
+low_color = 0
 high_color = 4000./1000.
-color_map = plt.get_cmap('rainbow_r')
-#color_map = plt.get_cmap('YlOrBr_r')
-#color_map = plt.get_cmap('YlOrRd_r')
-#color_map = plt.get_cmap('Reds_r')
 
+cmap = plt.get_cmap('rainbow_r')
+start=0.15
+stop = 1.
+colors = cmap(np.linspace(start, stop, cmap.N))
+# Create a new colormap from those colors
+color_map = LinearSegmentedColormap.from_list('Upper Half', colors)
 
 marker_size = 40
 marker_alpha=0.5
