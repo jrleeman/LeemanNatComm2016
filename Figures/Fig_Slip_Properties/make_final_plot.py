@@ -226,7 +226,7 @@ exps = ['p4267','p4268','p4269','p4270','p4271','p4272','p4273',
 
 # Set labels and tick sizes
 #ax2.set_xlabel(r'Average LP Displacement [mm]',fontsize=18)
-ax2.set_ylabel(r'Stiffness [1/$\mu$m]x1000',fontsize=18)
+ax2.set_ylabel(r'Stiffness, $k$ [1/$\mu$m]x1000',fontsize=18)
 ax2.tick_params(axis='both', which='major', labelsize=16)
 ax2.get_yaxis().set_ticks([0,0.5,1,1.5,2,2.5,3,3.5])
 
@@ -335,7 +335,7 @@ ax2.text(47,0.87,r'kc',fontsize=22,color='k')
 
 # Set labels and tick sizes
 ax3.set_xlabel(r'Load Point Displacement [mm]',fontsize=18,labelpad=15)
-ax3.set_ylabel(r'$\kappa$',fontsize=18)
+ax3.set_ylabel(r'$\kappa = k/k_c$',fontsize=22)
 ax3.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
@@ -383,9 +383,12 @@ for key in experiment_event_data:
 #     ax3.scatter(df['AvgDisp']/1000.,df['Slope'],color='g',s=50,alpha=0.6)
 
 position=fig.add_axes([0.37,0.16,0.5,0.02])  ## the parameters are the specified position you set [left, bottom, width, height]
-cb = fig.colorbar(sc,cax=position,orientation='horizontal')
+cb = fig.colorbar(sc,cax=position,orientation='horizontal', drawedges=False)
 cb.solids.set_edgecolor("face")
 cb.set_label(r'Peak Slip Velocity [$mm/s$]',fontsize=14)
+cb.set_alpha(1)
+cb.draw_all()
+#position.set_xlim(0,4)
 
 ax3.set_ylim(0,1.4)
 ax3.set_xlim(16,50)
