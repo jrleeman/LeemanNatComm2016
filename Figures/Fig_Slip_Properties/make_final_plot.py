@@ -2,7 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.patches import Rectangle
+from matplotlib.colors import LinearSegmentedColormap
 import matplotlib
+from biaxread import *
 
 def load_event_properties(experiment):
     """
@@ -45,6 +47,54 @@ def get_kc(disp):
         return 7e-4
     else:
         return slope*disp - 0.0004
+
+def get_aminusb(experiment,steps):
+    data = ReadAscii('/Users/jleeman/Dropbox/PennState/BiaxExperiments/%s/%s_data.txt'%(experiment,experiment))
+    picks = np.loadtxt('%s_picks.txt'%experiment,delimiter=',')
+    V0,V1,row= np.loadtxt('%s_step_rows.csv'%experiment,delimiter=',',skiprows=1,unpack=True)
+    dv = V1-V0
+    friction = picks[:,1].reshape((steps,2))
+    temp = picks[:,0].reshape((steps,2))
+    disp = temp[:,0]/1000
+
+    d_mu = friction[:,1]-friction[:,0]
+    amb = d_mu/np.log(V1/V0)
+
+    res = np.array([disp,amb,dv])
+
+    return np.transpose(res)
+
+
+def bin_steps(steps,bin_width):
+    min_disp = np.min(steps[:,0])
+    max_disp = np.max(steps[:,0])
+    print "min, max", min_disp,max_disp
+    print np.shape(steps)
+
+    exclude_dv = [-7]
+
+    for dv in exclude_dv:
+        steps = steps[steps[:,2]!=dv]
+
+    disp_means = []
+    amb_means = []
+
+    for i in range(int(max_disp/bin_width)+1):
+        bin_bottom = i * bin_width
+        bin_top = i * bin_width + bin_width
+        print "Bin bot,top", bin_bottom, bin_top
+        #print steps[:,0] > bin_bottom
+        #print steps[:,0] < bin_top
+        bin_steps = steps[(steps[:,0] > bin_bottom)]
+        bin_steps = bin_steps[(bin_steps[:,0] < bin_top)]
+        print "Steps:", np.shape(bin_steps)
+        if len(bin_steps)!= 0:
+            disp_means.append(np.mean(bin_steps[:,0]))
+            amb_means.append(np.mean(bin_steps[:,1]))
+            #amb_means.append(np.median(bin_steps[:,1]))
+    print bin_steps[:,2]
+    return disp_means,amb_means
+
 
 # These are the "Tableau 20" colors as RGB.
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
@@ -138,23 +188,35 @@ ax1.get_yaxis().set_ticks([-0.004,-0.002,0.,0.002,0.004])
 # Plotting
 up = data[data['Type']=='Up']
 ax1.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color='k',
-            s=70,marker='^', label='Velocity Step Up')
+            s=70,marker='.',label='p4309')
 
 down = data[data['Type']=='Down']
 ax1.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color='k',
-            s=70,marker='v', label='Velocity Step Down')
+            s=70,marker='.')
 
 ax1.axhline(y=0,color='k',linewidth='2',linestyle='--')
 
 # Label velocity regions
-ax1.text(14,0.001,'Velocity Strengthening',fontsize=12)
-ax1.text(14,-0.002,'Velocity Weakening',fontsize=12)
+ax1.text(35,0.001,'Velocity Strengthening',fontsize=12)
+ax1.text(35,-0.003,'Velocity Weakening',fontsize=12)
 
-ax1.set_xlim(0, 52)
+ax1.set_xlim(0, 55)
 ax1.set_ylim(-0.005 ,0.004)
 
-ax1.text(48,0.003,'p4309',fontsize=12)
+#ax1.text(48,0.003,'p4309',fontsize=12)
 
+p4381_steps = get_aminusb('p4381',83)
+p4382_steps = get_aminusb('p4382',84)
+
+p4381_d,p4381_amb = bin_steps(p4381_steps,5)
+p4382_d,p4382_amb = bin_steps(p4382_steps,5)
+
+ax1.scatter(p4381_d,p4381_amb,color='k',marker='v',s=70,label='P4381')
+ax1.scatter(p4382_d,p4382_amb,color='k',marker='*',s=70,label='P4382')
+
+
+handles, labels = ax1.get_legend_handles_labels()
+ax1.legend(handles, labels, scatterpoints=1, frameon=False)
 #
 # Plot A
 #
@@ -165,7 +227,7 @@ exps = ['p4267','p4268','p4269','p4270','p4271','p4272','p4273',
 
 # Set labels and tick sizes
 #ax2.set_xlabel(r'Average LP Displacement [mm]',fontsize=18)
-ax2.set_ylabel(r'Stiffness [1/$\mu$m]x1000',fontsize=18)
+ax2.set_ylabel(r'Stiffness, $k$ [1/$\mu$m]x1000',fontsize=18)
 ax2.tick_params(axis='both', which='major', labelsize=16)
 ax2.get_yaxis().set_ticks([0,0.5,1,1.5,2,2.5,3,3.5])
 
@@ -211,7 +273,7 @@ ax2.set_ylim(0,0.004*1000)
 
 low_color = 10./1000.
 high_color = 4600./1000.
-color_map = plt.get_cmap('rainbow_r')
+
 marker_size = 40
 marker_alpha=0.7
 color_col=11
@@ -274,7 +336,7 @@ ax2.text(47,0.87,r'kc',fontsize=22,color='k')
 
 # Set labels and tick sizes
 ax3.set_xlabel(r'Load Point Displacement [mm]',fontsize=18,labelpad=15)
-ax3.set_ylabel(r'$\kappa$',fontsize=18)
+ax3.set_ylabel(r'$\kappa = k/k_c$',fontsize=22)
 ax3.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
@@ -293,13 +355,15 @@ ax3.get_yaxis().set_ticks([0,0.2,0.4,0.6,0.8,1.0,1.2])
 ax3.text(-0.1,0.9,'C',transform = ax3.transAxes,fontsize=24)
 
 low_color = 10./1000.
-low_color = -0.5
+low_color = 0
 high_color = 4000./1000.
-color_map = plt.get_cmap('rainbow_r')
-#color_map = plt.get_cmap('YlOrBr_r')
-#color_map = plt.get_cmap('YlOrRd_r')
-#color_map = plt.get_cmap('Reds_r')
 
+cmap = plt.get_cmap('rainbow_r')
+start=0.15
+stop = 1.
+colors = cmap(np.linspace(start, stop, cmap.N))
+# Create a new colormap from those colors
+color_map = LinearSegmentedColormap.from_list('Upper Half', colors)
 
 marker_size = 40
 marker_alpha=0.5
@@ -322,9 +386,12 @@ for key in experiment_event_data:
 #     ax3.scatter(df['AvgDisp']/1000.,df['Slope'],color='g',s=50,alpha=0.6)
 
 position=fig.add_axes([0.37,0.16,0.5,0.02])  ## the parameters are the specified position you set [left, bottom, width, height]
-cb = fig.colorbar(sc,cax=position,orientation='horizontal')
+cb = fig.colorbar(sc,cax=position,orientation='horizontal', drawedges=False)
 cb.solids.set_edgecolor("face")
 cb.set_label(r'Peak Slip Velocity [$mm/s$]',fontsize=14)
+cb.set_alpha(1)
+cb.draw_all()
+#position.set_xlim(0,4)
 
 ax3.set_ylim(0,1.4)
 ax3.set_xlim(16,50)
