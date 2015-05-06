@@ -37,3 +37,5 @@
 | p4348	     | Titanium/Acrylic | 11                  | 23.9            | 100                   | Slow/Fast Slip                  | N              |
 | p4350	     | Steel/Acrylic    | 13                  | 22.7            | 100                   | Slow/Fast Slip                  | N              |
 | p4351	     | Titanium/Acrylic | 14                  | 23.1            | 100                   | Slow/Fast Slip                  | N              |
+| p4381	     | Steel            | 4                   | 22.7            | 100                   | Stable - Velocity Steps         | N              |
+| p4382	     | Titanium         | 4                   | 23.1            | 100                   | Stable - Velocity Steps         | N              |
