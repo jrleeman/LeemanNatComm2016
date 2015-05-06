@@ -289,7 +289,7 @@ ax2.plot([6,16,52],[2.6e-6*1000,7e-4*1000,7e-4*1000],color='k',linewidth=4)
 # Add text
 ax2.text(35,0.95,'Stable',fontsize=22)
 ax2.text(35,0.15,'Unstable',fontsize=22,color='r')
-ax2.text(47,0.87,r'kc',fontsize=22,color='k')
+ax2.text(46,0.88,r'$k_c$',fontsize=26,color='k')
 
 
 
@@ -336,7 +336,7 @@ ax2.text(47,0.87,r'kc',fontsize=22,color='k')
 
 # Set labels and tick sizes
 ax3.set_xlabel(r'Load Point Displacement [mm]',fontsize=18,labelpad=15)
-ax3.set_ylabel(r'$\kappa = k/k_c$',fontsize=22)
+ax3.set_ylabel(r'$\kappa = k/k_c$',fontsize=25)
 ax3.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
