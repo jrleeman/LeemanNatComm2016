@@ -142,57 +142,22 @@ ax3.set_position([0.125,0.1,0.775,0.28])
 #
 # Plot A top (a-b)
 #
+p4309_a,p4309_b,p4309_Dc,p4309_amb,step_row = np.loadtxt('p4309_ruina_fits.csv',usecols=[0,2,4,6,9],delimiter=',',skiprows=1,unpack=True)
+p4309_data = ReadAscii('/Users/jleeman/Dropbox/PennState/BiaxExperiments/p4309/p4309_data.txt')
+step_row = step_row.astype(int)
+step_disp = p4309_data['LP_Disp'][step_row]
+p4309_step_disp = step_disp/1000.
 
-# Add rectangle for where figure B comes from
-# rect_x1 = 1.
-# rect_x2 = 50.
-# rect_y1 = 2.45
-# rect_y2 = 4.0
-# rect_width = rect_x2-rect_x1
-# rect_height = rect_y2-rect_y1
-# ax2.add_patch(Rectangle((rect_x1,rect_y1),rect_width,rect_height, zorder=50,facecolor="w",edgecolor="w"))
-
-df = pd.read_excel('../Slip_Property_Data/p4309_rsf_fits.xlsx')
-
-data = df[df['Law']=='r']
-data = data[data['k']==0.0055]
-data =  data.query('Grade == ["A","B"]')
-
-# Label Plot
-#ax1.text(0.01,0.9,'B',transform = ax1.transAxes,fontsize=24)
-
-# Set labels and tick sizes
-#ax1.set_xlabel(r'Displacement [mm]',fontsize=16)
 ax1.set_ylabel(r'(a-b)',fontsize=16)
 ax1.tick_params(axis='both', which='major', labelsize=14)
 
 ax1.text(-0.1,0.9,'A',transform = ax1.transAxes,fontsize=24)
 
-# Turns off chart clutter
-
-# Turn off top and right tick marks
-#ax1.yaxis.tick_right()
-#ax1.yaxis.set_label_position("right")
-#ax1.get_xaxis().tick_bottom()
-#ax1.get_xaxis().tick_top()
-#ax1.get_xaxis().set_ticks([])
 ax1.set_xticklabels([])
 ax1.get_yaxis().set_ticks([-0.004,-0.002,0.,0.002,0.004])
-#ax1.get_yaxis().tick_left()
 
-# Turn off top and right splines
-#ax1.spines["top"].set_visible(False)
-#ax1.spines["bottom"].set_visible(False)
-#ax1.spines["left"].set_visible(False)
-
-# Plotting
-up = data[data['Type']=='Up']
-ax1.scatter(up['LP_Disp']/1000,(up['a']-up['b']),color='k',
+ax1.scatter(p4309_step_disp,p4309_amb,color='k',
             s=70,marker='.',label='p4309')
-
-down = data[data['Type']=='Down']
-ax1.scatter(down['LP_Disp']/1000,(down['a']-down['b']),color='k',
-            s=70,marker='.')
 
 ax1.axhline(y=0,color='k',linewidth='2',linestyle='--')
 
