@@ -192,7 +192,7 @@ exps = ['p4267','p4268','p4269','p4270','p4271','p4272','p4273',
 
 # Set labels and tick sizes
 #ax2.set_xlabel(r'Average LP Displacement [mm]',fontsize=18)
-ax2.set_ylabel(r'Stiffness, $k$ [1/$\mu$m]x1000',fontsize=18)
+ax2.set_ylabel(r"""Stiffness, $k$' [1/$\mu$m]x1000""",fontsize=18)
 ax2.tick_params(axis='both', which='major', labelsize=16)
 ax2.get_yaxis().set_ticks([0,0.5,1,1.5,2,2.5,3,3.5])
 
