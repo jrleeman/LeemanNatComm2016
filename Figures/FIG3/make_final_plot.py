@@ -201,7 +201,7 @@ exps = ['p4267','p4268','p4269','p4270','p4271','p4272','p4273',
 
 # Set labels and tick sizes
 #ax2.set_xlabel(r'Average LP Displacement [mm]',fontsize=18)
-ax2.set_ylabel(r"""Stiffness, $k$' [1/$\mu$m]x1000""",fontsize=18)
+ax2.set_ylabel(r"""Stiffness, $k$' [$\mu m^{-1}$]x1000""",fontsize=18)
 ax2.tick_params(axis='both', which='major', labelsize=16)
 ax2.get_yaxis().set_ticks([0,0.5,1,1.5,2,2.5,3,3.5])
 
@@ -362,7 +362,7 @@ for key in experiment_event_data:
 position=fig.add_axes([0.37,0.38,0.5,0.02])  ## the parameters are the specified position you set [left, bottom, width, height]
 cb = fig.colorbar(sc,cax=position,orientation='horizontal', drawedges=False)
 cb.solids.set_edgecolor("face")
-cb.set_label(r'Peak Slip Velocity [$mm/s$]',fontsize=14)
+cb.set_label(r'Peak Slip Velocity [$mm$ $s^{-1}$]',fontsize=14)
 cb.set_alpha(1)
 cb.draw_all()
 #position.set_xlim(0,4)
@@ -423,7 +423,7 @@ for experiment in experiments_with_event_data:
 # Panel A
 # Set labels and tick sizes
 ax4.set_xlabel(r'$\kappa$',fontsize=24)
-ax4.set_ylabel(r'Peak Slip Velocity [$mm/s$]',fontsize=18)
+ax4.set_ylabel(r'Peak Slip Velocity [$mm$ $s^{-1}$]',fontsize=18)
 ax4.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
