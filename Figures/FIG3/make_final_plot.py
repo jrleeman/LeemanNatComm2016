@@ -310,7 +310,7 @@ ax2.text(46,0.88,r'$k_c$',fontsize=26,color='k')
 
 # Set labels and tick sizes
 ax3.set_xlabel(r'Load Point Displacement [mm]',fontsize=18,labelpad=15)
-ax3.set_ylabel(r'$\kappa = k/k_c$',fontsize=25)
+ax3.set_ylabel(r'$\kappa = k$ $k_c^{-1}$',fontsize=25)
 ax3.tick_params(axis='both', which='major', labelsize=16)
 
 # Turns off chart clutter
