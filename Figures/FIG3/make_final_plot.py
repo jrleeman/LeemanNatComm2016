@@ -574,3 +574,6 @@ ax4.set_position([0.125, 0.07, 0.352272727273,0.214634146341])
 ax5.set_position([0.54772727, 0.07, 0.352272727273,0.214634146341])
 
 plt.savefig('figure.png', bbox_inches="tight");
+plt.savefig('figure.svg', bbox_inches="tight");
+plt.savefig('figure.eps', bbox_inches="tight");
+plt.savefig('figure.pdf', bbox_inches="tight");
